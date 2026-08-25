@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+Disallow: /blackstar-mersch-prototype.html
+Disallow: /index-check.html
+
+Sitemap: https://www.blackstar-mersch.lu/sitemap.xml
