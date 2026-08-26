@@ -333,7 +333,6 @@
     <div class="contact-cta">
       <p data-i18n="contact.cta.p">Hutt Dir eng Fro zum Veräin, zum Training oder zur Inscriptioun? Schreift eis - mir äntweren esou séier wéi méiglech.</p>
       <a class="btn btn-gold" href="mailto:secretaire@blackstar-mersch.lu?subject=Ufro%20iwwer%20d%27Websäit" data-i18n="contact.send">E-Mail schreiwen</a>
-      <span class="form-note" data-i18n="contact.note">Ären E-Mail-Programm geet op mat eiser Adress schonn agedroen.</span>
     </div>
   </div>
 </section>
@@ -388,7 +387,7 @@
       "days.cat":"Catégorie","days.mon":"Lundi","days.tue":"Mardi","days.wed":"Mercredi","days.thu":"Jeudi","days.fri":"Vendredi",
       "plan.cat0":"U10 Mixtes – Prépoussins","plan.cat1":"U12 Mixtes – Poussins","plan.cat2":"U14 Femmes – Minis","plan.cat3":"U14 Hommes – Minis / U16 Hommes – Scolaires","plan.cat4":"U18 Hommes Cadets","plan.cat5":"Seniors A","plan.cat6":"Seniors B / C","plan.cat7":"Dames A","plan.cat8":"Dames B","plan.before2004":"<2004",
       "day.sat":"Samedi","day.sun":"Dimanche","games.eyebrow":"Toutes les catégories","games.title":"Journée de match","game.home":"Domicile","game.away":"Extérieur","game.timetbd":"Heure à venir",
-      "contact.cta.p":"Une question sur le club, les entraînements ou l'inscription ? Écrivez-nous, nous répondons au plus vite.","contact.send":"Écrire un e-mail","contact.note":"Votre programme de messagerie s'ouvre avec notre adresse déjà renseignée.",
+      "contact.cta.p":"Une question sur le club, les entraînements ou l'inscription ? Écrivez-nous, nous répondons au plus vite.","contact.send":"Écrire un e-mail",
     },
     de: {
       "nav.home":"Home","nav.teams":"Teams","nav.training":"Training","nav.history":"Geschichte","nav.news":"News",
@@ -432,7 +431,7 @@
       "days.cat":"Kategorie","days.mon":"Montag","days.tue":"Dienstag","days.wed":"Mittwoch","days.thu":"Donnerstag","days.fri":"Freitag",
       "plan.cat0":"U10 Gemischt – Prépoussins","plan.cat1":"U12 Gemischt – Poussins","plan.cat2":"U14 Frauen – Minis","plan.cat3":"U14 Männer – Minis / U16 Männer – Scolaires","plan.cat4":"U18 Männer Kadetten","plan.cat5":"Seniors A","plan.cat6":"Seniors B / C","plan.cat7":"Damen A","plan.cat8":"Damen B","plan.before2004":"<2004",
       "day.sat":"Samstag","day.sun":"Sonntag","games.eyebrow":"Alle Kategorien","games.title":"Spieltag","game.home":"Heim","game.away":"Auswärts","game.timetbd":"Uhrzeit folgt",
-      "contact.cta.p":"Fragen zum Verein, zum Training oder zur Anmeldung? Schreibt uns – wir antworten so schnell wie möglich.","contact.send":"E-Mail schreiben","contact.note":"Euer E-Mail-Programm öffnet sich mit unserer Adresse bereits eingetragen.",
+      "contact.cta.p":"Fragen zum Verein, zum Training oder zur Anmeldung? Schreibt uns – wir antworten so schnell wie möglich.","contact.send":"E-Mail schreiben",
     },
     en: {
       "nav.home":"Home","nav.teams":"Teams","nav.training":"Training","nav.history":"History","nav.news":"News",
@@ -476,7 +475,7 @@
       "days.cat":"Category","days.mon":"Monday","days.tue":"Tuesday","days.wed":"Wednesday","days.thu":"Thursday","days.fri":"Friday",
       "plan.cat0":"U10 Mixed – Prépoussins","plan.cat1":"U12 Mixed – Poussins","plan.cat2":"U14 Women – Minis","plan.cat3":"U14 Men – Minis / U16 Men – Scolaires","plan.cat4":"U18 Men Cadets","plan.cat5":"Seniors A","plan.cat6":"Seniors B / C","plan.cat7":"Women A","plan.cat8":"Women B","plan.before2004":"<2004",
       "day.sat":"Saturday","day.sun":"Sunday","games.eyebrow":"All Categories","games.title":"Gameday","game.home":"Home","game.away":"Away","game.timetbd":"Time TBA",
-      "contact.cta.p":"A question about the club, training or signing up? Write to us – we reply as soon as we can.","contact.send":"Write an e-mail","contact.note":"Your mail programme opens with our address already filled in.",
+      "contact.cta.p":"A question about the club, training or signing up? Write to us – we reply as soon as we can.","contact.send":"Write an e-mail",
     },
   };
   function setLang(lang){
@@ -516,14 +515,14 @@
   // Next games (gameday cards) — next upcoming game per category, pulled from the FLBB team calendars, refreshed daily
   // GAMES_DATA_START (auto-generated — do not hand-edit the block below, see /scripts/update-next-games.py)
   const nextCategoryGames = [
-    {date:"2026-09-19", weekday:5, time:null, homeAway:"away", opponent:"Bascharage Hedgehogs", opponentCode:"BAS", teamPage:"teams/senior-a-men.html", teamLabelKey:"team.senior-a-men", teamLabel:"Senior A Hären", gameNumber:"1201001", competition:"M-Nationale 2:Tour qualificatif", bsmName:"Black Star Mersch"},
-    {date:"2026-10-03", weekday:5, time:null, homeAway:"away", opponent:"BBC East Side Pirates", opponentCode:"BEP", teamPage:"teams/senior-a-women.html", teamLabelKey:"team.senior-a-women", teamLabel:"Senior A Dammen", gameNumber:"2201035", competition:"W-Nationale 2:Tour qualificatif", bsmName:"Black Star Mersch"},
-    {date:"2026-09-26", weekday:5, time:null, homeAway:"home", opponent:"Nitia Bettembourg B", opponentCode:"NIT", teamPage:"teams/senior-b-men.html", teamLabelKey:"team.senior-b-men", teamLabel:"Senior B Hären", gameNumber:"1601003", competition:"M-Division 2:", bsmName:"Black Star Mersch B"},
-    {date:"2026-09-27", weekday:6, time:null, homeAway:"away", opponent:"AB Contern B", opponentCode:"CON", teamPage:"teams/senior-b-women.html", teamLabelKey:"team.senior-b-women", teamLabel:"Senior B Dammen", gameNumber:"2501005", competition:"W-Division 1:1ier Tour", bsmName:"Black Star Mersch B"},
-    {date:"2026-10-04", weekday:6, time:null, homeAway:"away", opponent:"North Fox C", opponentCode:"FOX", teamPage:"teams/senior-c-men.html", teamLabelKey:"team.senior-c-men", teamLabel:"Senior C Hären", gameNumber:"1801003", competition:"M-Division 4:", bsmName:"Black Star Mersch C"},
-    {date:"2026-09-26", weekday:5, time:null, homeAway:"home", opponent:"AS Soleuvre", opponentCode:"SOL", teamPage:"teams/u18-cadets.html", teamLabelKey:null, teamLabel:"U18 – Cadets", gameNumber:"3121002", competition:"M-U18 Division 2:Phase 1", bsmName:"Black Star Mersch"},
-    {date:"2026-09-26", weekday:5, time:null, homeAway:"away", opponent:"Nitia Bettembourg", opponentCode:"NIT", teamPage:"teams/u16-scolaires.html", teamLabelKey:null, teamLabel:"U16 – Scolaires", gameNumber:"3241001", competition:"M-U16 Division 4:Phase 1", bsmName:"Black Star Mersch"},
-    {date:"2026-09-26", weekday:5, time:null, homeAway:"home", opponent:"Arantia Larochette B", opponentCode:"ARA", teamPage:"teams/u14-minis.html", teamLabelKey:null, teamLabel:"U14 – Minis", gameNumber:"4341002", competition:"W-U14 Division 4:Phase 1", bsmName:"Black Star Mersch"},
+    {date:"2026-09-19", weekday:5, time:"19:00", homeAway:"away", opponent:"Bascharage Hedgehogs", opponentCode:"BAS", teamPage:"teams/senior-a-men.html", teamLabelKey:"team.senior-a-men", teamLabel:"Senior A Hären", gameNumber:"1201001", competition:"M-Nationale 2:Tour qualificatif", bsmName:"Black Star Mersch"},
+    {date:"2026-10-04", weekday:6, time:"17:30", homeAway:"away", opponent:"BBC East Side Pirates", opponentCode:"BEP", teamPage:"teams/senior-a-women.html", teamLabelKey:"team.senior-a-women", teamLabel:"Senior A Dammen", gameNumber:"2201035", competition:"W-Nationale 2:Tour qualificatif", bsmName:"Black Star Mersch"},
+    {date:"2026-09-26", weekday:5, time:"18:00", homeAway:"home", opponent:"Nitia Bettembourg B", opponentCode:"NIT", teamPage:"teams/senior-b-men.html", teamLabelKey:"team.senior-b-men", teamLabel:"Senior B Hären", gameNumber:"1601003", competition:"M-Division 2:", bsmName:"Black Star Mersch B"},
+    {date:"2026-09-26", weekday:5, time:null, homeAway:"away", opponent:"AB Contern B", opponentCode:"CON", teamPage:"teams/senior-b-women.html", teamLabelKey:"team.senior-b-women", teamLabel:"Senior B Dammen", gameNumber:"2501005", competition:"W-Division 1:1ier Tour", bsmName:"Black Star Mersch B"},
+    {date:"2026-10-04", weekday:6, time:"16:30", homeAway:"away", opponent:"North Fox C", opponentCode:"FOX", teamPage:"teams/senior-c-men.html", teamLabelKey:"team.senior-c-men", teamLabel:"Senior C Hären", gameNumber:"1801003", competition:"M-Division 4:", bsmName:"Black Star Mersch C"},
+    {date:"2026-09-26", weekday:5, time:"14:30", homeAway:"home", opponent:"AS Soleuvre", opponentCode:"SOL", teamPage:"teams/u18-cadets.html", teamLabelKey:null, teamLabel:"U18 – Cadets", gameNumber:"3121002", competition:"M-U18 Division 2:Phase 1", bsmName:"Black Star Mersch"},
+    {date:"2026-09-26", weekday:5, time:"14:30", homeAway:"away", opponent:"Nitia Bettembourg", opponentCode:"NIT", teamPage:"teams/u16-scolaires.html", teamLabelKey:null, teamLabel:"U16 – Scolaires", gameNumber:"3241001", competition:"M-U16 Division 4:Phase 1", bsmName:"Black Star Mersch"},
+    {date:"2026-09-26", weekday:5, time:"16:00", homeAway:"home", opponent:"Arantia Larochette B", opponentCode:"ARA", teamPage:"teams/u14-minis.html", teamLabelKey:null, teamLabel:"U14 – Minis", gameNumber:"4341002", competition:"W-U14 Division 4:Phase 1", bsmName:"Black Star Mersch"},
   ];
   // GAMES_DATA_END
   const categoryDisplayOrder = ["teams/senior-a-men.html","teams/senior-a-women.html","teams/senior-b-men.html","teams/senior-b-women.html","teams/senior-c-men.html","teams/u18-cadets.html","teams/u16-scolaires.html","teams/u14-minis.html","teams/u12m-poussins.html","teams/u12w-poussinnes.html","teams/u10-prepoussins.html","teams/babybasket.html"];

@@ -1,0 +1,32 @@
+name: Update Gameday data from FLBB
+
+on:
+  schedule:
+    # Runs every day at 05:00 UTC (~07:00 Luxembourg time), well before
+    # anyone checks the site in the morning.
+    - cron: "0 5 * * *"
+  workflow_dispatch: {}   # lets you trigger it manually from the Actions tab
+
+permissions:
+  contents: write
+
+jobs:
+  update-games:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Refresh next-game data from FLBB
+        run: python3 scripts/update-next-games.py
+
+      - name: Commit and push if anything changed
+        run: |
+          git config user.name "bsm-gameday-bot"
+          git config user.email "actions@users.noreply.github.com"
+          if git diff --quiet -- index.html; then
+            echo "No changes — data already up to date."
+          else
+            git add index.html
+            git commit -m "Auto-update: refresh next-game data from FLBB"
+            git push
+          fi
