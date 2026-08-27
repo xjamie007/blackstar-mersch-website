@@ -503,11 +503,15 @@
   });
 
   // Sponsors (for ticker only)
-  const sponsors = [["Rives de l'Alzette","https://www.rivesalzette.lu","assets/rivesalzette.png"],["Megalift S.A.","https://www.megalift.lu","assets/megalift.png"],["SecuriTec","https://www.securitec.lu","assets/securitec.png"],["BMW Bilia","https://www.bilia.bmw.lu/fr","assets/bmwbilia.png"],["Karp-Kneip","https://www.karpkneip.lu","assets/karpkneip.png"],["Emile Weber","https://www.emile-weber.lu","assets/emileweber.png"],["Gales – Vins et Crémants","https://gales.lu","assets/gales.jpg"],["Toussaint Abby","https://www.confiance.lu","assets/toussaintabby.png"],["Pizza Hut","https://www.pizzahut.lu","assets/pizzahut.png"],["Garage Kremer","https://garagekremer.lu","assets/garagekremer.png"],["A Guddesch","https://www.gudd.lu","assets/guddesch.png"],["TotalEnergies","https://www.totalenergies.lu","assets/totalenergies.jpeg"],["BIL","https://www.bil.com","assets/bil.png"],["Raiffeisen","https://www.raiffeisen.lu","assets/raiffeisen.png"],["Absolute Teamsport","https://absolute-teamsport.lu","assets/absoluteteamsport.png"],["Beim Nuddels Kniwweler","https://nuddelskniwweler.lu","assets/nuddelskniwweler.png"],["AXA","https://axa.lu/fr/agents","assets/axa.png"],["Spuerkeess","https://www.spuerkeess.lu","assets/spuerkeess.png"],["Dussmann Gruppe","https://de.dussmann.lu","assets/dussmann.png"]];
+  const sponsors = [["Rives de l'Alzette","https://www.rivesalzette.lu","assets/rivesalzette.png",48],["Megalift S.A.","https://www.megalift.lu","assets/megalift.png",30],["SecuriTec","https://www.securitec.lu","assets/securitec.png",68],["BMW Bilia","https://www.bilia.bmw.lu/fr","assets/bmwbilia.png",30],["Karp-Kneip","https://www.karpkneip.lu","assets/karpkneip.png",32],["Emile Weber","https://www.emile-weber.lu","assets/emileweber.png",114],["Gales – Vins et Crémants","https://gales.lu","assets/gales.jpg",53],["Toussaint Abby","https://www.confiance.lu","assets/toussaintabby.png",95],["Pizza Hut","https://www.pizzahut.lu","assets/pizzahut.png",36],["Garage Kremer","https://garagekremer.lu","assets/garagekremer.png",120],["A Guddesch","https://www.gudd.lu","assets/guddesch.png",30],["TotalEnergies","https://www.totalenergies.lu","assets/totalenergies.jpeg",38],["BIL","https://www.bil.com","assets/bil.png",38],["Raiffeisen","https://www.raiffeisen.lu","assets/raiffeisen.png",86],["Absolute Teamsport","https://absolute-teamsport.lu","assets/absoluteteamsport.png",120],["Beim Nuddels Kniwweler","https://nuddelskniwweler.lu","assets/nuddelskniwweler.png",34],["AXA","https://axa.lu/fr/agents","assets/axa.png",106],["Spuerkeess","https://www.spuerkeess.lu","assets/spuerkeess.png",30],["Dussmann Gruppe","https://de.dussmann.lu","assets/dussmann.png",96]];
 
   const ticker = document.getElementById('ticker');
+  // s[3] is the logo's rendered width at the 30px row height the CSS locks in
+  // (capped at max-width:120px). Stating it up front makes the browser reserve
+  // the exact box before the image arrives, so the strip's total width never
+  // changes — see the ticker start-up block further down for why that matters.
   const tickerHtml = sponsors.map(s => s[2]
-    ? `<a class="has-logo" href="${s[1]}" target="_blank" rel="noopener"><img src="${s[2]}" alt="${s[0]}"></a>`
+    ? `<a class="has-logo" href="${s[1]}" target="_blank" rel="noopener"><img src="${s[2]}" alt="${s[0]}" width="${s[3]}" height="30"></a>`
     : `<a href="${s[1]}" target="_blank" rel="noopener">${s[0]}</a>`
   ).join('');
   ticker.innerHTML = tickerHtml + tickerHtml;
@@ -685,16 +689,56 @@
   const merchTickerHtml = merchItems.map(m => `<a class="merch-item" href="${m[2]}" target="_blank" rel="noopener"><img src="${m[3]}" alt="${m[0]}" loading="lazy"><span class="merch-name">${m[0]}</span><span class="merch-price">${m[1]}</span></a>`).join('');
   merchTicker.innerHTML = merchTickerHtml + merchTickerHtml;
 
-  // Match the merch ticker's scroll speed (px/sec) to the sponsor ticker's,
-  // regardless of how many items/how wide each ticker's content is.
-  requestAnimationFrame(() => {
+  // Both tickers hold two identical copies of their content and loop by sliding
+  // translateX(-50%) — half the strip, i.e. exactly one copy. That only lines up
+  // while the strip's width is settled: -50% is measured against the element's
+  // own width, so anything that changes it mid-run (a logo finishing loading, a
+  // webfont swapping in) instantly re-points the animation somewhere else and
+  // the strip visibly jumps forward or back. Changing animation-duration on a
+  // running animation does the same thing, since progress is elapsed/duration.
+  //
+  // So the tickers start paused (see .ticker in style.css): wait for the fonts
+  // and the sponsor logos, then measure, match the speeds, and only then run.
+  const imagesSettled = el => Promise.all(
+    [...el.querySelectorAll('img')].map(img => img.complete ? null : new Promise(done => {
+      img.addEventListener('load', done, {once:true});
+      img.addEventListener('error', done, {once:true});
+    }))
+  );
+  // Never let one stalled request keep the tickers frozen for good.
+  const noLongerThan = (p, ms) => Promise.race([p, new Promise(r => setTimeout(r, ms))]);
+
+  noLongerThan(Promise.all([
+    document.fonts ? document.fonts.ready : null,
+    imagesSettled(ticker),   // merch images are pinned to 72x72 in CSS, so they
+                             // can stay lazy — they never shift the layout
+  ]), 5000).then(() => {
+    // Distance from the start of copy 1 to the start of copy 2 — the exact
+    // travel for a seamless loop. Measured rather than expressed as -50%,
+    // because half of an odd total width lands mid-pixel and hitches.
+    const copyWidth = el => {
+      const kids = el.children;
+      if (kids.length < 2) return 0;
+      return kids[kids.length / 2].getBoundingClientRect().left
+           - kids[0].getBoundingClientRect().left;
+    };
     const baseDurationS = 32; // matches .ticker's CSS animation-duration
-    const sponsorSingleWidth = ticker.scrollWidth / 2;
+    const sponsorSingleWidth = copyWidth(ticker);
+    const merchSingleWidth = copyWidth(merchTicker);
     const pxPerSecond = sponsorSingleWidth / baseDurationS;
-    const merchSingleWidth = merchTicker.scrollWidth / 2;
-    if (pxPerSecond > 0 && merchSingleWidth > 0) {
-      merchTicker.style.animationDuration = (merchSingleWidth / pxPerSecond) + 's';
+
+    if (sponsorSingleWidth > 0) {
+      ticker.style.setProperty('--ticker-shift', -sponsorSingleWidth + 'px');
     }
+    if (merchSingleWidth > 0) {
+      merchTicker.style.setProperty('--ticker-shift', -merchSingleWidth + 'px');
+      // Keep both strips moving at the same px/sec despite different content.
+      if (pxPerSecond > 0) {
+        merchTicker.style.animationDuration = (merchSingleWidth / pxPerSecond) + 's';
+      }
+    }
+    ticker.classList.add('is-running');
+    merchTicker.classList.add('is-running');
   });
 
   // Hero slideshow (full-width, alternating Senior A photos)

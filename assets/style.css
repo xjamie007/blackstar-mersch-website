@@ -139,15 +139,21 @@
   /* SPONSOR TICKER */
   .ticker-wrap{border-bottom:1px solid var(--line);border-top:1px solid var(--line);background:var(--panel);overflow:hidden;}
   .ticker-label{text-align:center;font-size:11px;color:var(--text-dim);letter-spacing:.15em;text-transform:uppercase;padding-top:14px;}
-  .ticker{display:flex;width:max-content;animation:scroll 32s linear infinite;padding:16px 0 20px;}
-  .ticker:hover{animation-play-state:paused;}
+  /* Held paused until index.html has measured the settled strip width — a width
+     change mid-run makes translateX(-50%) jump. .is-running is set from there. */
+  .ticker{display:flex;width:max-content;animation:scroll 32s linear infinite;padding:16px 0 20px;animation-play-state:paused;}
+  .ticker.is-running{animation-play-state:running;}
+  .ticker.is-running:hover{animation-play-state:paused;}
   .ticker a{
     flex:0 0 auto;margin:0 14px;padding:10px 20px;border:1px solid var(--line);border-radius:8px;
     font-family:'Oswald',sans-serif;font-size:14px;color:var(--text-dim);white-space:nowrap;
     transition:border-color .15s, color .15s;
   }
   .ticker a:hover{border-color:var(--gold);color:var(--gold);}
-  @keyframes scroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+  /* --ticker-shift is the measured width of one content copy, set by index.html
+     before the animation starts. The -50% fallback is only for a JS failure: it
+     is a hair off whenever the strip's total width is an odd number of pixels. */
+  @keyframes scroll{from{transform:translateX(0)}to{transform:translateX(var(--ticker-shift,-50%))}}
 
   /* NEWS SWIPER */
   .newswrap{position:relative;max-width:820px;margin:0 auto;}
