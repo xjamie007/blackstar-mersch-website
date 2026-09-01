@@ -49,15 +49,15 @@
   var T = {
     lu: {
       title: "Mir respektéieren Är Privatsphär",
-      body: "Dës Säit benotzt just technesch néidege Späicher am Browser (z. B. fir Är Sprooch ze mierken). Mir setzen keng Tracking- oder Analyse-Cookien an iwwerdroen keng Donnéeën un Drëttfirmen. Externt Kaartematerial vu Google Maps gëtt eréischt gelueden, wann Dir dat ausdrécklech erlaabt.",
-      necessary: "Nëmmen néideg",
+      body: "Dës Säit benotzt just den technesch néidege Späicher am Browser (z. B. fir Är Sprooch z\u2019erkennen). Mir setze keng Tracking- oder Analyse-Cookien an an iwwerdroe keng Donnéeën un Drëttfirmen. Externt Kaartematerial vu Google Maps gëtt eréischt gelueden, wann Dir ausdrécklech zoustëmmt.",
+      necessary: "Nëmmen dat néidegst",
       all: "Alles akzeptéieren",
       settings: "Astellungen",
       save: "Auswiel späicheren",
       catNeedTitle: "Technesch néideg",
       catNeedAlways: "Ëmmer aktiv",
       catNeedText: "Späichert Är Sprooch, Är Cookie-Auswiel an - fir de Comité - de lokale Login. Dës Donnéeë bleiwen an Ärem Browser a ginn ni op ee Server geschéckt.",
-      catMapsTitle: "Extern Kaarten (Google Maps)",
+      catMapsTitle: "Extern Karten (Google Maps)",
       catMapsText: "Lued d'Kaart direkt op de Halen-Säiten. Dobäi ginn Är IP-Adress a Cookien un Google iwwerdroen (och an d'USA).",
       privacy: "Dateschutz",
       imprint: "Impressum",
