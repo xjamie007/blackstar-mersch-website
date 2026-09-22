@@ -3,8 +3,13 @@
 Keeps all FLBB game data on the site fresh, sourced live from FLBB's public
 .ics calendar feeds (luxembourg.basketball):
 
-  1. index.html          -> the "Gameday" cards (next game per category)
-  2. teams/<team>.html    -> each team's own full-season schedule table
+  1. index.html          -> the "Gameday" cards: each team's next game PLUS every
+                            upcoming Coupe game of that team (sorted in by date)
+  2. teams/<team>.html    -> each team's own full-season table, league AND Coupe games
+                            (games new in the feed are added automatically). The page
+                            shows the games from today on as "Nächste Spiele".
+                            Games FLBB has already dropped from the feed (played ones)
+                            simply stay in the table; the page only shows upcoming games.
 
 Meant to run daily via GitHub Actions (see .github/workflows/update-games.yml)
 so dates/times/opponents never go stale on their own.
@@ -69,7 +74,8 @@ ENTRY_RE = re.compile(
     r'\{date:"(?P<date>[^"]*)", weekday:(?P<weekday>\d+), time:(?P<time>null|"[^"]*"), '
     r'homeAway:"(?P<homeAway>[^"]*)", opponent:"(?P<opponent>(?:[^"\\]|\\.)*)", '
     r'opponentCode:(?P<opponentCode>null|"[^"]*"), venue:"(?P<venue>(?:[^"\\]|\\.)*)", '
-    r'gameNumber:"(?P<gameNumber>\d+)", competition:"(?P<competition>(?:[^"\\]|\\.)*)"\},'
+    r'gameNumber:"(?P<gameNumber>\d+)", competition:"(?P<competition>(?:[^"\\]|\\.)*)"'
+    r'(?P<score>, score:\{home:\d+, away:\d+\})?\},'
 )
 
 
@@ -90,6 +96,9 @@ def parse_ics_events(text):
         m = re.search(r"DESCRIPTION:(.+)", block)
         if m:
             ev["description"] = m.group(1).strip()
+        m = re.search(r"LOCATION:(.*)", block)
+        if m:
+            ev["location"] = m.group(1).strip()
         m = re.search(r"DTSTART:(\d{8})T(\d{6})", block)
         if m:
             ev["date"] = m.group(1)
@@ -113,6 +122,29 @@ def club_code_for(name):
     return None
 
 
+def is_cup_competition(comp):
+    """FLBB cup competitions show up in the same .ics feeds as league games, e.g.
+    'M-LOTERIE NATIONALE CLUX:1/16 finales' (Coupe de Luxembourg),
+    'W-LALUX Ladies Cup:1/8 finales', 'M-Coupe de l'Avenir:1/16 finales'."""
+    return bool(re.search(r"coupe|cup|clux", comp or "", re.I))
+
+
+def venue_from_location(loc):
+    """'Centre Sportif,rue Merten,  9257 Diekirch' -> 'Centre Sportif, Diekirch'"""
+    parts = [p.strip() for p in (loc or "").split(",") if p.strip()]
+    if not parts:
+        return ""
+    name = parts[0]
+    city = ""
+    if len(parts) > 1:
+        m = re.match(r"^\d{4,5}\s+(.+)$", parts[-1])
+        if m:
+            city = m.group(1).strip()
+    if city and city.lower() not in name.lower():
+        return f"{name}, {city}"
+    return name
+
+
 def game_number_of(ev):
     m = re.search(r"Game number:\s*(\d+)", ev.get("description", ""))
     return m.group(1) if m else None
@@ -128,9 +160,13 @@ def slugify_team(s):
 
 
 def slugify_comp(s):
-    s = s.replace(":", "").lower().strip()
+    # matches FLBB's own match URLs: accents/apostrophes dropped, "/" -> "-"
+    # e.g. "M-Coupe FLBB:Phase éliminatoire" -> "m-coupe-flbbphase-eliminatoire"
+    s = unicodedata.normalize("NFD", s)
+    s = "".join(c for c in s if unicodedata.category(c) != "Mn")
+    s = s.replace(":", "").replace("'", "").lower().strip()
     s = re.sub(r"\s+", "-", s)
-    return s
+    return s.replace("/", "-")
 
 
 def flbb_match_url(game_number, date_str, home_name, away_name, competition):
@@ -199,18 +235,26 @@ def resolve_event(ev, bsm_name, *, allow_match_page_fallback=True):
     }
 
 
+def js_escape(v):
+    return str(v).replace("\\", "\\\\").replace('"', '\\"')
+
+
 def js_str(v):
-    return "null" if v is None else '"' + str(v).replace("\\", "\\\\").replace('"', '\\"') + '"'
+    return "null" if v is None else '"' + js_escape(v) + '"'
 
 
 def js_entry_for_index(g):
+    division = ""
+    if g.get("divisionComp") and g["divisionComp"] != g["competition"]:
+        # the team's next *league* game, so a Coupe game never becomes the team's "division" label
+        division = ", divisionComp:%s" % js_str(g["divisionComp"])
     return (
         "    {date:%s, weekday:%d, time:%s, homeAway:%s, opponent:%s, opponentCode:%s, "
-        "teamPage:%s, teamLabelKey:%s, teamLabel:%s, gameNumber:%s, competition:%s, bsmName:%s},"
+        "teamPage:%s, teamLabelKey:%s, teamLabel:%s, gameNumber:%s, competition:%s, bsmName:%s%s},"
     ) % (
         js_str(g["date"]), g["weekday"], js_str(g["time"]), js_str(g["homeAway"]), js_str(g["opponent"]),
         js_str(g["opponentCode"]), js_str(g["teamPage"]), js_str(g["teamLabelKey"]), js_str(g["teamLabel"]),
-        js_str(g["gameNumber"]), js_str(g["competition"]), js_str(g["bsmName"]),
+        js_str(g["gameNumber"]), js_str(g["competition"]), js_str(g["bsmName"]), division,
     )
 
 
@@ -229,7 +273,7 @@ def update_index_html(next_games):
         print("ERROR: could not find GAMES_DATA_START/END markers in index.html", file=sys.stderr)
         return False
 
-    updated = pattern.sub(new_array, html)
+    updated = pattern.sub(lambda m: new_array, html)
     if updated == html:
         return False
     with open(INDEX_HTML, "w", encoding="utf-8") as f:
@@ -237,10 +281,33 @@ def update_index_html(next_games):
     return True
 
 
-def update_team_page(path, events_by_game_number, bsm_name):
-    """Rewrite only the entries in this team's own nextGames table whose
-    gameNumber is present in the live feed — anything FLBB hasn't published
-    yet (future rounds not in the feed) is left exactly as it was."""
+TEAM_BLOCK_HEADER = "// GAMES_DATA_START (auto-generated — do not hand-edit, see /scripts/update-next-games.py)"
+
+
+def team_entry_line(resolved, venue_js, game_number, score=""):
+    """venue_js is already-escaped JS string *content* (no surrounding quotes)."""
+    return (
+        '    {date:%s, weekday:%d, time:%s, homeAway:%s, opponent:%s, opponentCode:%s, '
+        'venue:"%s", gameNumber:%s, competition:%s%s},'
+    ) % (
+        js_str(resolved["date"]), resolved["weekday"], js_str(resolved["time"]),
+        js_str(resolved["homeAway"]), js_str(resolved["opponent"]), js_str(resolved["opponentCode"]),
+        venue_js, js_str(game_number), js_str(resolved["competition"]), score,
+    )
+
+
+def update_team_page(path, events, bsm_name, resolved_cache):
+    """Rebuild this team's nextGames table from the live feed.
+
+    * every game in the feed is (re)written — league games AND Coupe games, so a game
+      that is new in the feed (e.g. a Coupe draw) is ADDED, not just updated;
+    * venues already on the page are kept (they were curated / abbreviated), new away
+      games get their venue from the feed's LOCATION field;
+    * entries already on the page that the feed doesn't list (any more) are left exactly
+      as they were — this is how PLAYED games (which FLBB drops from the feed) stay in
+      the table instead of vanishing;
+    * the result is sorted by date.
+    """
     try:
         with open(path, "r", encoding="utf-8") as f:
             html = f.read()
@@ -255,24 +322,37 @@ def update_team_page(path, events_by_game_number, bsm_name):
         return False
     block = bm.group(0)
 
-    def repl(m):
-        ev = events_by_game_number.get(m.group("gameNumber"))
-        if not ev:
-            return m.group(0)  # not (yet) in the feed — leave untouched
-        resolved = resolve_event(ev, bsm_name)
-        if not resolved:
-            return m.group(0)
-        return (
-            '{date:%s, weekday:%d, time:%s, homeAway:%s, opponent:%s, opponentCode:%s, '
-            'venue:%s, gameNumber:%s, competition:%s},'
-        ) % (
-            js_str(resolved["date"]), resolved["weekday"], js_str(resolved["time"]),
-            js_str(resolved["homeAway"]), js_str(resolved["opponent"]), js_str(resolved["opponentCode"]),
-            '"' + m.group("venue") + '"',  # already-escaped JS string content — reuse verbatim, don't re-escape
-            js_str(m.group("gameNumber")), js_str(resolved["competition"]),
-        )
+    entries = {}  # gameNumber -> (date, rendered line); insertion order = existing order
+    existing_venue = {}
+    existing_score = {}
+    for m in ENTRY_RE.finditer(block):
+        entries[m.group("gameNumber")] = (m.group("date"), "    " + m.group(0))
+        existing_venue[m.group("gameNumber")] = m.group("venue")
+        existing_score[m.group("gameNumber")] = m.group("score") or ""
 
-    new_block = ENTRY_RE.sub(repl, block)
+    for ev in events:
+        gn = game_number_of(ev)
+        if not gn:
+            continue
+        if gn not in resolved_cache:
+            resolved_cache[gn] = resolve_event(ev, bsm_name)
+        resolved = resolved_cache[gn]
+        if not resolved:
+            continue
+        if gn in existing_venue:
+            venue_js = existing_venue[gn]
+        elif resolved["homeAway"] == "away":
+            venue_js = js_escape(venue_from_location(ev.get("location", "")))
+        else:
+            venue_js = ""
+        entries[gn] = (resolved["date"], team_entry_line(resolved, venue_js, gn, existing_score.get(gn, "")))
+
+    lines = [line for _, line in sorted(entries.values(), key=lambda t: t[0])]
+    new_block = (
+        TEAM_BLOCK_HEADER + "\n"
+        "  const nextGames = [\n" + "\n".join(lines) + "\n  ];\n"
+        "  // GAMES_DATA_END"
+    )
     if new_block == block:
         return False
 
@@ -285,6 +365,7 @@ def update_team_page(path, events_by_game_number, bsm_name):
 def main():
     next_games = []
     any_changes = False
+    today = date.today().strftime("%Y%m%d")
 
     for team in TEAMS:
         print(f"Checking {team['teamLabel']} ({team['code']}) ...")
@@ -295,26 +376,48 @@ def main():
             continue
 
         events = parse_ics_events(text)
-        events_by_game_number = {gn: ev for ev in events if (gn := game_number_of(ev))}
+        resolved_cache = {}  # gameNumber -> resolved dict, so each game is resolved (and its time looked up) only once
 
-        # 1) next upcoming game -> homepage Gameday card
-        today = date.today().strftime("%Y%m%d")
+        def resolved_for(ev):
+            gn = game_number_of(ev)
+            if gn is None:
+                return resolve_event(ev, team["bsmName"])
+            if gn not in resolved_cache:
+                resolved_cache[gn] = resolve_event(ev, team["bsmName"])
+            return resolved_cache[gn]
+
+        team_fields = lambda gn: {"gameNumber": gn, "teamPage": team["teamPage"],
+                                  "teamLabelKey": team["teamLabelKey"], "teamLabel": team["teamLabel"],
+                                  "bsmName": team["bsmName"]}
         upcoming = sorted((e for e in events if e.get("date", "") >= today), key=lambda e: e["date"])
+
+        # 1) homepage Gameday: the team's next game (league or Coupe, whichever is first)
+        #    PLUS every other upcoming Coupe game — sorted in by date, no separate section
         if upcoming:
-            resolved = resolve_event(upcoming[0], team["bsmName"])
-            if resolved:
-                gn = game_number_of(upcoming[0]) or ""
-                print(f"  -> next: {resolved['date']} {resolved['time'] or 'TBD'} vs {resolved['opponent']} ({resolved['homeAway']})")
-                next_games.append({**resolved, "gameNumber": gn, "teamPage": team["teamPage"],
-                                    "teamLabelKey": team["teamLabelKey"], "teamLabel": team["teamLabel"],
-                                    "bsmName": team["bsmName"]})
+            first = resolved_for(upcoming[0])
+            if first:
+                # the team's division label must come from a league game, never from a Coupe game
+                league_comp = first["competition"]
+                if is_cup_competition(league_comp):
+                    for e in upcoming[1:] + sorted(events, key=lambda e: e["date"], reverse=True):
+                        r = resolved_for(e)
+                        if r and not is_cup_competition(r["competition"]):
+                            league_comp = r["competition"]
+                            break
+                picked = [upcoming[0]] + [e for e in upcoming[1:]
+                                          if (r := resolved_for(e)) and is_cup_competition(r["competition"])]
+                for e in picked:
+                    resolved = resolved_for(e)
+                    tag = " [Coupe]" if is_cup_competition(resolved["competition"]) else ""
+                    print(f"  -> {resolved['date']} {resolved['time'] or 'TBD'} vs {resolved['opponent']} ({resolved['homeAway']}){tag}")
+                    next_games.append({**resolved, **team_fields(game_number_of(e) or ""), "divisionComp": league_comp})
             else:
                 print(f"  ! could not match '{team['bsmName']}' in next event", file=sys.stderr)
         else:
             print("  -> no upcoming game found, homepage card will be omitted")
 
-        # 2) sync this team's own full-season schedule table
-        if update_team_page(team["teamPage"], events_by_game_number, team["bsmName"]):
+        # 2) sync this team's own full-season schedule table (league + Coupe)
+        if update_team_page(team["teamPage"], events, team["bsmName"], resolved_cache):
             print(f"  -> updated {team['teamPage']}")
             any_changes = True
 

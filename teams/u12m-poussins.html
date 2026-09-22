@@ -17,7 +17,7 @@
 <meta name="twitter:title" content="U12M – Poussins – Black Star Mersch">
 <meta name="twitter:description" content="U12M – Poussins vum Black Star Mersch: All Informatiounen zu Trainer, Trainingszäiten an der Ekipp.">
 <meta name="twitter:image" content="https://www.blackstar-mersch.lu/assets/logo.png">
-<link rel="stylesheet" href="../assets/style.css?v=1788159570">
+<link rel="stylesheet" href="../assets/style.css?v=1787682049">
 </head>
 <body>
 <header>
@@ -98,7 +98,8 @@
   
   <div class="teampage-card">
     <h3 data-i18n="nav.training">Training</h3>
-    <div class="practice-row"><b data-i18n="day.tue_thu">Dënschdeg & Donneschdeg</b><span>16:00 – 17:00 — <a class="gym-link" href="../gyms/hall-omnisport.html">rue des Prés</a></span></div>
+    <div class="practice-row"><b data-i18n="day.tue">Dënschdeg</b><span>16:00 – 17:00 — <a class="gym-link" href="../gyms/hall-omnisport.html">Hall Omnisport Mersch</a></span></div>
+    <div class="practice-row"><b data-i18n="day.thu">Donneschdeg</b><span>15:00 – 16:30 — <a class="gym-link" href="../gyms/hall-omnisport.html">Hall Omnisport Mersch</a></span></div>
   </div>
 </div>
 <footer>
@@ -123,6 +124,7 @@
   // GAMES_DATA_START (auto-generated — do not hand-edit, see /scripts/update-next-games.py)
   const nextGames = [];
   // GAMES_DATA_END
+  nextGames.sort((a, b) => a.date.localeCompare(b.date));
   const dayKeysFull = {0:"day.mon",1:"day.tue",2:"day.wed",3:"day.thu",4:"day.fri",5:"day.sat",6:"day.sun"};
   const dayFallback = {0:"Méindeg",1:"Dënschdeg",2:"Mëttwoch",3:"Donneschdeg",4:"Freideg",5:"Samschdeg",6:"Sonndeg"};
   const FLBB_LOGO_BASE = "https://www.luxembourg.basketball/layout/themes/flbb/images/Logos/";
@@ -131,7 +133,18 @@
     return s.normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase().replace(/'/g,'').trim().replace(/\s+/g,'-').replace(/[^a-z0-9-]/g,'');
   }
   function slugifyComp(s){
-    return s.replace(/:/g,'').toLowerCase().trim().replace(/\s+/g,'-');
+    // FLBB match-URL slug: accents/apostrophes dropped, "/" -> "-"  (e.g. "M-Coupe FLBB:Phase éliminatoire" -> "m-coupe-flbbphase-eliminatoire")
+    return s.normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/[:']/g,'').toLowerCase().trim().replace(/\s+/g,'-').replace(/\//g,'-');
+  }
+  // Coupe games (FLBB cup competitions) are flagged with a gold "Coupe" line on the card.
+  function isCupCompetition(comp){ return /coupe|cup|clux/i.test(comp || ''); }
+  function cupLabel(comp){
+    if (!comp) return 'Coupe';
+    const parts = comp.replace(/^[MW]-/, '').split(':');
+    let name = parts[0].trim();
+    if (/loterie nationale|clux/i.test(name)) name = 'Coupe de Luxembourg';
+    const round = (parts[1] || '').trim();
+    return round ? `${name} · ${round}` : name;
   }
   function flbbMatchUrl(g){
     if (!g.gameNumber || !g.competition) return null;
@@ -193,37 +206,36 @@
     const awayLabel = dict['game.away'] || 'Auswäerst';
     const tbdLabel = dict['game.timetbd'] || 'Zäit gëtt nach confirméiert';
     const emptyLabel = dict['nextgames.empty'] || 'Nach keng Matcher geplangt.';
-    const noResultLabel = dict['game.noresult'] || 'Nach kee Resultat';
     const list = document.getElementById('nextGamesList');
-    if (!nextGames.length){
-      list.innerHTML = `<p class="gameday-empty">${emptyLabel}</p>`;
-      return;
+    const now = new Date();
+    const todayStr = now.getFullYear() + '-' + String(now.getMonth() + 1).padStart(2, '0') + '-' + String(now.getDate()).padStart(2, '0');
+    const upcoming = nextGames.filter(g => g.date >= todayStr);
+
+    const divEl = document.getElementById('teamDivision');
+    if (divEl){
+      // Division label comes from a league game — never from a Coupe game.
+      const leagueGames = nextGames.filter(g => !isCupCompetition(g.competition));
+      const refGame = leagueGames.find(g => g.date >= todayStr) || leagueGames[leagueGames.length - 1] || nextGames[0];
+      divEl.textContent = refGame ? (divisionLabel(refGame.competition, lang) || '–') : '–';
     }
-    const todayStr = new Date().toISOString().slice(0,10);
-    let initialIndex = nextGames.findIndex(g => g.date >= todayStr);
-    if (initialIndex === -1) initialIndex = Math.max(0, nextGames.length - 1);
-    list.innerHTML = `<div class="gameday-carousel" id="nextGamesCarousel">
-      <button class="gameday-arrow prev" type="button" aria-label="Zeréck">&#8249;</button>
-      <div class="gameday-viewport" id="nextGamesViewport">
-        <div class="gameday-wrap gameday-track" id="nextGamesTrack">` + nextGames.map(g => {
+
+    function cardHtml(g){
       const badge = g.homeAway === 'home' ? homeLabel : awayLabel;
       const [y,m,d] = g.date.split('-');
       const dateStr = `${wd(g.weekday)}, ${d}.${m}.`;
       const timeStr = g.time ? g.time : tbdLabel;
       const oppLogo = g.opponentCode ? `${FLBB_LOGO_BASE}${g.opponentCode}.jpg` : '../assets/logo.png';
       const venueStr = (g.homeAway === 'away' && g.venue) ? `<div class="gameday-time">${g.venue}</div>` : '';
-      const bsmTeam = {logo:'../assets/logo.png', name:BSM_NAME};
+      const bsmTeam = {logo:'../assets/logo.png', name:g.bsmName || BSM_NAME};
       const oppTeam = {logo:oppLogo, name:g.opponent};
       const leftTeam = g.homeAway === 'away' ? oppTeam : bsmTeam;
       const rightTeam = g.homeAway === 'away' ? bsmTeam : oppTeam;
       const matchUrl = flbbMatchUrl(g);
-      const isPast = g.date < todayStr;
-      const scoreStr = (g.score && typeof g.score.home === 'number' && typeof g.score.away === 'number') ? `${g.score.home} : ${g.score.away}` : null;
-      const bottomBlock = isPast
-        ? (scoreStr ? `<div class="gameday-score">${scoreStr}</div>` : `<div class="gameday-time">${noResultLabel}</div>`)
-        : `<div class="gameday-time">${timeStr}</div>
+      const bottomBlock = `<div class="gameday-time">${timeStr}</div>
           ${venueStr}`;
-      return `<a class="gameday-card${isPast ? ' played' : ''}" href="${matchUrl}" target="_blank" rel="noopener">
+      const isCup = isCupCompetition(g.competition);
+      const cupStr = isCup ? `<div class="gameday-cup">${cupLabel(g.competition)}</div>` : '';
+      return `<a class="gameday-card${isCup ? ' cup' : ''}" href="${matchUrl}" target="_blank" rel="noopener">
         <div class="gameday-card-inner">
           <div class="gameday-matchup">
             <div class="gameday-team"><img src="${leftTeam.logo}" alt="${leftTeam.name}" onerror="this.src='../assets/logo.png'"><span>${leftTeam.name}</span></div>
@@ -232,14 +244,28 @@
           </div>
           <div class="gameday-date">${dateStr}</div>
           ${bottomBlock}
+          ${cupStr}
           <span class="gameday-badge ${g.homeAway}">${badge}</span>
         </div>
       </a>`;
-    }).join('') + `</div>
-      </div>
-      <button class="gameday-arrow next" type="button" aria-label="Weider">&#8250;</button>
-    </div>`;
-    wireGamedayCarousel(document.getElementById('nextGamesTrack'), false, initialIndex);
+    }
+    function carouselHtml(id, games){
+      return `<div class="gameday-carousel" id="${id}Carousel">
+        <button class="gameday-arrow prev" type="button" aria-label="Zeréck">&#8249;</button>
+        <div class="gameday-viewport" id="${id}Viewport">
+          <div class="gameday-wrap gameday-track" id="${id}Track">` + games.map(cardHtml).join('') + `</div>
+        </div>
+        <button class="gameday-arrow next" type="button" aria-label="Weider">&#8250;</button>
+      </div>`;
+    }
+
+    // Nächste Spiele — everything from today on (league + Coupe)
+    if (!upcoming.length){
+      list.innerHTML = `<p class="gameday-empty">${emptyLabel}</p>`;
+    } else {
+      list.innerHTML = carouselHtml('nextGames', upcoming);
+      wireGamedayCarousel(document.getElementById('nextGamesTrack'), false, 0);
+    }
   }
   window.__rebuildNextGames = buildNextGames;
   buildNextGames('lu');
