@@ -46,8 +46,10 @@ TEAMS = [
     {"code": "SDBSMB", "teamPage": "teams/senior-b-women.html", "teamLabelKey": "team.senior-b-women", "teamLabel": "Senior B Dammen", "bsmName": "Black Star Mersch B"},
     {"code": "SHBSMC", "teamPage": "teams/senior-c-men.html",   "teamLabelKey": "team.senior-c-men",   "teamLabel": "Senior C Hären",  "bsmName": "Black Star Mersch C"},
     {"code": "CABSM",  "teamPage": "teams/u18-cadets.html",     "teamLabelKey": None, "teamLabel": "U18 – Cadets",    "bsmName": "Black Star Mersch"},
-    {"code": "SCBSM",  "teamPage": "teams/u16-scolaires.html",  "teamLabelKey": None, "teamLabel": "U16 – Scolaires", "bsmName": "Black Star Mersch"},
-    {"code": "FIBSM",  "teamPage": "teams/u14-minis.html",      "teamLabelKey": None, "teamLabel": "U14 – Minis",     "bsmName": "Black Star Mersch"},
+    # U14 + U16 are one squad since 2026/2027 and play in the U16 league (SCBSM).
+    # teams/u14-minis.html only redirects there now. (FIBSM is the U14 girls' feed and
+    # MIBSM the old U14 boys' one — neither has a page on the site.)
+    {"code": "SCBSM",  "teamPage": "teams/u16-scolaires.html",  "teamLabelKey": None, "teamLabel": "U14 + U16 – Minis & Scolaires", "bsmName": "Black Star Mersch"},
 ]
 
 # FLBB club-name -> club-code lookup (for opponent crest images), scraped from

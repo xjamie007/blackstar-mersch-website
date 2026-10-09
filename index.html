@@ -20,7 +20,7 @@
 <link rel="icon" href="assets/favicon.ico" sizes="any">
 <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
 <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
-<link rel="stylesheet" href="assets/style.css?v=1787682049">
+<link rel="stylesheet" href="assets/style.css?v=1791541000">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -60,12 +60,11 @@
             <a href="teams/senior-b-women.html" data-i18n="team.senior-b-women">Senior B Dammen</a>
             <a href="teams/u22-espoirs.html">U22 – Espoirs</a>
             <a href="teams/u18-cadets.html">U18 – Cadets</a>
-            <a href="teams/u16-scolaires.html">U16 – Scolaires</a>
-            <a href="teams/u14-minis.html">U14 – Minis</a>
+            <a href="teams/u16-scolaires.html">U14 + U16 – Minis &amp; Scolaires</a>
             <a href="teams/u12m-poussins.html">U12M – Poussins</a>
             <a href="teams/u12w-poussinnes.html">U12W – Poussinnes</a>
             <a href="teams/u10-prepoussins.html">U10 – Prépoussins</a>
-            <a href="teams/babybasket.html">Babybasket</a>
+            <a href="teams/babybasket.html">U7 – Babybasket</a>
             <a href="teams/referees.html" data-i18n="team.referees">Schidsrichter</a>
           </div>
       </li>
@@ -127,6 +126,13 @@
     </div>
     <button class="gameday-arrow next" type="button" aria-label="Weider">&#8250;</button>
   </div>
+</section>
+
+<section id="agenda">
+  <div class="eyebrow" data-i18n="agenda.eyebrow">Agenda</div>
+  <h2 class="section-title" data-i18n="agenda.title">Nächst Evenementer</h2>
+  <p class="section-sub" data-i18n="agenda.sub">Notéiert Iech dës Datumer.</p>
+  <div class="agenda-grid" id="agendaGrid"></div>
 </section>
 
 <section id="news">
@@ -209,11 +215,7 @@
     </a>
     <a class="card team-card-plain" href="teams/u16-scolaires.html">
       <div class="card-thumb team-card-thumb" style="background-image:url('assets/teams/u16-scolaires.jpg')"></div>
-      <h4>U16 – Scolaires</h4>
-    </a>
-    <a class="card team-card-plain" href="teams/u14-minis.html">
-      <div class="card-thumb team-card-thumb" style="background-image:url('assets/teams/u14-minis.jpg')"></div>
-      <h4>U14 – Minis</h4>
+      <h4>U14 + U16 – Minis &amp; Scolaires</h4>
     </a>
     <a class="card team-card-plain" href="teams/u12m-poussins.html">
       <div class="card-thumb team-card-thumb" style="background-image:url('assets/teams/u14-minis.jpg')"></div>
@@ -229,7 +231,7 @@
     </a>
     <a class="card team-card-plain" href="teams/babybasket.html">
       <div class="card-thumb team-card-thumb" style="background-image:url('assets/teams/babybasket.jpg')"></div>
-      <h4>Babybasket</h4>
+      <h4>U7 – Babybasket</h4>
     </a>
     <a class="card team-card-plain" href="teams/referees.html">
       <div class="card-thumb team-card-thumb" id="refereesThumb" style="background-image:url('assets/teams/referee-til.jpg');background-position:center 20%;"></div>
@@ -372,7 +374,7 @@
       "news.readmore":"Lire la suite →",
       "teams.eyebrow":"Équipes",
       "teams.tag":"Équipe","teams.title":"Découvrez nos équipes",
-      "cat.before2004":"Nés avant 2004","cat.2004-2009":"Nés 2004 – 2009","cat.2009-2010":"Nés 2009 – 2010","cat.2011-2012":"Nés 2011 – 2012","cat.2013-2014":"Nés 2013 – 2014","cat.2015-2016":"Nés 2015 – 2016","cat.after2016-mixed":"Nés après 2016 (Mixte)","cat.after2017":"Nés après 2017",
+      "cat.before2004":"Nés avant 2004","cat.before2009":"Nés avant 2009","cat.2011-2014":"Nés 2011 – 2014","cat.2017-2019":"Nés 2017 – 2019","cat.2020-2021":"Nés 2020 – 2021","cat.2004-2009":"Nés 2004 – 2009","cat.2009-2010":"Nés 2009 – 2010","cat.2011-2012":"Nés 2011 – 2012","cat.2013-2014":"Nés 2013 – 2014","cat.2015-2016":"Nés 2015 – 2016","cat.after2016-mixed":"Nés après 2016 (Mixte)","cat.after2017":"Nés après 2017",
       "training.eyebrow":"Quand on s'entraîne","training.title":"Plan d'entraînement","training.sub":"Aperçu 2026/2027.",
       "history.eyebrow":"Depuis 1934","history.sub":"Des succès les plus récents jusqu'à la fondation.",
       "committee.eyebrow":"Notre comité","committee.sub":"Des bénévoles autour du ballon.","committee.title":"Rencontrez notre comité",
@@ -398,6 +400,8 @@
       "plan.cat0":"U10 Mixtes – Prépoussins","plan.cat1":"U12 Mixtes – Poussins","plan.cat3":"U14 Minis + U16 Hommes – Scolaires","plan.cat11":"U7 Mixtes – Babybasket","plan.cat4":"U18 Hommes – Cadets","plan.cat5":"Seniors A","plan.cat6":"Seniors B / C","plan.cat7":"Dames A","plan.cat8":"Dames B","plan.before2009":"<2009","plan.cat10":"Renforcement musculaire – Lance",
       "day.sat":"Samedi","day.sun":"Dimanche","games.eyebrow":"Toutes les catégories","games.title":"Journée de match","game.home":"Domicile","game.away":"Extérieur","game.timetbd":"Heure à venir",
       "contact.cta.p":"Une question sur le club, les entraînements ou l'inscription ? Écrivez-nous, nous répondons au plus vite.","contact.send":"Écrire un e-mail",
+      "agenda.eyebrow":"Agenda","agenda.title":"Prochains événements","agenda.sub":"À noter dans vos agendas.","agenda.today":"Aujourd'hui","agenda.soon":"Bientôt",
+      "agenda.ev1":"Journée de la Commémoration nationale","agenda.ev2":"Nouveaux citoyens","agenda.ev3":"Marché de Noël",
     },
     de: {
       "nav.home":"Home","nav.teams":"Teams","nav.training":"Training","nav.history":"Geschichte","nav.news":"News",
@@ -416,7 +420,7 @@
       "news.readmore":"Weiterlesen →",
       "teams.eyebrow":"Teams",
       "teams.tag":"Team","teams.title":"Lernt unsere Teams kennen",
-      "cat.before2004":"Geboren vor 2004","cat.2004-2009":"Geboren 2004 – 2009","cat.2009-2010":"Geboren 2009 – 2010","cat.2011-2012":"Geboren 2011 – 2012","cat.2013-2014":"Geboren 2013 – 2014","cat.2015-2016":"Geboren 2015 – 2016","cat.after2016-mixed":"Geboren nach 2016 (Mixed)","cat.after2017":"Geboren nach 2017",
+      "cat.before2004":"Geboren vor 2004","cat.before2009":"Geboren vor 2009","cat.2011-2014":"Geboren 2011 – 2014","cat.2017-2019":"Geboren 2017 – 2019","cat.2020-2021":"Geboren 2020 – 2021","cat.2004-2009":"Geboren 2004 – 2009","cat.2009-2010":"Geboren 2009 – 2010","cat.2011-2012":"Geboren 2011 – 2012","cat.2013-2014":"Geboren 2013 – 2014","cat.2015-2016":"Geboren 2015 – 2016","cat.after2016-mixed":"Geboren nach 2016 (Mixed)","cat.after2017":"Geboren nach 2017",
       "training.eyebrow":"Wann trainiert wird","training.title":"Trainingsplan","training.sub":"Übersicht 2026/2027.",
       "history.eyebrow":"Seit 1934","history.sub":"Von den aktuellsten Erfolgen bis zur Gründung.",
       "committee.eyebrow":"Unser Komitee","committee.sub":"Ehrenamtliche rund um den Ball.","committee.title":"Lernt unser Komitee kennen",
@@ -442,6 +446,8 @@
       "plan.cat0":"U10 Gemischt – Prépoussins","plan.cat1":"U12 Gemischt – Poussins","plan.cat3":"U14 Minis + U16 Männer – Scolaires","plan.cat11":"U7 Gemischt – Babybasket","plan.cat4":"U18 Männer – Cadets","plan.cat5":"Seniors A","plan.cat6":"Seniors B / C","plan.cat7":"Damen A","plan.cat8":"Damen B","plan.before2009":"<2009","plan.cat10":"Krafttraining – Lance",
       "day.sat":"Samstag","day.sun":"Sonntag","games.eyebrow":"Alle Kategorien","games.title":"Spieltag","game.home":"Heim","game.away":"Auswärts","game.timetbd":"Uhrzeit folgt",
       "contact.cta.p":"Fragen zum Verein, zum Training oder zur Anmeldung? Schreibt uns – wir antworten so schnell wie möglich.","contact.send":"E-Mail schreiben",
+      "agenda.eyebrow":"Termine","agenda.title":"Nächste Veranstaltungen","agenda.sub":"Merkt euch diese Termine vor.","agenda.today":"Heute","agenda.soon":"Demnächst",
+      "agenda.ev1":"Nationaler Gedenktag","agenda.ev2":"Neue Mitbürger","agenda.ev3":"Weihnachtsmarkt",
     },
     en: {
       "nav.home":"Home","nav.teams":"Teams","nav.training":"Training","nav.history":"History","nav.news":"News",
@@ -460,7 +466,7 @@
       "news.readmore":"Read more →",
       "teams.eyebrow":"Teams",
       "teams.tag":"Team","teams.title":"Meet our Teams",
-      "cat.before2004":"Born before 2004","cat.2004-2009":"Born 2004 – 2009","cat.2009-2010":"Born 2009 – 2010","cat.2011-2012":"Born 2011 – 2012","cat.2013-2014":"Born 2013 – 2014","cat.2015-2016":"Born 2015 – 2016","cat.after2016-mixed":"Born after 2016 (Mixed)","cat.after2017":"Born after 2017",
+      "cat.before2004":"Born before 2004","cat.before2009":"Born before 2009","cat.2011-2014":"Born 2011 – 2014","cat.2017-2019":"Born 2017 – 2019","cat.2020-2021":"Born 2020 – 2021","cat.2004-2009":"Born 2004 – 2009","cat.2009-2010":"Born 2009 – 2010","cat.2011-2012":"Born 2011 – 2012","cat.2013-2014":"Born 2013 – 2014","cat.2015-2016":"Born 2015 – 2016","cat.after2016-mixed":"Born after 2016 (Mixed)","cat.after2017":"Born after 2017",
       "training.eyebrow":"When we train","training.title":"Training schedule","training.sub":"Overview 2026/2027.",
       "history.eyebrow":"Since 1934","history.sub":"From the most recent successes down to the founding.",
       "committee.eyebrow":"Our committee","committee.sub":"Volunteers around the ball.","committee.title":"Meet our Committee",
@@ -486,6 +492,8 @@
       "plan.cat0":"U10 Mixed – Prépoussins","plan.cat1":"U12 Mixed – Poussins","plan.cat3":"U14 Minis + U16 Men – Scolaires","plan.cat11":"U7 Mixed – Babybasket","plan.cat4":"U18 Men – Cadets","plan.cat5":"Seniors A","plan.cat6":"Seniors B / C","plan.cat7":"Women A","plan.cat8":"Women B","plan.before2009":"<2009","plan.cat10":"Strength Training – Lance",
       "day.sat":"Saturday","day.sun":"Sunday","games.eyebrow":"All Categories","games.title":"Gameday","game.home":"Home","game.away":"Away","game.timetbd":"Time TBA",
       "contact.cta.p":"A question about the club, training or signing up? Write to us – we reply as soon as we can.","contact.send":"Write an e-mail",
+      "agenda.eyebrow":"Agenda","agenda.title":"Upcoming events","agenda.sub":"Save the dates.","agenda.today":"Today","agenda.soon":"Coming up",
+      "agenda.ev1":"National Remembrance Day","agenda.ev2":"New citizens","agenda.ev3":"Christmas market",
     },
   };
   function setLang(lang){
@@ -503,6 +511,7 @@
       el.setAttribute('placeholder', (dict && dict[key]) ? dict[key] : el.dataset.i18nOrig);
     });
     if (window.__rebuildPlan) window.__rebuildPlan(lang);
+    if (window.__rebuildAgenda) window.__rebuildAgenda(lang);
     if (window.__rebuildCommittee) window.__rebuildCommittee(lang);
     if (window.__rebuildTimeline) window.__rebuildTimeline(lang);
     if (window.__rebuildGamesGrid) window.__rebuildGamesGrid(lang);
@@ -533,10 +542,10 @@
     {date:"2026-10-10", weekday:5, time:"15:30", homeAway:"home", opponent:"Mambra Mamer C", opponentCode:"MAM", teamPage:"teams/senior-c-men.html", teamLabelKey:"team.senior-c-men", teamLabel:"Senior C Hären", gameNumber:"1801013", competition:"M-Division 4:", bsmName:"Black Star Mersch C"},
     {date:"2026-10-10", weekday:5, time:"14:00", homeAway:"home", opponent:"Mambra Mamer", opponentCode:"MAM", teamPage:"teams/u18-cadets.html", teamLabelKey:null, teamLabel:"U18 – Cadets", gameNumber:"3121007", competition:"M-U18 Division 2:Phase 1", bsmName:"Black Star Mersch"},
     {date:"2026-11-25", weekday:2, time:"00:00", homeAway:"away", opponent:"AS Soleuvre", opponentCode:"SOL", teamPage:"teams/u18-cadets.html", teamLabelKey:null, teamLabel:"U18 – Cadets", gameNumber:"3012006", competition:"M-Coupe des Jeunes:1/8 finales", bsmName:"Black Star Mersch", divisionComp:"M-U18 Division 2:Phase 1"},
-    {date:"2026-10-08", weekday:3, time:"17:00", homeAway:"home", opponent:"Telstar Hesperange (forfeit B)", opponentCode:"TEL", teamPage:"teams/u16-scolaires.html", teamLabelKey:null, teamLabel:"U16 – Scolaires", gameNumber:"3021004", competition:"M-Coupe de l'Avenir:1/16 finales", bsmName:"Black Star Mersch", divisionComp:"M-U16 Division 4:Phase 1"},
+    {date:"2026-10-11", weekday:6, time:"12:00", homeAway:"away", opponent:"Telstar Hesperange", opponentCode:"TEL", teamPage:"teams/u16-scolaires.html", teamLabelKey:null, teamLabel:"U14 + U16 – Minis & Scolaires", gameNumber:"3241009", competition:"M-U16 Division 4:Phase 1", bsmName:"Black Star Mersch"},
   ];
   // GAMES_DATA_END
-  const categoryDisplayOrder = ["teams/senior-a-men.html","teams/senior-a-women.html","teams/senior-b-men.html","teams/senior-b-women.html","teams/senior-c-men.html","teams/u18-cadets.html","teams/u16-scolaires.html","teams/u14-minis.html","teams/u12m-poussins.html","teams/u12w-poussinnes.html","teams/u10-prepoussins.html","teams/babybasket.html"];
+  const categoryDisplayOrder = ["teams/senior-a-men.html","teams/senior-a-women.html","teams/senior-b-men.html","teams/senior-b-women.html","teams/senior-c-men.html","teams/u18-cadets.html","teams/u16-scolaires.html","teams/u12m-poussins.html","teams/u12w-poussinnes.html","teams/u10-prepoussins.html","teams/babybasket.html"];
   nextCategoryGames.sort((a, b) => categoryDisplayOrder.indexOf(a.teamPage) - categoryDisplayOrder.indexOf(b.teamPage));
   const dayKeysFull = {0:"day.mon",1:"day.tue",2:"day.wed",3:"day.thu",4:"day.fri",5:"day.sat",6:"day.sun"};
   const dayFallback = {0:"Méindeg",1:"Dënschdeg",2:"Mëttwoch",3:"Donneschdeg",4:"Freideg",5:"Samschdeg",6:"Sonndeg"};
@@ -727,10 +736,10 @@
     }
   });
 
-  // Hero slideshow (full-width, alternating Senior A photos)
+  // Hero slideshow (full-width, alternating Senior A photos — the wide shots; the team pages use the closer ones)
   const heroPhotos = [
-    "assets/teams/senior-a-men.jpg",
-    "assets/teams/senior-a-women.jpg",
+    "assets/hero/hero-men.jpg",
+    "assets/hero/hero-women.jpg",
   ];
   const heroSlides = document.getElementById('heroSlides');
   heroSlides.innerHTML = heroPhotos.map((p,i) => `<img src="${p}" class="${i===0?'active':''}" alt="">`).join('');
@@ -756,6 +765,74 @@
       refereesThumb.style.backgroundPosition = refPhotos[refIdx].pos;
     }, 4000);
   }
+
+  // Agenda — nächst Evenementer. Vergaangen Datumer verschwannen automatesch,
+  // a sinn der keng méi, gëtt d'Sektioun verstoppt. Nei Evenementer hei derbäisetzen.
+  const agendaEvents = [
+    {start:"2026-10-11", end:"2026-10-11", key:"agenda.ev1", title:"Journée de la Commémoration nationale"},
+    {start:"2026-10-14", end:"2026-10-14", key:"agenda.ev2", title:"Nouveaux citoyens"},
+    {start:"2026-11-28", end:"2026-11-29", key:"agenda.ev3", title:"Chrëschtmaart"},
+  ];
+  const agendaMonths = {
+    lu:["Januar","Februar","Mäerz","Abrëll","Mee","Juni","Juli","August","September","Oktober","November","Dezember"],
+    fr:["janvier","février","mars","avril","mai","juin","juillet","août","septembre","octobre","novembre","décembre"],
+    de:["Januar","Februar","März","April","Mai","Juni","Juli","August","September","Oktober","November","Dezember"],
+    en:["January","February","March","April","May","June","July","August","September","October","November","December"],
+  };
+  const agendaMonthsShort = {
+    lu:["Jan","Feb","Mäe","Abr","Mee","Jun","Jul","Aug","Sep","Okt","Nov","Dez"],
+    fr:["jan","fév","mars","avr","mai","juin","juil","août","sep","oct","nov","déc"],
+    de:["Jan","Feb","Mär","Apr","Mai","Jun","Jul","Aug","Sep","Okt","Nov","Dez"],
+    en:["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"],
+  };
+  const agendaWeekdays = { // index = Date.getDay(), 0 = Sonndeg
+    lu:["Sonndeg","Méindeg","Dënschdeg","Mëttwoch","Donneschdeg","Freideg","Samschdeg"],
+    fr:["dimanche","lundi","mardi","mercredi","jeudi","vendredi","samedi"],
+    de:["Sonntag","Montag","Dienstag","Mittwoch","Donnerstag","Freitag","Samstag"],
+    en:["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"],
+  };
+  function agendaDate(str){ const [y,m,d] = str.split('-').map(Number); return new Date(y, m - 1, d); }
+  function agendaWhen(ev, lang){
+    const a = agendaDate(ev.start), b = agendaDate(ev.end);
+    const wd = agendaWeekdays[lang] || agendaWeekdays.lu, mo = agendaMonths[lang] || agendaMonths.lu;
+    const cap = t => t.charAt(0).toUpperCase() + t.slice(1);
+    const multi = ev.end !== ev.start;
+    const days = multi ? `${cap(wd[a.getDay()])} – ${wd[b.getDay()]}` : cap(wd[a.getDay()]);
+    const dot = (lang === 'lu' || lang === 'de') ? '.' : '';
+    const nums = multi ? `${a.getDate()}${dot}–${b.getDate()}${dot}` : `${a.getDate()}${dot}`;
+    const sep = lang === 'fr' && !multi ? ' ' : ', ';
+    return `${days}${sep}${nums} ${mo[b.getMonth()]} ${b.getFullYear()}`;
+  }
+  function buildAgenda(lang){
+    const dict = i18n[lang] || {};
+    const section = document.getElementById('agenda');
+    const now = new Date();
+    const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+    const upcoming = agendaEvents.filter(ev => agendaDate(ev.end) >= today)
+                                 .sort((x, y) => x.start.localeCompare(y.start));
+    if (!upcoming.length){ section.style.display = 'none'; return; }
+    section.style.display = '';
+    const short = agendaMonthsShort[lang] || agendaMonthsShort.lu;
+    document.getElementById('agendaGrid').innerHTML = upcoming.map(ev => {
+      const a = agendaDate(ev.start), b = agendaDate(ev.end);
+      const multi = ev.end !== ev.start;
+      const dayNum = multi ? `${a.getDate()}–${b.getDate()}` : `${a.getDate()}`;
+      const inDays = Math.round((a - today) / 86400000);
+      let badge = '';
+      if (a <= today) badge = dict['agenda.today'] || 'Haut';
+      else if (inDays <= 7) badge = dict['agenda.soon'] || 'Geschwënn';
+      return `<div class="agenda-card">
+        <div class="agenda-date"><span class="agenda-day${multi ? ' range' : ''}">${dayNum}</span><span class="agenda-month">${short[a.getMonth()]}</span></div>
+        <div class="agenda-body">
+          ${badge ? `<span class="agenda-soon">${badge}</span>` : ''}
+          <h3>${dict[ev.key] || ev.title}</h3>
+          <p>${agendaWhen(ev, lang)}</p>
+        </div>
+      </div>`;
+    }).join('');
+  }
+  window.__rebuildAgenda = buildAgenda;
+  buildAgenda('lu');
 
   // Trainingsplang
   const planRowsLU = [
@@ -799,9 +876,9 @@
   // Committee
   const committee = [
     ["Sandra Göhlhausen-Wampach","President","role.president"],
-    ["Charel Weis","Vize-President","role.vicepresident"],
     ["Guy Decker","Trésorier","role.treasurer"],
     ["Claire Marnach","Sekretärin","role.secretary"],
+    ["Charel Weis","Member","role.member"],
     ["Christophe Lehnert","Member","role.member"],
     ["Lucia Rubino","Member","role.member"],
     ["Lars Christiansen","Member","role.member"],

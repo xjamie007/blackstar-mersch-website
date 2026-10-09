@@ -813,3 +813,40 @@ footer .footer-legal .sep{opacity:.4;text-decoration:none;cursor:default;}
    sichtbar, all déi aner Versioune bleiwen verstoppt. */
 .legal-lang{display:none;}
 .legal-lang[data-lang="lu"]{display:block;}
+
+/* AGENDA (nächst Evenementer op der Homepage) */
+#agenda{padding-top:50px;padding-bottom:50px;}
+#agenda .section-sub{margin-bottom:28px;}
+.agenda-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:18px;}
+.agenda-card{
+  position:relative;display:flex;align-items:center;gap:18px;overflow:hidden;
+  background:linear-gradient(165deg,var(--panel) 0%,var(--panel-2) 100%);
+  border:1px solid var(--line);border-radius:14px;padding:18px 20px 18px 22px;
+  transition:border-color .2s, transform .2s;
+}
+.agenda-card::before{content:'';position:absolute;left:0;top:0;bottom:0;width:4px;background:linear-gradient(180deg,var(--gold),var(--gold-dim));}
+.agenda-card:hover{border-color:var(--gold-dim);transform:translateY(-3px);}
+.agenda-date{
+  flex:0 0 76px;height:76px;border-radius:12px;
+  background:var(--navy);border:1px solid rgba(243,187,64,.45);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  font-family:'Oswald',sans-serif;line-height:1;text-align:center;
+}
+.agenda-day{font-size:28px;font-weight:700;color:var(--gold);white-space:nowrap;}
+.agenda-day.range{font-size:20px;}
+.agenda-month{font-size:12px;font-weight:500;letter-spacing:.18em;text-transform:uppercase;color:var(--text);margin-top:7px;}
+.agenda-body{min-width:0;}
+.agenda-body h3{font-size:17px;line-height:1.25;margin-bottom:6px;}
+.agenda-body p{font-size:13px;color:var(--text-dim);line-height:1.4;}
+.agenda-soon{
+  display:inline-block;margin-bottom:8px;font-size:10px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--black);background:var(--gold);border-radius:20px;padding:3px 10px;
+}
+@media (max-width:640px){
+  .agenda-grid{grid-template-columns:1fr;gap:12px;}
+  .agenda-card{padding:14px 16px 14px 18px;gap:14px;}
+  .agenda-date{flex-basis:64px;height:64px;}
+  .agenda-day{font-size:24px;}
+  .agenda-day.range{font-size:17px;}
+  .agenda-body h3{font-size:15px;}
+}
