@@ -395,7 +395,7 @@
       "back.home":"← Retour à l'accueil","back.teams":"← Retour aux équipes","back.gyms":"← Retour aux salles","back.news":"← Retour aux actualités","back.committee":"← Retour au comité",
       "modal.maps":"Itinéraire avec Google Maps →",
       "days.cat":"Catégorie","days.mon":"Lundi","days.tue":"Mardi","days.wed":"Mercredi","days.thu":"Jeudi","days.fri":"Vendredi",
-      "plan.cat0":"U10 Mixtes – Prépoussins","plan.cat1":"U12 Mixtes – Poussins","plan.cat2":"U14 Femmes – Fillettes","plan.cat3":"U14 Hommes – Minis","plan.cat4":"U18 Hommes – Cadets","plan.cat5":"Seniors A","plan.cat6":"Seniors B / C","plan.cat7":"Dames A","plan.cat8":"Dames B","plan.before2004":"<2004","plan.cat9":"U16 Hommes – Scolaires","plan.cat10":"Renforcement musculaire – Lance",
+      "plan.cat0":"U10 Mixtes – Prépoussins","plan.cat1":"U12 Mixtes – Poussins","plan.cat3":"U14 Minis + U16 Hommes – Scolaires","plan.cat11":"U7 Mixtes – Babybasket","plan.cat4":"U18 Hommes – Cadets","plan.cat5":"Seniors A","plan.cat6":"Seniors B / C","plan.cat7":"Dames A","plan.cat8":"Dames B","plan.before2009":"<2009","plan.cat10":"Renforcement musculaire – Lance",
       "day.sat":"Samedi","day.sun":"Dimanche","games.eyebrow":"Toutes les catégories","games.title":"Journée de match","game.home":"Domicile","game.away":"Extérieur","game.timetbd":"Heure à venir",
       "contact.cta.p":"Une question sur le club, les entraînements ou l'inscription ? Écrivez-nous, nous répondons au plus vite.","contact.send":"Écrire un e-mail",
     },
@@ -439,7 +439,7 @@
       "back.home":"← Zurück zur Startseite","back.teams":"← Zurück zu Teams","back.gyms":"← Zurück zu Hallen","back.news":"← Zurück zu News","back.committee":"← Zurück zum Komitee",
       "modal.maps":"Route mit Google Maps →",
       "days.cat":"Kategorie","days.mon":"Montag","days.tue":"Dienstag","days.wed":"Mittwoch","days.thu":"Donnerstag","days.fri":"Freitag",
-      "plan.cat0":"U10 Gemischt – Prépoussins","plan.cat1":"U12 Gemischt – Poussins","plan.cat2":"U14 Frauen – Fillettes","plan.cat3":"U14 Männer – Minis","plan.cat4":"U18 Männer – Cadets","plan.cat5":"Seniors A","plan.cat6":"Seniors B / C","plan.cat7":"Damen A","plan.cat8":"Damen B","plan.before2004":"<2004","plan.cat9":"U16 Männer – Scolaires","plan.cat10":"Krafttraining – Lance",
+      "plan.cat0":"U10 Gemischt – Prépoussins","plan.cat1":"U12 Gemischt – Poussins","plan.cat3":"U14 Minis + U16 Männer – Scolaires","plan.cat11":"U7 Gemischt – Babybasket","plan.cat4":"U18 Männer – Cadets","plan.cat5":"Seniors A","plan.cat6":"Seniors B / C","plan.cat7":"Damen A","plan.cat8":"Damen B","plan.before2009":"<2009","plan.cat10":"Krafttraining – Lance",
       "day.sat":"Samstag","day.sun":"Sonntag","games.eyebrow":"Alle Kategorien","games.title":"Spieltag","game.home":"Heim","game.away":"Auswärts","game.timetbd":"Uhrzeit folgt",
       "contact.cta.p":"Fragen zum Verein, zum Training oder zur Anmeldung? Schreibt uns – wir antworten so schnell wie möglich.","contact.send":"E-Mail schreiben",
     },
@@ -483,7 +483,7 @@
       "back.home":"← Back to Home","back.teams":"← Back to Teams","back.gyms":"← Back to Gyms","back.news":"← Back to News","back.committee":"← Back to Committee",
       "modal.maps":"Directions via Google Maps →",
       "days.cat":"Category","days.mon":"Monday","days.tue":"Tuesday","days.wed":"Wednesday","days.thu":"Thursday","days.fri":"Friday",
-      "plan.cat0":"U10 Mixed – Prépoussins","plan.cat1":"U12 Mixed – Poussins","plan.cat2":"U14 Women – Fillettes","plan.cat3":"U14 Men – Minis","plan.cat4":"U18 Men – Cadets","plan.cat5":"Seniors A","plan.cat6":"Seniors B / C","plan.cat7":"Women A","plan.cat8":"Women B","plan.before2004":"<2004","plan.cat9":"U16 Men – Scolaires","plan.cat10":"Strength Training – Lance",
+      "plan.cat0":"U10 Mixed – Prépoussins","plan.cat1":"U12 Mixed – Poussins","plan.cat3":"U14 Minis + U16 Men – Scolaires","plan.cat11":"U7 Mixed – Babybasket","plan.cat4":"U18 Men – Cadets","plan.cat5":"Seniors A","plan.cat6":"Seniors B / C","plan.cat7":"Women A","plan.cat8":"Women B","plan.before2009":"<2009","plan.cat10":"Strength Training – Lance",
       "day.sat":"Saturday","day.sun":"Sunday","games.eyebrow":"All Categories","games.title":"Gameday","game.home":"Home","game.away":"Away","game.timetbd":"Time TBA",
       "contact.cta.p":"A question about the club, training or signing up? Write to us – we reply as soon as we can.","contact.send":"Write an e-mail",
     },
@@ -759,17 +759,16 @@
 
   // Trainingsplang
   const planRowsLU = [
-    ["U10 Mixtes – Prépoussins","2017 – 2020","plan.cat0",{},{tue:["15h00-16h00","rue des Prés"]},{},{thu:["15h00-16h00","rue des Prés"]},{}],
+    ["U7 Mixtes – Babybasket","2020 – 2021","plan.cat11",{},{tue:["15h00-16h00","rue des Prés"]},{},{thu:["15h00-16h00","rue des Prés"]},{}],
+    ["U10 Mixtes – Prépoussins","2017 – 2019","plan.cat0",{},{tue:["16h00-17h00","rue des Prés"]},{},{thu:["16h00-17h00","rue des Prés"]},{}],
     ["U12 Mixtes – Poussins","2015 – 2016","plan.cat1",{},{tue:["16h00-17h00","rue des Prés"]},{},{thu:["15h00-16h30","rue des Prés"]},{}],
-    ["U14 Women – Fillettes","2013 – 2014","plan.cat2",{},{tue:["17h00-18h30","rue des Prés"]},{},{thu:["17h00-18h30","rue des Prés"]},{}],
-    ["U14 Men – Minis","2013 – 2014","plan.cat3",{mon:["18h30-20h00","Krounebierg"]},{},{wed:["18h30-20h00","Krounebierg"]},{},{fri:["18h00-19h30","EIMAB 2"]}],
-    ["U16 Men – Scolaires","2011 – 2012","plan.cat9",{mon:["18h30-20h00","Krounebierg"]},{},{wed:["18h30-20h00","Krounebierg"]},{},{fri:["18h00-19h30","EIMAB 2"]}],
+    ["U14 Minis + U16 Men – Scolaires","2011 – 2014","plan.cat3",{mon:["18h30-20h00","Krounebierg"]},{},{wed:["18h30-20h00","Krounebierg"]},{},{fri:["18h00-19h30","EIMAB 2"]}],
     ["U18 Men – Cadets","2009 – 2010","plan.cat4",{mon:["20h00-21h30","Krounebierg"]},{tue:["18h30-20h00","rue des Prés"]},{},{},{fri:["20h00-21h30","EIMAB 2"]}],
-    ["Seniors A","<2004","plan.cat5",{},{tue:["18h00-20h30","Ermesinde"]},{},{thu:["20h00-22h00","rue des Prés"]},{fri:["20h30-22h00","rue des Prés"]}],
-    ["Seniors B / C","<2004","plan.cat6",{},{},{},{thu:["19h30-21h30","EIMAB 2"]},{}],
-    ["Dames A","<2004","plan.cat7",{},{tue:["20h00-22h00","rue des Prés"]},{},{thu:["18h30-20h00","rue des Prés"]},{}],
-    ["Dames B","<2004","plan.cat8",{},{},{},{thu:["18h15-19h45","EIMAB 1"]},{}],
-    ["Strength Training – Lance","<2004","plan.cat10",{},{},{wed:["20h30-21h30","Krounebierg"]},{},{}],
+    ["Seniors A","<2009","plan.cat5",{},{tue:["18h30-20h15","Ermesinde"]},{},{thu:["20h00-22h00","rue des Prés"]},{fri:["20h30-22h00","rue des Prés"]}],
+    ["Seniors B / C","<2009","plan.cat6",{},{},{},{thu:["19h30-21h30","EIMAB 2"]},{}],
+    ["Dames A","<2009","plan.cat7",{},{tue:["20h00-22h00","rue des Prés"]},{},{thu:["18h30-20h00","rue des Prés"]},{}],
+    ["Dames B","<2009","plan.cat8",{},{},{},{thu:["18h15-19h45","EIMAB 1"]},{}],
+    ["Strength Training – Lance","<2009","plan.cat10",{},{},{wed:["20h00-21h00","Krounebierg"]},{},{}],
   ];
   function slotCell(day){
     const v = day[Object.keys(day)[0]];
@@ -785,7 +784,7 @@
       <tbody>
       ${planRowsLU.map(r => {
         const catLabel = dict[r[2]] || r[0];
-        const yearsLabel = (r[1] === '<2004') ? (dict['plan.before2004'] || r[1]) : r[1];
+        const yearsLabel = (r[1] === '<2009') ? (dict['plan.before2009'] || r[1]) : r[1];
         return `
         <tr>
           <td><span class="cat">${catLabel}</span><br><span class="yrs">${yearsLabel}</span></td>
