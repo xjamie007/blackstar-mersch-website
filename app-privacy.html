@@ -1,0 +1,289 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Black Star Mersch — Datenschutz</title>
+<style>
+  :root { color-scheme: light; }
+  body {
+    margin: 0 auto; max-width: 44rem; padding: 2rem 1rem 6rem;
+    font: 1rem/1.65 system-ui, -apple-system, "Segoe UI", sans-serif;
+    color: #1a1a2e; background: #fff;
+  }
+  nav { display: flex; gap: .5rem; margin-bottom: 2rem; flex-wrap: wrap; }
+  nav a {
+    padding: .4rem .9rem; border: 1px solid #d8d8e0; border-radius: 999px;
+    text-decoration: none; color: #0d0151; font-size: .875rem;
+  }
+  nav a:hover { border-color: #0d0151; }
+  h1 { font-size: 1.6rem; margin: 0 0 .25rem; color: #0d0151; }
+  h2 { font-size: 1.1rem; margin: 2rem 0 .5rem; color: #0d0151; }
+  .meta { color: #6b6b80; font-size: .85rem; margin: 0 0 1.5rem; }
+  .intro { font-size: 1.05rem; }
+  ul { padding-left: 1.2rem; }
+  li { margin: .25rem 0; }
+  article + article { border-top: 1px solid #e6e6ee; margin-top: 4rem; padding-top: 2rem; }
+  footer { margin-top: 4rem; color: #6b6b80; font-size: .85rem; }
+</style>
+</head>
+<body>
+<nav><a href="#de">Deutsch</a><a href="#fr">Français</a><a href="#en">English</a></nav>
+
+    <article id="de" lang="de">
+      <h1>Datenschutzerklärung</h1>
+      <p class="meta">2026-08-25 · 8. Oktober 2026</p>
+      <p class="intro">Diese App wird vom Black Star Mersch betrieben. Hier steht, welche Daten wir verarbeiten, wozu, wie lange und welche Rechte du hast.</p>
+      
+      <section>
+        <h2>Verantwortlicher</h2>
+        <p>Black Star Mersch a.s.b.l., 21, rue des Prés, L-7561 Mersch, Luxemburg.</p>
+        <p>E-Mail: info@blackstar-mersch.lu · Telefon: +352 621 467 821.</p>
+        <p>Technische Entwicklung und Wartung: Nave (nave.lu), als Auftragsverarbeiter.</p>
+        
+      </section>
+
+      <section>
+        <h2>Was wir verarbeiten</h2>
+        <p>Nur, was der Vereinsbetrieb braucht:</p>
+        <ul><li>Stammdaten: Vorname, Nachname, E-Mail, Telefon, Geburtsdatum, Sprache, Foto (optional)</li><li>Zugehörigkeit: Teams, Rolle (Spieler, Trainer, Responsable, Helfer, Comité), Eltern-Kind-Verknüpfung</li><li>Termine: An- und Abmeldungen mit Notiz, Antworten auf Einladungen des Vereins, Uhr-/Bogen-Übernahmen, Fahrgemeinschaften, Helfer-Slots</li><li>Beiträge und Lizenzen: Betrag, Fälligkeit, Status, FLBB-Lizenznummer und Ablaufdatum</li><li>Benachrichtigungen: Inhalt, Empfänger und Versandzeitpunkt</li><li>Technisches: Push-Abonnements, Kalender-Token, Änderungsprotokoll (Audit-Log)</li></ul>
+      </section>
+
+      <section>
+        <h2>Wozu und auf welcher Rechtsgrundlage</h2>
+        <p>Organisation des Spielbetriebs und Mitgliederverwaltung: Erfüllung des Mitgliedschaftsverhältnisses (Art. 6 Abs. 1 lit. b DSGVO).</p>
+        <p>Beiträge und Buchhaltung: rechtliche Verpflichtung (Art. 6 Abs. 1 lit. c DSGVO).</p>
+        <p>Nicht zwingende Benachrichtigungen (z. B. Feste): Einwilligung (Art. 6 Abs. 1 lit. a DSGVO), jederzeit im Profil widerrufbar.</p>
+        
+      </section>
+
+      <section>
+        <h2>Wer was sieht</h2>
+        <p>Sichtbarkeit ist teambasiert: du siehst nur Termine und Mitglieder der Teams, mit denen du verknüpft bist.</p>
+        <p>Telefonnummern sieht nur der Comité. Ausnahme: Die Nummer der Responsables eines Teams sehen dessen Mitglieder, damit sie jemanden erreichen.</p>
+        <p>Wer auf eine Einladung des Vereins mit Ja oder Nein geantwortet hat, sieht namentlich nur der Comité; alle anderen sehen nur die Anzahl.</p>
+        <p>Beiträge und Lizenzen sehen ausschließlich die betroffene Person, deren bestätigte Eltern und der Comité.</p>
+        <p>Diese Regeln sind nicht nur in der App, sondern in der Datenbank selbst durchgesetzt (Row Level Security).</p>
+        
+      </section>
+
+      <section>
+        <h2>Kinder und Eltern</h2>
+        <p>Jede Registrierung wird vom Comité geprüft, bevor sie Zugriff auf Vereinsdaten erhält.</p>
+        <p>Ein Elternteil erhält Zugriff auf die Daten eines Kindes erst, wenn der Comité die Verknüpfung bestätigt hat oder das Kind sie mit seinem eigenen Login selbst bestätigt.</p>
+        <p>Ein eigenes Login für ein Kind legt ein Elternteil an oder verknüpft es mit seinem Konto. Damit erteilt der Elternteil die Einwilligung, die für Kinder unter 16 Jahren nötig ist (Art. 8 DSGVO).</p>
+        
+      </section>
+
+      <section>
+        <h2>Hosting und Unterauftragsverarbeiter</h2>
+        <p>Alle Daten liegen in der EU: bei Supabase (Datenbank und Server-Funktionen, Frankfurt). Wird die Web-Version betrieben, läuft sie bei Vercel in der Region Frankfurt (fra1).</p>
+        <p>Supabase Inc. und Vercel Inc. haben ihren Sitz in den USA. Für einen möglichen Zugriff aus den USA gelten die EU-Standardvertragsklauseln in den Auftragsverarbeitungsverträgen dieser Anbieter.</p>
+        <p>E-Mails werden über den Mailserver des Vereins (mbox.lu, Luxemburg) versendet. Push-Nachrichten laufen, falls du sie einschaltest, über den Push-Dienst deines Geräts bzw. Browsers.</p>
+        <p>Wir verwenden keine Analytics-Drittanbieter, keine Werbung und keine Tracking-Cookies.</p>
+        
+      </section>
+
+      <section>
+        <h2>Auf deinem Gerät</h2>
+        <p>Deine Anmeldung wird verschlüsselt im Schlüsselbund deines Geräts gespeichert.</p>
+        <p>Damit die App schneller startet, speichert sie den zuletzt angezeigten Stand (Kalender, Teams, Profil) im eigenen Speicher der App. Beim Abmelden wird er gelöscht.</p>
+        
+      </section>
+
+      <section>
+        <h2>Speicherdauer</h2>
+        <p>An- und Abmeldungen werden nach 12 Monaten gelöscht.</p>
+        <p>Beitrags- und Lizenzdaten bleiben für die gesetzliche Aufbewahrungsfrist erhalten.</p>
+        <p>Beim Löschen eines Kontos wird der Name anonymisiert; die Buchhaltung bleibt konsistent.</p>
+        
+      </section>
+
+      <section>
+        <h2>Kalenderlink</h2>
+        <p>Der persönliche Kalenderlink ist bewusst ohne Login erreichbar, weil Kalender-Apps sich nicht anmelden können.</p>
+        <p>Wer den Link hat, sieht deinen Kalender. Du kannst ihn jederzeit im Profil zurücksetzen.</p>
+        
+      </section>
+
+      <section>
+        <h2>Deine Rechte</h2>
+        <p>Auskunft (Art. 15), Berichtigung (Art. 16), Löschung (Art. 17), Einschränkung (Art. 18), Datenübertragbarkeit (Art. 20) und Widerspruch (Art. 21). Eine Einwilligung kannst du jederzeit widerrufen (Art. 7 Abs. 3).</p>
+        <p>Dein Konto löschst du direkt im Profil. Eine Kopie deiner Daten und alles Weitere erhältst du über info@blackstar-mersch.lu.</p>
+        <p>Du kannst dich außerdem bei der Nationalen Datenschutzkommission (CNPD, cnpd.lu) beschweren.</p>
+        
+      </section>
+    </article>
+
+    <article id="fr" lang="fr">
+      <h1>Politique de confidentialité</h1>
+      <p class="meta">2026-08-25 · 8 octobre 2026</p>
+      <p class="intro">Cette app est exploitée par le Black Star Mersch. Voici quelles données nous traitons, pourquoi, combien de temps, et quels sont tes droits.</p>
+      
+      <section>
+        <h2>Responsable du traitement</h2>
+        <p>Black Star Mersch a.s.b.l., 21, rue des Prés, L-7561 Mersch, Luxembourg.</p>
+        <p>E-mail : info@blackstar-mersch.lu · Téléphone : +352 621 467 821.</p>
+        <p>Développement et maintenance techniques : Nave (nave.lu), en tant que sous-traitant.</p>
+        
+      </section>
+
+      <section>
+        <h2>Ce que nous traitons</h2>
+        <p>Uniquement ce dont la vie du club a besoin :</p>
+        <ul><li>Données de base : prénom, nom, e-mail, téléphone, date de naissance, langue, photo (facultative)</li><li>Appartenance : équipes, rôle (joueur, entraîneur, responsable, bénévole, comité), lien parent-enfant</li><li>Rendez-vous : inscriptions et désinscriptions avec remarque, réponses aux invitations du club, chrono/feuille de match, covoiturages, créneaux bénévoles</li><li>Cotisations et licences : montant, échéance, statut, numéro de licence FLBB et date d’expiration</li><li>Notifications : contenu, destinataire et moment de l’envoi</li><li>Technique : abonnements push, jeton de calendrier, journal des modifications</li></ul>
+      </section>
+
+      <section>
+        <h2>Finalités et bases légales</h2>
+        <p>Organisation sportive et gestion des membres : exécution de l’adhésion (art. 6, par. 1, b RGPD).</p>
+        <p>Cotisations et comptabilité : obligation légale (art. 6, par. 1, c RGPD).</p>
+        <p>Notifications non obligatoires (p. ex. fêtes) : consentement (art. 6, par. 1, a RGPD), révocable à tout moment dans le profil.</p>
+        
+      </section>
+
+      <section>
+        <h2>Qui voit quoi</h2>
+        <p>La visibilité dépend des équipes : tu ne vois que les rendez-vous et les membres des équipes auxquelles tu es lié.</p>
+        <p>Les numéros de téléphone ne sont visibles que pour le comité. Exception : le numéro des responsables d’une équipe est visible pour ses membres, afin qu’ils puissent joindre quelqu’un.</p>
+        <p>Qui a répondu oui ou non à une invitation du club, seul le comité le voit nominativement ; les autres ne voient que le nombre.</p>
+        <p>Les cotisations et licences ne sont visibles que par la personne concernée, ses parents confirmés et le comité.</p>
+        <p>Ces règles ne sont pas seulement appliquées dans l’app, mais dans la base de données elle-même (Row Level Security).</p>
+        
+      </section>
+
+      <section>
+        <h2>Enfants et parents</h2>
+        <p>Chaque inscription est vérifiée par le comité avant de donner accès aux données du club.</p>
+        <p>Un parent n’accède aux données d’un enfant qu’après confirmation du lien par le comité, ou par l’enfant lui-même avec son propre compte.</p>
+        <p>Le compte personnel d’un enfant est créé par un parent ou lié à son compte. Le parent donne ainsi le consentement requis pour les enfants de moins de 16 ans (art. 8 RGPD).</p>
+        
+      </section>
+
+      <section>
+        <h2>Hébergement et sous-traitants</h2>
+        <p>Toutes les données sont hébergées dans l’UE : chez Supabase (base de données et fonctions serveur, Francfort). Si la version web est exploitée, elle tourne chez Vercel dans la région de Francfort (fra1).</p>
+        <p>Supabase Inc. et Vercel Inc. ont leur siège aux États-Unis. Pour un éventuel accès depuis les États-Unis, les clauses contractuelles types de l’UE prévues dans leurs contrats de sous-traitance s’appliquent.</p>
+        <p>Les e-mails sont envoyés via le serveur de messagerie du club (mbox.lu, Luxembourg). Les notifications push, si tu les actives, passent par le service push de ton appareil ou navigateur.</p>
+        <p>Nous n’utilisons aucun outil d’analyse tiers, aucune publicité et aucun cookie de suivi.</p>
+        
+      </section>
+
+      <section>
+        <h2>Sur ton appareil</h2>
+        <p>Ta connexion est enregistrée de manière chiffrée dans le trousseau de ton appareil.</p>
+        <p>Pour démarrer plus vite, l’app garde le dernier état affiché (calendrier, équipes, profil) dans son propre espace de stockage. Il est effacé à la déconnexion.</p>
+        
+      </section>
+
+      <section>
+        <h2>Durée de conservation</h2>
+        <p>Les inscriptions et désinscriptions sont supprimées après 12 mois.</p>
+        <p>Les données de cotisations et de licences sont conservées pendant la durée légale.</p>
+        <p>À la suppression d’un compte, le nom est anonymisé ; la comptabilité reste cohérente.</p>
+        
+      </section>
+
+      <section>
+        <h2>Lien de calendrier</h2>
+        <p>Le lien de calendrier personnel est volontairement accessible sans connexion, car les applications de calendrier ne peuvent pas se connecter.</p>
+        <p>Toute personne disposant du lien voit ton calendrier. Tu peux le réinitialiser à tout moment dans le profil.</p>
+        
+      </section>
+
+      <section>
+        <h2>Tes droits</h2>
+        <p>Accès (art. 15), rectification (art. 16), effacement (art. 17), limitation (art. 18), portabilité (art. 20) et opposition (art. 21). Tu peux retirer un consentement à tout moment (art. 7, par. 3).</p>
+        <p>Tu supprimes ton compte directement dans le profil. Pour une copie de tes données et tout le reste : info@blackstar-mersch.lu.</p>
+        <p>Tu peux aussi introduire une réclamation auprès de la Commission nationale pour la protection des données (CNPD, cnpd.lu).</p>
+        
+      </section>
+    </article>
+
+    <article id="en" lang="en">
+      <h1>Privacy policy</h1>
+      <p class="meta">2026-08-25 · 8 October 2026</p>
+      <p class="intro">This app is operated by Black Star Mersch. Here is what data we process, why, for how long, and what your rights are.</p>
+      
+      <section>
+        <h2>Controller</h2>
+        <p>Black Star Mersch a.s.b.l., 21, rue des Prés, L-7561 Mersch, Luxembourg.</p>
+        <p>E-mail: info@blackstar-mersch.lu · Telephone: +352 621 467 821.</p>
+        <p>Technical development and maintenance: Nave (nave.lu), acting as processor.</p>
+        
+      </section>
+
+      <section>
+        <h2>What we process</h2>
+        <p>Only what running the club needs:</p>
+        <ul><li>Basic data: first name, last name, e-mail, phone, date of birth, language, photo (optional)</li><li>Membership: teams, role (player, coach, team manager, helper, committee), parent–child link</li><li>Sessions: yes/no answers with a note, answers to club invitations, clock/scoresheet duties, car pools, helper slots</li><li>Fees and licences: amount, due date, status, FLBB licence number and expiry date</li><li>Notifications: content, recipient and time sent</li><li>Technical: push subscriptions, calendar token, change log (audit log)</li></ul>
+      </section>
+
+      <section>
+        <h2>Purposes and legal basis</h2>
+        <p>Running training, games and the membership: performance of the membership (Art. 6(1)(b) GDPR).</p>
+        <p>Fees and bookkeeping: legal obligation (Art. 6(1)(c) GDPR).</p>
+        <p>Optional notifications (e.g. club events): consent (Art. 6(1)(a) GDPR), which you can withdraw in your profile at any time.</p>
+        
+      </section>
+
+      <section>
+        <h2>Who sees what</h2>
+        <p>Visibility is team-based: you only see sessions and members of the teams you are linked to.</p>
+        <p>Phone numbers are visible to the committee only. Exception: a team’s managers’ numbers are visible to its members, so they can reach someone.</p>
+        <p>Who answered yes or no to a club invitation is visible by name to the committee only; everybody else sees the count.</p>
+        <p>Fees and licences are visible only to the person concerned, their confirmed parents and the committee.</p>
+        <p>These rules are enforced not just in the app but in the database itself (Row Level Security).</p>
+        
+      </section>
+
+      <section>
+        <h2>Children and parents</h2>
+        <p>Every registration is checked by the committee before it gets access to club data.</p>
+        <p>A parent gets access to a child’s data only once the committee has confirmed the link, or the child confirms it with their own login.</p>
+        <p>A child’s own login is set up by a parent or linked to the parent’s account. The parent thereby gives the consent required for children under 16 (Art. 8 GDPR).</p>
+        
+      </section>
+
+      <section>
+        <h2>Hosting and sub-processors</h2>
+        <p>All data is stored in the EU: at Supabase (database and server functions, Frankfurt). If the web version is run, it is hosted by Vercel in the Frankfurt region (fra1).</p>
+        <p>Supabase Inc. and Vercel Inc. are based in the USA. Any access from the USA is covered by the EU Standard Contractual Clauses in these providers’ data processing agreements.</p>
+        <p>E-mails are sent through the club’s mail server (mbox.lu, Luxembourg). Push notifications, if you turn them on, go through your device’s or browser’s push service.</p>
+        <p>We use no third-party analytics, no advertising and no tracking cookies.</p>
+        
+      </section>
+
+      <section>
+        <h2>On your device</h2>
+        <p>Your sign-in is stored encrypted in your device’s keychain.</p>
+        <p>To start faster, the app keeps what it last showed (calendar, teams, profile) in its own storage. It is deleted when you sign out.</p>
+        
+      </section>
+
+      <section>
+        <h2>Retention</h2>
+        <p>Yes/no answers to sessions are deleted after 12 months.</p>
+        <p>Fee and licence data is kept for the legal retention period.</p>
+        <p>When an account is deleted, the name is anonymised so the books stay consistent.</p>
+        
+      </section>
+
+      <section>
+        <h2>Calendar link</h2>
+        <p>The personal calendar link deliberately works without signing in, because calendar apps cannot sign in.</p>
+        <p>Anyone with the link can see your calendar. You can reset it in your profile at any time.</p>
+        
+      </section>
+
+      <section>
+        <h2>Your rights</h2>
+        <p>Access (Art. 15), rectification (Art. 16), erasure (Art. 17), restriction (Art. 18), portability (Art. 20) and objection (Art. 21). You can withdraw consent at any time (Art. 7(3)).</p>
+        <p>You delete your account directly in your profile. For a copy of your data and anything else: info@blackstar-mersch.lu.</p>
+        <p>You can also complain to the National Commission for Data Protection (CNPD, cnpd.lu).</p>
+        
+      </section>
+    </article>
+<footer>Black Star Mersch a.s.b.l. · 21, rue des Prés, L-7561 Mersch · info@blackstar-mersch.lu</footer>
+</body>
+</html>
