@@ -446,6 +446,8 @@
 
 /* NAV DROPDOWN (Teams) - hover to reveal, same line as other nav items */
 nav ul{align-items:center;}
+/* every top-level item centred the same way, so Ekippen/Halen sit on the same line as the plain links */
+@media (min-width:901px){nav ul > li{display:flex;align-items:center;}}
 .navdrop-wrap{position:relative;align-self:stretch;display:flex;align-items:center;}
 .navdrop-trigger{display:block;font-size:13px;font-weight:500;color:var(--text-dim);text-transform:uppercase;letter-spacing:.05em;cursor:pointer;}
 .navdrop-wrap:hover .navdrop-trigger, .navdrop-wrap:focus-within .navdrop-trigger{color:var(--gold);}
