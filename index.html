@@ -20,7 +20,7 @@
 <link rel="icon" href="assets/favicon.ico" sizes="any">
 <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
 <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
-<link rel="stylesheet" href="assets/style.css?v=1792347238">
+<link rel="stylesheet" href="assets/style.css?v=1792347502">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -508,8 +508,11 @@
     if (window.__applyTeamDivisions) window.__applyTeamDivisions(lang);
   }
   document.querySelectorAll('#langswitch .dropmenu button').forEach(btn => {
-    btn.addEventListener('click', () => setLang(btn.dataset.lang));
+    btn.addEventListener('click', () => { setLang(btn.dataset.lang); btn.blur(); langswitchEl.classList.add('closed'); });
   });
+  const langswitchEl = document.getElementById('langswitch');
+  langswitchEl.addEventListener('mouseleave', () => langswitchEl.classList.remove('closed'));
+  langswitchEl.querySelector('.globe-btn').addEventListener('click', () => langswitchEl.classList.remove('closed'));
 
   // Sponsors (for ticker only)
   const sponsors = [["Rives de l'Alzette","https://www.rivesalzette.lu","assets/rivesalzette.png"],["Megalift S.A.","https://www.megalift.lu","assets/megalift.png"],["SecuriTec","https://www.securitec.lu","assets/securitec.png"],["BMW Bilia","https://www.bilia.bmw.lu/fr","assets/bmwbilia.png"],["Karp-Kneip","https://www.karpkneip.lu","assets/karpkneip.png"],["Emile Weber","https://www.emile-weber.lu","assets/emileweber.png"],["Gales – Vins et Crémants","https://gales.lu","assets/gales.jpg"],["Toussaint Abby","https://www.confiance.lu","assets/toussaintabby.png"],["Pizza Hut","https://www.pizzahut.lu","assets/pizzahut.png"],["Garage Kremer","https://garagekremer.lu","assets/garagekremer.png"],["A Guddesch","https://www.gudd.lu","assets/guddesch.png"],["TotalEnergies","https://www.totalenergies.lu","assets/totalenergies.jpeg"],["BIL","https://www.bil.com","assets/bil.png"],["Raiffeisen","https://www.raiffeisen.lu","assets/raiffeisen.png"],["Absolute Teamsport","https://absolute-teamsport.lu","assets/absoluteteamsport.png"],["Beim Nuddels Kniwweler","https://nuddelskniwweler.lu","assets/nuddelskniwweler.png"],["AXA","https://axa.lu/fr/agents","assets/axa.png"],["Spuerkeess","https://www.spuerkeess.lu","assets/spuerkeess.png"],["Dussmann Gruppe","https://de.dussmann.lu","assets/dussmann.png"]];

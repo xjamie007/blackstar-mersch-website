@@ -140,7 +140,8 @@
   .ticker-wrap{border-bottom:1px solid var(--line);border-top:1px solid var(--line);background:var(--panel);overflow:hidden;}
   .ticker-label{text-align:center;font-size:11px;color:var(--text-dim);letter-spacing:.15em;text-transform:uppercase;padding-top:14px;}
   .ticker{display:flex;width:max-content;animation:scroll 32s linear infinite;padding:16px 0 20px;}
-  .ticker:hover{animation-play-state:paused;}
+  /* only real mouse pointers pause it — on iPad a swipe left :hover stuck and froze the ticker */
+  @media (hover:hover){.ticker:hover{animation-play-state:paused;}}
   .ticker a{
     flex:0 0 auto;margin:0 14px;padding:10px 20px;border:1px solid var(--line);border-radius:8px;
     font-family:'Oswald',sans-serif;font-size:14px;color:var(--text-dim);white-space:nowrap;
@@ -479,6 +480,8 @@ nav ul{align-items:center;}
   padding:6px;min-width:130px;z-index:60;display:none;box-shadow:0 10px 30px rgba(0,0,0,.4);
 }
 .langglobe:hover .dropmenu, .langglobe:focus-within .dropmenu{display:block;}
+/* closed right after a language is picked; opens again on the next hover / tap of the globe */
+.langglobe.closed .dropmenu{display:none !important;}
 .langglobe .dropmenu button{
   display:block;width:100%;text-align:center;background:none;border:none;color:var(--text-dim);padding:8px 10px;
   font-size:13px;border-radius:6px;cursor:pointer;

@@ -20,7 +20,7 @@
 <link rel="icon" href="../assets/favicon.ico" sizes="any">
 <link rel="icon" type="image/png" sizes="32x32" href="../assets/favicon-32.png">
 <link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
-<link rel="stylesheet" href="../assets/style.css?v=1792347238">
+<link rel="stylesheet" href="../assets/style.css?v=1792347502">
 </head>
 <body>
 <header>
@@ -322,8 +322,11 @@
       if (window.__rebuildNextGames) window.__rebuildNextGames(lang);
   }
   document.querySelectorAll('#langswitch .dropmenu button').forEach(btn => {
-    btn.addEventListener('click', () => setLang(btn.dataset.lang));
+    btn.addEventListener('click', () => { setLang(btn.dataset.lang); btn.blur(); langswitchEl.classList.add('closed'); });
   });
+  const langswitchEl = document.getElementById('langswitch');
+  langswitchEl.addEventListener('mouseleave', () => langswitchEl.classList.remove('closed'));
+  langswitchEl.querySelector('.globe-btn').addEventListener('click', () => langswitchEl.classList.remove('closed'));
   (function(){
     let fromInsc = false;
     try { fromInsc = sessionStorage.getItem('bsm_from_insc') === '1'; sessionStorage.removeItem('bsm_from_insc'); } catch(e){}
