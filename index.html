@@ -58,11 +58,9 @@
             <a href="teams/senior-b-men.html" data-i18n="team.senior-b-men">Senior B Hären</a>
             <a href="teams/senior-c-men.html" data-i18n="team.senior-c-men">Senior C Hären</a>
             <a href="teams/senior-b-women.html" data-i18n="team.senior-b-women">Senior B Dammen</a>
-            <a href="teams/u22-espoirs.html">U22 – Espoirs</a>
             <a href="teams/u18-cadets.html">U18 – Cadets</a>
             <a href="teams/u16-scolaires.html">U14 + U16 – Minis &amp; Scolaires</a>
-            <a href="teams/u12m-poussins.html">U12M – Poussins</a>
-            <a href="teams/u12w-poussinnes.html">U12W – Poussinnes</a>
+            <a href="teams/u12-poussins.html">U12 – Poussins</a>
             <a href="teams/u10-prepoussins.html">U10 – Prépoussins</a>
             <a href="teams/babybasket.html">U7 – Babybasket</a>
             <a href="teams/referees.html" data-i18n="team.referees">Schidsrichter</a>
@@ -205,10 +203,6 @@
       <div class="card-thumb team-card-thumb" style="background-image:url('assets/teams/senior-b-women.jpg')"></div>
       <h4>Senior B Dammen</h4>
     </a>
-    <a class="card team-card-plain" href="teams/u22-espoirs.html">
-      <div class="card-thumb team-card-thumb" style="background-image:url('assets/teams/u22-espoirs.jpg')"></div>
-      <h4>U22 – Espoirs</h4>
-    </a>
     <a class="card team-card-plain" href="teams/u18-cadets.html">
       <div class="card-thumb team-card-thumb" style="background-image:url('assets/teams/u18-cadets.jpg')"></div>
       <h4>U18 – Cadets</h4>
@@ -217,13 +211,9 @@
       <div class="card-thumb team-card-thumb" style="background-image:url('assets/teams/u16-scolaires.jpg')"></div>
       <h4>U14 + U16 – Minis &amp; Scolaires</h4>
     </a>
-    <a class="card team-card-plain" href="teams/u12m-poussins.html">
-      <div class="card-thumb team-card-thumb" style="background-image:url('assets/teams/u14-minis.jpg')"></div>
-      <h4>U12M – Poussins</h4>
-    </a>
-    <a class="card team-card-plain" href="teams/u12w-poussinnes.html">
+    <a class="card team-card-plain" href="teams/u12-poussins.html">
       <div class="card-thumb team-card-thumb" style="background-image:url('assets/teams/u12w-poussinnes.jpg')"></div>
-      <h4>U12W – Poussinnes</h4>
+      <h4>U12 – Poussins</h4>
     </a>
     <a class="card team-card-plain" href="teams/u10-prepoussins.html">
       <div class="card-thumb team-card-thumb" style="background-image:url('assets/teams/u10-prepoussins.jpg')"></div>
@@ -234,7 +224,7 @@
       <h4>U7 – Babybasket</h4>
     </a>
     <a class="card team-card-plain" href="teams/referees.html">
-      <div class="card-thumb team-card-thumb" id="refereesThumb" style="background-image:url('assets/teams/referee-til.jpg');background-position:center 20%;"></div>
+      <div class="card-thumb team-card-thumb" id="refereesThumb" style="background-image:url('assets/teams/referee-thierry.jpg');background-position:center 12%;"></div>
       <h4>Schidsrichter</h4>
     </a>
   </div>
@@ -544,7 +534,7 @@
     {date:"2026-10-24", weekday:5, time:"15:00", homeAway:"home", opponent:"Bascharage Hedgehogs", opponentCode:"BAS", teamPage:"teams/u16-scolaires.html", teamLabelKey:null, teamLabel:"U14 + U16 – Minis & Scolaires", gameNumber:"3241014", competition:"M-U16 Division 4:Phase 1", bsmName:"Black Star Mersch"},
   ];
   // GAMES_DATA_END
-  const categoryDisplayOrder = ["teams/senior-a-men.html","teams/senior-a-women.html","teams/senior-b-men.html","teams/senior-b-women.html","teams/senior-c-men.html","teams/u18-cadets.html","teams/u16-scolaires.html","teams/u12m-poussins.html","teams/u12w-poussinnes.html","teams/u10-prepoussins.html","teams/babybasket.html"];
+  const categoryDisplayOrder = ["teams/senior-a-men.html","teams/senior-a-women.html","teams/senior-b-men.html","teams/senior-b-women.html","teams/senior-c-men.html","teams/u18-cadets.html","teams/u16-scolaires.html","teams/u12-poussins.html","teams/u10-prepoussins.html","teams/babybasket.html"];
   nextCategoryGames.sort((a, b) => categoryDisplayOrder.indexOf(a.teamPage) - categoryDisplayOrder.indexOf(b.teamPage));
   const dayKeysFull = {0:"day.mon",1:"day.tue",2:"day.wed",3:"day.thu",4:"day.fri",5:"day.sat",6:"day.sun"};
   const dayFallback = {0:"Méindeg",1:"Dënschdeg",2:"Mëttwoch",3:"Donneschdeg",4:"Freideg",5:"Samschdeg",6:"Sonndeg"};
@@ -750,11 +740,10 @@
     imgs[heroIdx].classList.add('active');
   }, 10000);
 
-  // Referees card thumb (alternates between both referees every 4s)
+  // Referees card thumb (alternates between the referee photos every 4s)
   const refereesThumb = document.getElementById('refereesThumb');
   if (refereesThumb) {
     const refPhotos = [
-      {src:"assets/teams/referee-til.jpg", pos:"center 20%"},
       {src:"assets/teams/referee-thierry.jpg", pos:"center 12%"},
     ];
     let refIdx = 0;
@@ -904,6 +893,7 @@
     "tl.p.grenndung":"Grënnung vum BBC Black Star Mersch",
   };
   const timeline = [
+    ["2025","tl.p.cup_dammen_sieger"],
     ["2024","tl.p.cup_dammen_sieger"],
     ["2023","tl.p.cup_dammen_sieger"],
     ["2009","tl.p.75anniversaire"],
