@@ -893,29 +893,28 @@ footer .footer-legal .sep{opacity:.4;text-decoration:none;cursor:default;}
 .ball-wrap{display:flex;justify-content:center;margin:38px 0 10px;}
 .ball{
   position:relative;width:min(100%,520px);aspect-ratio:1;border-radius:50%;
-  /* E Liichtschäin uewe lénks, soss gesäit d'Kugel flaach aus. */
-  background:radial-gradient(circle at 34% 28%, #f0c04e 0%, var(--gold) 46%, #c9922a 100%);
-  color:var(--black);
-  /* Flex an net Grid: eng ugebrachene lescht Rei zentréiert Grid net, an dann
-     hänken déi lescht zwou Kugele lénks amplaz an der Mëtt. */
+  /* Gold a Marine kommen direkt aus dem Veräinslogo (#feb804 / #0f0053),
+     net aus der Säitepalette — de Ball soll deeselwechten Ball sinn. */
+  background:radial-gradient(circle at 34% 28%, #ffd24a 0%, #feb804 48%, #d89600 100%);
+  color:#0f0053;
   display:flex;flex-wrap:wrap;align-content:center;justify-content:center;
   gap:3%;padding:9%;box-sizing:border-box;
-  box-shadow:inset 0 -14px 30px rgba(0,0,0,.22), 0 10px 30px rgba(0,0,0,.35);
+  box-shadow:inset 0 -14px 30px rgba(15,0,83,.22), 0 10px 30px rgba(0,0,0,.35);
 }
 /* D'Nout läit ënner de Kugelen, dofir keng eege Schicht no uewen. */
 .ball-seams{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;}
-.ball-loading{grid-column:1/-1;color:var(--black);font-weight:700;text-align:center;}
+.ball-loading{flex:1 1 100%;color:#0f0053;font-weight:700;text-align:center;}
 
 .ball-pick{
   position:relative;z-index:1;flex:0 0 27%;aspect-ratio:1;border-radius:50%;
-  background:#fffaf0;border:3px solid var(--black);color:var(--black);
+  background:#fff8e7;border:3px solid #0f0053;color:#0f0053;
   box-shadow:0 2px 6px rgba(0,0,0,.25);
   display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;
   font-family:inherit;cursor:pointer;padding:4px;line-height:1.1;
   transition:transform .15s, box-shadow .15s, background .15s;
 }
 .ball-pick:hover,.ball-pick:focus-visible{transform:scale(1.06);box-shadow:0 6px 16px rgba(0,0,0,.35);outline:none;}
-.ball-pick[aria-pressed="true"]{background:var(--black);color:var(--gold);}
+.ball-pick[aria-pressed="true"]{background:#0f0053;color:#feb804;border-color:#0f0053;}
 .ball-pick b{font-size:clamp(13px,3.4vw,19px);font-weight:800;}
 .ball-pick span{font-size:clamp(8px,1.9vw,11px);font-weight:700;text-align:center;}
 .ball-pick.is-club b{font-size:clamp(10px,2.4vw,14px);}
