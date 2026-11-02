@@ -66,7 +66,6 @@
             <a href="teams/referees.html" data-i18n="team.referees">Schidsrichter</a>
           </div>
       </li>
-        <li><a href="index.html#training" data-i18n="nav.training">Training</a></li>
         <li class="navdrop-wrap">
         <a class="navdrop-trigger" href="index.html#gyms" data-i18n="nav.gyms">Halen</a>
           <div class="dropmenu">
@@ -76,12 +75,23 @@
             <a href="gyms/lycee-ermesinde.html">Lycée Ermesinde</a>
           </div>
       </li>
-        <li><a href="committee.html" data-i18n="nav.committee">Comité</a></li>
-        <li><a href="index.html#history" data-i18n="nav.history">Eis Geschicht</a></li>
-        <li><a href="sponsors.html" data-i18n="nav.sponsors">Sponsoren</a></li>
-          <li><a href="sponsoring.html" data-i18n="nav.support">Ënnerstëtzen</a></li>
-      <li><a href="merchandise.html" data-i18n="nav.merch">Merchandise</a></li>
-        <li><a href="inscriptions.html" data-i18n="nav.inscriptions">Inscriptioun</a></li>
+          <li class="navdrop-wrap">
+          <a class="navdrop-trigger" href="index.html#training" data-i18n="nav.club">Veräin</a>
+            <div class="dropmenu">
+              <a href="index.html#training" data-i18n="nav.training">Training</a>
+              <a href="committee.html" data-i18n="nav.committee">Comité</a>
+              <a href="index.html#history" data-i18n="nav.history">Eis Geschicht</a>
+              <a href="sponsors.html" data-i18n="nav.sponsors">Sponsoren</a>
+            </div>
+        </li>
+          <li class="navdrop-wrap">
+          <a class="navdrop-trigger" href="inscriptions.html" data-i18n="nav.join">Matmaachen</a>
+            <div class="dropmenu">
+              <a href="inscriptions.html" data-i18n="nav.inscriptions">Inscriptioun</a>
+              <a href="sponsoring.html" data-i18n="nav.support">Ënnerstëtzen</a>
+              <a href="merchandise.html" data-i18n="nav.merch">Merchandise</a>
+            </div>
+        </li>
         <li><a href="index.html#contact" data-i18n="nav.contact">Kontakt</a></li>
         <li class="langglobe" id="langswitch">
           <button aria-label="Sprooch" class="globe-btn"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9"></circle><line x1="3" y1="12" x2="21" y2="12"></line><path d="M12 3c3 3.2 3 14.8 0 18c-3-3.2-3-14.8 0-18z"></path></svg></button>
@@ -125,6 +135,18 @@
     </div>
     <button class="gameday-arrow next" type="button" aria-label="Weider">&#8250;</button>
   </div>
+</section>
+
+<!-- Direkt nach de Partien: wien se grad liest, ass dee richtege Lieser. -->
+<section id="sponsorball" style="padding-top:0;">
+  <a class="ballcta" href="sponsoring.html">
+    <span class="ballcta-ball" aria-hidden="true">🏀</span>
+    <span class="ballcta-text">
+      <b data-i18n="ballcta.h">Fill the Basketball</b>
+      <span data-i18n="ballcta.p">Sicht Iech eng Partie aus a sponsert de Spillball — Äre Numm gëtt virum Match ausgeruff.</span>
+    </span>
+    <span class="ballcta-go" aria-hidden="true">→</span>
+  </a>
 </section>
 
 <section id="agenda">
@@ -349,8 +371,9 @@
   // ---- Sproochen / i18n ----
   const i18n = {
     fr: {
+      "ballcta.h":"Fill the Basketball","ballcta.p":"Choisissez un match et parrainez le ballon — votre nom est annoncé avant la rencontre.",
       "nav.home":"Accueil","nav.teams":"Équipes","nav.training":"Entraînements","nav.history":"Histoire","nav.news":"Actualités",
-      "nav.committee":"Comité","nav.sponsors":"Sponsors","nav.support":"Nous soutenir","nav.gyms":"Salles","nav.merch":"Boutique","nav.inscriptions":"Inscriptions","nav.contact":"Contact",
+      "nav.committee":"Comité","nav.sponsors":"Sponsors","nav.club":"Le club","nav.join":"Participer","nav.support":"Nous soutenir","nav.gyms":"Salles","nav.merch":"Boutique","nav.inscriptions":"Inscriptions","nav.contact":"Contact",
       "hero.eyebrow":"Club de basketball","hero.sub":"Une passion, un club, une famille. À Mersch depuis 1934.",
       "hero.btn1":"Inscription 2026/2027","hero.btn2":"Boutique",
       "ticker.label":"Merci à nos sponsors",
@@ -395,8 +418,9 @@
       "agenda.ev1":"Journée de la Commémoration nationale","agenda.ev2":"Nouveaux citoyens","agenda.ev3":"Marché de Noël",
     },
     de: {
+      "ballcta.h":"Fill the Basketball","ballcta.p":"Sucht euch ein Spiel aus und sponsert den Spielball — euer Name wird vor dem Spiel ausgerufen.",
       "nav.home":"Home","nav.teams":"Teams","nav.training":"Training","nav.history":"Geschichte","nav.news":"News",
-      "nav.committee":"Komitee","nav.sponsors":"Sponsoren","nav.support":"Unterstützen","nav.gyms":"Hallen","nav.merch":"Fanshop","nav.inscriptions":"Anmeldung","nav.contact":"Kontakt",
+      "nav.committee":"Komitee","nav.sponsors":"Sponsoren","nav.club":"Verein","nav.join":"Mitmachen","nav.support":"Unterstützen","nav.gyms":"Hallen","nav.merch":"Fanshop","nav.inscriptions":"Anmeldung","nav.contact":"Kontakt",
       "hero.eyebrow":"Basketball-Club","hero.sub":"Eine Leidenschaft, ein Verein, eine Familie. Seit 1934 in Mersch zu Hause.",
       "hero.btn1":"Anmeldung 2026/2027","hero.btn2":"Fanshop",
       "ticker.label":"Wir danken unseren Sponsoren",
@@ -441,8 +465,9 @@
       "agenda.ev1":"Nationaler Gedenktag","agenda.ev2":"Neue Mitbürger","agenda.ev3":"Weihnachtsmarkt",
     },
     en: {
+      "ballcta.h":"Fill the Basketball","ballcta.p":"Pick a game and sponsor the ball — your name is announced before tip-off.",
       "nav.home":"Home","nav.teams":"Teams","nav.training":"Training","nav.history":"History","nav.news":"News",
-      "nav.committee":"Committee","nav.sponsors":"Sponsors","nav.support":"Support us","nav.gyms":"Gyms","nav.merch":"Merchandise","nav.inscriptions":"Sign up","nav.contact":"Contact",
+      "nav.committee":"Committee","nav.sponsors":"Sponsors","nav.club":"The club","nav.join":"Get involved","nav.support":"Support us","nav.gyms":"Gyms","nav.merch":"Merchandise","nav.inscriptions":"Sign up","nav.contact":"Contact",
       "hero.eyebrow":"Basketball club","hero.sub":"One passion, one club, one family. In Mersch since 1934.",
       "hero.btn1":"Sign up 2026/2027","hero.btn2":"Fanshop",
       "ticker.label":"Thank you to our sponsors",

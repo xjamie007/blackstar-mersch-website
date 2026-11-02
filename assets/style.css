@@ -888,3 +888,75 @@ footer .footer-legal .sep{opacity:.4;text-decoration:none;cursor:default;}
   .support-form textarea{font-size:16px;}
   .support-form .btn{align-self:stretch;text-align:center;}
 }
+
+/* --- Fill the Basketball: d'Partien am Ball --- */
+.ball-wrap{display:flex;justify-content:center;margin:38px 0 10px;}
+.ball{
+  position:relative;width:min(100%,520px);aspect-ratio:1;border-radius:50%;
+  background:var(--gold);border:6px solid var(--black);
+  /* Flex an net Grid: eng ugebrachene lescht Rei zentréiert Grid net, an dann
+     hänken déi lescht zwou Kugele lénks amplaz an der Mëtt. */
+  display:flex;flex-wrap:wrap;align-content:center;justify-content:center;
+  gap:3%;padding:7%;box-sizing:border-box;
+}
+.ball-loading{grid-column:1/-1;color:var(--black);font-weight:700;text-align:center;}
+
+.ball-pick{
+  position:relative;z-index:1;flex:0 0 27%;aspect-ratio:1;border-radius:50%;
+  background:#fdf6e3;border:3px solid var(--black);color:var(--black);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;
+  font-family:inherit;cursor:pointer;padding:4px;line-height:1.1;
+  transition:transform .15s, box-shadow .15s, background .15s;
+}
+.ball-pick:hover,.ball-pick:focus-visible{transform:scale(1.06);box-shadow:0 6px 16px rgba(0,0,0,.35);outline:none;}
+.ball-pick[aria-pressed="true"]{background:var(--black);color:var(--gold);}
+.ball-pick b{font-size:clamp(13px,3.4vw,19px);font-weight:800;}
+.ball-pick span{font-size:clamp(8px,1.9vw,11px);font-weight:700;text-align:center;}
+.ball-pick.is-club b{font-size:clamp(10px,2.4vw,14px);}
+
+.picked-bar{
+  display:flex;align-items:center;justify-content:center;gap:12px;flex-wrap:wrap;
+  background:var(--panel);border:1px solid var(--gold-dim);border-radius:12px;
+  padding:12px 16px;margin-top:8px;font-size:15px;
+}
+.picked-clear{
+  background:none;border:0;color:var(--gold);font-family:inherit;font-size:14px;
+  text-decoration:underline;cursor:pointer;padding:4px;min-height:32px;
+}
+
+/* --- IBAN --- */
+.iban-card{
+  background:var(--panel);border:1px solid var(--line);border-radius:14px;
+  padding:22px;margin-top:22px;display:flex;flex-direction:column;gap:14px;
+}
+.iban-row{display:flex;align-items:center;gap:12px;flex-wrap:wrap;}
+.iban-label{
+  font-size:11px;font-weight:800;letter-spacing:.8px;text-transform:uppercase;
+  color:var(--text-dim);min-width:104px;
+}
+.iban-value{
+  font-family:'Courier New',monospace;font-size:clamp(14px,2.6vw,18px);
+  letter-spacing:.06em;color:var(--gold);word-break:break-all;
+}
+.iban-copy{padding:8px 14px;font-size:13px;min-height:36px;}
+.iban-note{color:var(--text-dim);font-size:13px;margin:0;}
+
+@media (max-width:560px){
+  .ball{padding:9%;gap:4px;}
+  .iban-label{min-width:0;flex:1 1 100%;}
+}
+
+/* --- Knäppchen op der Startsäit: Fill the Basketball --- */
+.ballcta{
+  display:flex;align-items:center;gap:16px;
+  background:linear-gradient(135deg, rgba(227,178,60,.14), rgba(227,178,60,.05));
+  border:1px solid var(--gold-dim);border-radius:14px;padding:18px 20px;
+  text-decoration:none;transition:border-color .18s, transform .18s;
+}
+.ballcta:hover{border-color:var(--gold);transform:translateY(-2px);}
+.ballcta-ball{font-size:30px;line-height:1;flex:none;}
+.ballcta-text{display:flex;flex-direction:column;gap:3px;flex:1;}
+.ballcta-text b{color:var(--gold);font-size:17px;letter-spacing:.02em;}
+.ballcta-text span{color:var(--text-dim);font-size:14px;line-height:1.5;}
+.ballcta-go{color:var(--gold);font-size:22px;flex:none;}
+@media (max-width:560px){ .ballcta-go{display:none;} }

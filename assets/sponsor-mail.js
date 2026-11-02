@@ -1,73 +1,124 @@
 /* ---------------------------------------------------------------------------
-   Black Star Mersch — de Bréif fir de Spillball-Sponsoring.
+   Black Star Mersch — "Fill the Basketball": d'Partien am Ball, an de Bréif
+   un de Comité.
 
-   Getrennt vum Formulaire, well de Formulaire just Felder sammelt an dës Datei
-   decidéiert, wat an der Mail steet. Esou kann een hei nokucken a probéieren,
-   ouni op "Schécken" ze dréngen.
+   Hei gëtt näischt gespäichert an näischt bezuelt. D'Suen kommen iwwer eng
+   Iwwerweisung op de Kont vum Veräin; dës Datei hëlleft just, déi richteg
+   Partie auszewielen an dem Comité Bescheed ze soen.
 
-   Hei gëtt näischt gespäichert a näischt geschéckt: d'Resultat ass eng
-   mailto:-Adresse, an de Rescht mécht d'Mail-App vum Besucher.
+   D'Partien kommen aus teams/senior-a-men.html. Dee Block gëtt all Dag vum
+   Skript scripts/update-next-games.py aus dem FLBB-Kalenner erneiert, also
+   verschwënnt eng gespillte Partie hei vu selwer — eng zweet Lëscht hei
+   géif dogéint laanscht d'Realitéit lafen.
 --------------------------------------------------------------------------- */
 (function (global) {
   'use strict';
 
-  var TO = 'info@blackstar-mersch.lu';
+  var TO = 'secretaire@blackstar-mersch.lu';
+  var IBAN = 'LU86 1111 0175 5191 0000';
+  var SOURCE = 'teams/senior-a-men.html';
 
   function clean(value) {
     return (value == null ? '' : String(value)).trim();
   }
 
-  /* Eng Zeil erschéngt nëmmen, wa se eppes dréit. En eidelt "Betrib:" an der
-     Mail liest sech wéi eng Fro, déi den Absender ignoréiert huet, an net wéi
-     eng, déi op hien net zoutrëfft. */
   function line(label, value) {
     var v = clean(value);
     return v ? [label + ': ' + v] : [];
   }
 
+  /* ---------- De Bréif ---------- */
   function build(input) {
     input = input || {};
 
     var name = clean(input.name);
     var company = clean(input.company);
-    var amount = clean(input.amount);
+    var game = clean(input.game);
     var message = clean(input.message);
 
     var details = line('Numm', name)
       .concat(line('Betrib', company))
       .concat(line('E-Mail', input.email))
       .concat(line('Telefon', input.phone))
-      .concat(line('Betrag', amount ? amount + ' €' : ''))
-      .concat(line('Match', input.game));
+      .concat(line('Partie', game));
 
-    var body = [
-      'Moien,',
-      '',
-      'ech géif gär de Spillball fir e Heemmatch vum Black Star Mersch sponseren.',
-      '',
-    ]
+    /* Wien eng Partie ausgesicht huet, kritt se am éischte Saz genannt; wien
+       einfach de Veräin ënnerstëtzt, kritt do keng eidel Plaz. */
+    var opening = game
+      ? 'ech géif gär de Spillball fir d’Partie "' + game + '" sponseren.'
+      : 'ech géif gär de Black Star Mersch ënnerstëtzen.';
+
+    var body = ['Moien,', '', opening, '']
       .concat(details)
       .concat(message ? ['', message] : [])
-      .concat(['', 'Mellt Iech w.e.g. fir déi weider Detailer.', '', 'Merci am Viraus,', name])
+      .concat([
+        '',
+        'Ech iwwerweisen op ' + IBAN + '.',
+        '',
+        'Mellt Iech w.e.g., wann nach eppes feelt.',
+        '',
+        'Merci am Viraus,',
+        name,
+      ])
       .join('\n');
 
-    /* De Betrib steet am Sujet, wann et een gëtt: an der Boîte gesäit een esou
-       direkt, vu wiem et kënnt, an fënnt et méi spéit erëm. */
-    var subject = 'Spillball-Sponsoring — ' + (company || name);
+    var subject = 'Spillball-Sponsoring — ' + (company || name) + (game ? ' — ' + game : '');
 
     /* encodeURIComponent an net encodeURI: en "&" an engem Firmennumm géif
-       soss de Text ofschneiden an als neie Parameter weiderlafen, an d'Mail
-       géif hallef eidel opgoen, ouni datt een et gesäit. */
+       soss de Text ofschneiden an als neie Parameter weiderlafen. */
     var url =
-      'mailto:' +
-      encodeURIComponent(TO) +
-      '?subject=' +
-      encodeURIComponent(subject) +
-      '&body=' +
-      encodeURIComponent(body);
+      'mailto:' + encodeURIComponent(TO) +
+      '?subject=' + encodeURIComponent(subject) +
+      '&body=' + encodeURIComponent(body);
 
-    return { to: TO, subject: subject, body: body, url: url };
+    return { to: TO, iban: IBAN, subject: subject, body: body, url: url };
+  }
+
+  /* ---------- D'Partien ---------- */
+
+  /** Aus dem generéierte Block: nëmmen d'Heemmatcher, déi nach kommen. */
+  function parseGames(html, todayISO) {
+    var block = html.match(/GAMES_DATA_START([\s\S]*?)GAMES_DATA_END/);
+    if (!block) return [];
+
+    var out = [];
+    var re = /\{date:"([^"]+)"[^}]*?homeAway:"(\w+)"[^}]*?opponent:"([^"]+)"/g;
+    var m;
+    while ((m = re.exec(block[1])) !== null) {
+      if (m[2] !== 'home') continue;
+      if (m[1] < todayISO) continue;
+      out.push({ date: m[1], opponent: m[3] });
+    }
+    out.sort(function (a, b) { return a.date < b.date ? -1 : 1; });
+    return out;
+  }
+
+  /** "2026-11-13" -> "13.11" — esou wéi um Plakat. */
+  function shortDate(iso) {
+    var p = iso.split('-');
+    return Number(p[2]) + '.' + Number(p[1]);
+  }
+
+  function today() {
+    var d = new Date();
+    return d.getFullYear() + '-' +
+      String(d.getMonth() + 1).padStart(2, '0') + '-' +
+      String(d.getDate()).padStart(2, '0');
+  }
+
+  async function loadGames() {
+    var res = await fetch(SOURCE, { credentials: 'same-origin' });
+    if (!res.ok) throw new Error('HTTP ' + res.status);
+    return parseGames(await res.text(), today());
   }
 
   global.bsmSponsorMail = build;
+  global.bsmSponsor = {
+    build: build,
+    parseGames: parseGames,
+    shortDate: shortDate,
+    loadGames: loadGames,
+    IBAN: IBAN,
+    TO: TO,
+  };
 })(window);

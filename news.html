@@ -49,7 +49,6 @@
             <a href="teams/referees.html" data-i18n="team.referees">Schidsrichter</a>
           </div>
       </li>
-        <li><a href="index.html#training" data-i18n="nav.training">Training</a></li>
         <li class="navdrop-wrap">
         <a class="navdrop-trigger" href="index.html#gyms" data-i18n="nav.gyms">Halen</a>
           <div class="dropmenu">
@@ -59,12 +58,23 @@
             <a href="gyms/lycee-ermesinde.html">Lycée Ermesinde</a>
           </div>
       </li>
-        <li><a href="committee.html" data-i18n="nav.committee">Comité</a></li>
-        <li><a href="index.html#history" data-i18n="nav.history">Eis Geschicht</a></li>
-        <li><a href="sponsors.html" data-i18n="nav.sponsors">Sponsoren</a></li>
-          <li><a href="sponsoring.html" data-i18n="nav.support">Ënnerstëtzen</a></li>
-      <li><a href="merchandise.html" data-i18n="nav.merch">Merchandise</a></li>
-        <li><a href="inscriptions.html" data-i18n="nav.inscriptions">Inscriptioun</a></li>
+          <li class="navdrop-wrap">
+          <a class="navdrop-trigger" href="index.html#training" data-i18n="nav.club">Veräin</a>
+            <div class="dropmenu">
+              <a href="index.html#training" data-i18n="nav.training">Training</a>
+              <a href="committee.html" data-i18n="nav.committee">Comité</a>
+              <a href="index.html#history" data-i18n="nav.history">Eis Geschicht</a>
+              <a href="sponsors.html" data-i18n="nav.sponsors">Sponsoren</a>
+            </div>
+        </li>
+          <li class="navdrop-wrap">
+          <a class="navdrop-trigger" href="inscriptions.html" data-i18n="nav.join">Matmaachen</a>
+            <div class="dropmenu">
+              <a href="inscriptions.html" data-i18n="nav.inscriptions">Inscriptioun</a>
+              <a href="sponsoring.html" data-i18n="nav.support">Ënnerstëtzen</a>
+              <a href="merchandise.html" data-i18n="nav.merch">Merchandise</a>
+            </div>
+        </li>
         <li><a href="index.html#contact" data-i18n="nav.contact">Kontakt</a></li>
         <li class="langglobe" id="langswitch">
           <button aria-label="Sprooch" class="globe-btn"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9"></circle><line x1="3" y1="12" x2="21" y2="12"></line><path d="M12 3c3 3.2 3 14.8 0 18c-3-3.2-3-14.8 0-18z"></path></svg></button>
@@ -138,19 +148,19 @@
 
 <script>
   const i18n = {
-    fr: {"nav.home":"Accueil","nav.teams":"Équipes","nav.training":"Entraînements","nav.history":"Histoire","nav.news":"Actualités","nav.committee":"Comité","nav.sponsors":"Sponsors","nav.support":"Nous soutenir","nav.gyms":"Salles","nav.merch":"Boutique","nav.inscriptions":"Inscriptions","nav.contact":"Contact","nav.menu":"☰ Menu","team.senior-a-men":"Senior A Hommes","team.senior-a-women":"Senior A Femmes","team.senior-b-men":"Senior B Hommes","team.senior-c-men":"Senior C Hommes","team.senior-b-women":"Senior B Femmes","team.referees":"Arbitres","footer.copy":"© 2026 Black Star Mersch","footer.createdby":"créé par","footer.imprint":"Mentions légales","footer.privacy":"Confidentialité","back.home":"← Retour à l'accueil","back.teams":"← Retour aux équipes","back.gyms":"← Retour aux salles","back.news":"← Retour aux actualités","back.committee":"← Retour au comité",
+    fr: {"nav.home":"Accueil","nav.teams":"Équipes","nav.training":"Entraînements","nav.history":"Histoire","nav.news":"Actualités","nav.committee":"Comité","nav.sponsors":"Sponsors","nav.club":"Le club","nav.join":"Participer","nav.support":"Nous soutenir","nav.gyms":"Salles","nav.merch":"Boutique","nav.inscriptions":"Inscriptions","nav.contact":"Contact","nav.menu":"☰ Menu","team.senior-a-men":"Senior A Hommes","team.senior-a-women":"Senior A Femmes","team.senior-b-men":"Senior B Hommes","team.senior-c-men":"Senior C Hommes","team.senior-b-women":"Senior B Femmes","team.referees":"Arbitres","footer.copy":"© 2026 Black Star Mersch","footer.createdby":"créé par","footer.imprint":"Mentions légales","footer.privacy":"Confidentialité","back.home":"← Retour à l'accueil","back.teams":"← Retour aux équipes","back.gyms":"← Retour aux salles","back.news":"← Retour aux actualités","back.committee":"← Retour au comité",
     "news.eyebrow":"Actualités","news.title":"Actualités","news.sub":"Toutes nos actualités en un coup d'œil.",
     "news.mike.eyebrow":"Équipe nationale","news.mike.teaser.h":"Mike Göhlhausen au EuroBasket U16 2026","news.mike.teaser.p":"Notre joueur représente le Luxembourg au FIBA U16 EuroBasket 2026 à Skopje.",
     "news.gbday.eyebrow":"4 mai 2026","news.card1.p":"De nouveaux enfants et leurs parents découvrent le Black Star Basket. Inscription via la page Inscriptions.",
     "news.card2.eyebrow":"Ouvert","news.card2.h":"Inscription saison 2026/2027","news.card2.p":"Les inscriptions pour la nouvelle saison sont ouvertes. Réservez votre place dans l'une de nos 14 équipes.",
     "news.card3.eyebrow":"Succès","news.coupe.h":"Coupe FLBB Dames 2024 – Championnes !","news.card3.p":"Notre équipe dames a remporté le titre – un nouveau moment fort de l'histoire du club."},
-    de: {"nav.home":"Home","nav.teams":"Teams","nav.training":"Training","nav.history":"Geschichte","nav.news":"News","nav.committee":"Komitee","nav.sponsors":"Sponsoren","nav.support":"Unterstützen","nav.gyms":"Hallen","nav.merch":"Fanshop","nav.inscriptions":"Anmeldung","nav.contact":"Kontakt","nav.menu":"☰ Menü","team.senior-a-men":"Senior A Herren","team.senior-a-women":"Senior A Damen","team.senior-b-men":"Senior B Herren","team.senior-c-men":"Senior C Herren","team.senior-b-women":"Senior B Damen","team.referees":"Schiedsrichter","footer.copy":"© 2026 Black Star Mersch","footer.createdby":"erstellt von","footer.imprint":"Impressum","footer.privacy":"Datenschutz","back.home":"← Zurück zur Startseite","back.teams":"← Zurück zu Teams","back.gyms":"← Zurück zu Hallen","back.news":"← Zurück zu News","back.committee":"← Zurück zum Komitee",
+    de: {"nav.home":"Home","nav.teams":"Teams","nav.training":"Training","nav.history":"Geschichte","nav.news":"News","nav.committee":"Komitee","nav.sponsors":"Sponsoren","nav.club":"Verein","nav.join":"Mitmachen","nav.support":"Unterstützen","nav.gyms":"Hallen","nav.merch":"Fanshop","nav.inscriptions":"Anmeldung","nav.contact":"Kontakt","nav.menu":"☰ Menü","team.senior-a-men":"Senior A Herren","team.senior-a-women":"Senior A Damen","team.senior-b-men":"Senior B Herren","team.senior-c-men":"Senior C Herren","team.senior-b-women":"Senior B Damen","team.referees":"Schiedsrichter","footer.copy":"© 2026 Black Star Mersch","footer.createdby":"erstellt von","footer.imprint":"Impressum","footer.privacy":"Datenschutz","back.home":"← Zurück zur Startseite","back.teams":"← Zurück zu Teams","back.gyms":"← Zurück zu Hallen","back.news":"← Zurück zu News","back.committee":"← Zurück zum Komitee",
     "news.eyebrow":"Aktuell","news.title":"News","news.sub":"Alle unsere News auf einen Blick.",
     "news.mike.eyebrow":"Nationalmannschaft","news.mike.teaser.h":"Mike Göhlhausen bei der U16-EuroBasket 2026","news.mike.teaser.p":"Unser Spieler vertritt Luxemburg bei der FIBA U16 EuroBasket 2026 in Skopje.",
     "news.gbday.eyebrow":"4. Mai 2026","news.card1.p":"Neue Kinder und ihre Eltern entdecken den Black-Star-Basketball. Anmeldung über die Anmeldeseite.",
     "news.card2.eyebrow":"Geöffnet","news.card2.h":"Anmeldung Saison 2026/2027","news.card2.p":"Die Anmeldung für die neue Saison ist offen. Sichert euch euren Platz in einem unserer 14 Teams.",
     "news.card3.eyebrow":"Erfolg","news.coupe.h":"FLBB-Pokal Damen 2024 – Sieger!","news.card3.p":"Unser Damenteam hat den Titel geholt – ein weiteres Highlight in der Vereinsgeschichte."},
-    en: {"nav.home":"Home","nav.teams":"Teams","nav.training":"Training","nav.history":"History","nav.news":"News","nav.committee":"Committee","nav.sponsors":"Sponsors","nav.support":"Support us","nav.gyms":"Gyms","nav.merch":"Merchandise","nav.inscriptions":"Sign up","nav.contact":"Contact","nav.menu":"☰ Menu","team.senior-a-men":"Senior A Men","team.senior-a-women":"Senior A Women","team.senior-b-men":"Senior B Men","team.senior-c-men":"Senior C Men","team.senior-b-women":"Senior B Women","team.referees":"Referees","footer.copy":"© 2026 Black Star Mersch","footer.createdby":"created by","footer.imprint":"Legal notice","footer.privacy":"Privacy","back.home":"← Back to Home","back.teams":"← Back to Teams","back.gyms":"← Back to Gyms","back.news":"← Back to News","back.committee":"← Back to Committee",
+    en: {"nav.home":"Home","nav.teams":"Teams","nav.training":"Training","nav.history":"History","nav.news":"News","nav.committee":"Committee","nav.sponsors":"Sponsors","nav.club":"The club","nav.join":"Get involved","nav.support":"Support us","nav.gyms":"Gyms","nav.merch":"Merchandise","nav.inscriptions":"Sign up","nav.contact":"Contact","nav.menu":"☰ Menu","team.senior-a-men":"Senior A Men","team.senior-a-women":"Senior A Women","team.senior-b-men":"Senior B Men","team.senior-c-men":"Senior C Men","team.senior-b-women":"Senior B Women","team.referees":"Referees","footer.copy":"© 2026 Black Star Mersch","footer.createdby":"created by","footer.imprint":"Legal notice","footer.privacy":"Privacy","back.home":"← Back to Home","back.teams":"← Back to Teams","back.gyms":"← Back to Gyms","back.news":"← Back to News","back.committee":"← Back to Committee",
     "news.eyebrow":"Latest","news.title":"News","news.sub":"All our news at a glance.",
     "news.mike.eyebrow":"National team","news.mike.teaser.h":"Mike Göhlhausen at the U16 EuroBasket 2026","news.mike.teaser.p":"Our player represents Luxembourg at the FIBA U16 EuroBasket 2026 in Skopje.",
     "news.gbday.eyebrow":"May 4, 2026","news.card1.p":"New kids and their parents discover Black Star basketball. Sign up via the registration page.",
