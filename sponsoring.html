@@ -94,24 +94,30 @@
   <a class="back-link" href="index.html#home" data-i18n="back.home">← Zeréck op d'Homepage</a>
   <div class="eyebrow" data-i18n="support.eyebrow">Fill the Basketball</div>
   <h1 class="section-title" style="margin-bottom:8px;" data-i18n="support.title">Sicht Iech eng Partie aus</h1>
-  <p class="section-sub" data-i18n="support.sub">Sponsert de Spillball fir ee Heemmatch. Äre Numm gëtt virum Match ausgeruff — an d'Suen ginn un d'Ekippen: Kraaftraining, Shooting-Clinics fir d'Jugend a mentale Coaching.</p>
+  <p class="section-sub" data-i18n="support.sub">Sponsert de Spillball fir ee Heemmatch. Äre Numm gëtt virum Match ausgeruff, an d'Suen ginn un d'Ekippen: Kraaftraining, Shooting-Clinics fir d'Jugend a mentale Coaching.</p>
 
   <!-- Der Ball mit den Partien. Die Kacheln kommen aus den FLBB-Daten der
        Senior-A-Säit, die das Tagesskript ohnehin pflegt — so verschwindet eine
        gespielte Partie von selbst, statt als Karteileiche stehenzubleiben. -->
   <div class="ball-wrap">
     <div class="ball" id="ballGames" aria-label="Partien">
+      <!-- D'Nout vum Ball. Reng Dekoratioun, dofir aria-hidden: wien e
+           Screenreader benotzt, kritt d'Partien, net d'Linnen. -->
+      <svg class="ball-seams" viewBox="0 0 200 200" aria-hidden="true" focusable="false">
+        <g fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round">
+          <circle cx="100" cy="100" r="97" stroke-width="5"></circle>
+          <line x1="100" y1="3" x2="100" y2="197"></line>
+          <line x1="3" y1="100" x2="197" y2="100"></line>
+          <path d="M100 4 C 44 54, 44 146, 100 196"></path>
+          <path d="M100 4 C 156 54, 156 146, 100 196"></path>
+        </g>
+      </svg>
       <p class="ball-loading" data-i18n="support.loading">Partie gi gelueden …</p>
     </div>
   </div>
 
-  <div id="pickedBar" class="picked-bar" hidden>
-    <span><span data-i18n="support.picked">Ausgewielt</span>: <b id="pickedLabel"></b></span>
-    <button type="button" class="picked-clear" id="pickedClear" data-i18n="support.pickedClear">änneren</button>
-  </div>
-
   <h2 class="section-title" style="margin-top:56px;margin-bottom:6px;" data-i18n="support.pay.h">Wéi Dir sponsert</h2>
-  <p class="section-sub" data-i18n="support.pay.sub">Iwwerweist de Betrag op de Kont vum Veräin a schéckt eis kuerz Bescheed, fir wéi eng Partie — soss wësse mir net, wiem mir Merci soen.</p>
+  <p class="section-sub" data-i18n="support.pay.sub">Iwwerweist de Betrag op de Kont vum Veräin a schéckt eis kuerz eng Email, fir wéi eng Partie, soss wësse mir net, wiem mir Merci soen.</p>
 
   <div class="iban-card">
     <div class="iban-row">
@@ -127,11 +133,9 @@
       <span class="iban-label" data-i18n="support.iban.ref">Matdeelung</span>
       <span id="ibanRef">Spillball + Äre Numm</span>
     </div>
-    <p class="iban-note" data-i18n="support.iban.note">De Betrag ass Iech iwwerlooss — de Veräin freet 250 € fir e Spillball.</p>
   </div>
 
   <h2 id="form" class="section-title" style="margin-top:56px;margin-bottom:6px;" data-i18n="support.form.h">Sot eis Bescheed</h2>
-  <p class="section-sub" data-i18n="support.form.sub">Näischt gëtt hei gespäichert. De Knäppchen mécht just Är Mail-App op, mat allem scho geschriwwen.</p>
 
   <!-- Zwei Texte, die nur das Skript liest. Als Element im DOM, damit der
        Sprachwechsel sie mitnimmt — sonst bliebe hier immer Englisch stehen. -->
@@ -170,13 +174,13 @@
 <script>
   const i18n = {
     fr: {
-      "support.eyebrow":"Fill the Basketball","support.title":"Choisissez un match","support.sub":"Parrainez le ballon d'un match à domicile. Votre nom est annoncé avant la rencontre — et l'argent va aux équipes : renforcement musculaire, clinics de tir pour les jeunes et coaching mental.","support.loading":"Chargement des matchs …","support.picked":"Choisi","support.pickedClear":"modifier","support.club":"Soutenir le club","support.pay.h":"Comment parrainer","support.pay.sub":"Virez le montant sur le compte du club et faites-nous signe pour quel match — sinon nous ne savons pas qui remercier.","support.iban.label":"IBAN","support.iban.holder":"Titulaire","support.iban.ref":"Communication","support.iban.refEmpty":"Ballon + votre nom","support.iban.copy":"Copier","support.iban.copied":"Copié ✓","support.iban.note":"Le montant est libre — le club demande 250 € pour un ballon.","support.form.h":"Prévenez-nous","support.form.sub":"Rien n'est enregistré ici. Le bouton ouvre simplement votre messagerie, tout est déjà écrit.","support.f.name":"Nom *","support.f.company":"Entreprise","support.f.email":"E-mail","support.f.phone":"Téléphone","support.f.message":"Message","support.f.submit":"Préparer l'e-mail →","support.f.note":"Le bouton n'envoie rien. Il ouvre un brouillon que vous envoyez vous-même.","support.f.nameRequired":"Il nous faut votre nom, pour savoir qui écrit.",
+      "support.eyebrow":"Fill the Basketball","support.title":"Choisissez un match","support.sub":"Parrainez le ballon d'un match à domicile. Votre nom est annoncé avant la rencontre, et l'argent va aux équipes : renforcement musculaire, clinics de tir pour les jeunes et coaching mental.","support.loading":"Chargement des matchs …","support.club":"Soutenir le club","support.pay.h":"Comment parrainer","support.pay.sub":"Virez le montant sur le compte du club et envoyez-nous un court e-mail, pour quel match, sinon nous ne savons pas qui remercier.","support.iban.label":"IBAN","support.iban.holder":"Titulaire","support.iban.ref":"Communication","support.iban.refEmpty":"Ballon + votre nom","support.iban.copy":"Copier","support.iban.copied":"Copié ✓","support.form.h":"Prévenez-nous","support.f.name":"Nom *","support.f.company":"Entreprise","support.f.email":"E-mail","support.f.phone":"Téléphone","support.f.message":"Message","support.f.submit":"Préparer l'e-mail →","support.f.note":"Le bouton n'envoie rien. Il ouvre un brouillon que vous envoyez vous-même.","support.f.nameRequired":"Il nous faut votre nom, pour savoir qui écrit.",
       "support.step1.h":"Remplir le formulaire","support.step1.p":"Nom, entreprise et le match qui vous intéresse.","support.step2.h":"Relire et envoyer","support.step2.p":"Nous ouvrons votre application de messagerie, tout est déjà écrit. Vous relisez et vous envoyez.","support.step3.h":"Nous vous répondons","support.step3.p":"Le comité règle avec vous le match, le paiement et le reste.","nav.home":"Accueil","nav.teams":"Équipes","nav.training":"Entraînements","nav.history":"Histoire","nav.news":"Actualités","nav.committee":"Comité","nav.sponsors":"Sponsors","nav.club":"Le club","nav.join":"Participer","nav.support":"Nous soutenir","nav.gyms":"Salles","nav.merch":"Boutique","nav.inscriptions":"Inscriptions","nav.contact":"Contact","nav.menu":"☰ Menu","team.senior-a-men":"Senior A Hommes","team.senior-a-women":"Senior A Femmes","team.senior-b-men":"Senior B Hommes","team.senior-c-men":"Senior C Hommes","team.senior-b-women":"Senior B Femmes","team.referees":"Arbitres","footer.copy":"© 2026 Black Star Mersch","footer.createdby":"créé par","footer.imprint":"Mentions légales","footer.privacy":"Confidentialité","back.home":"← Retour à l'accueil","back.teams":"← Retour aux équipes","back.gyms":"← Retour aux salles","back.news":"← Retour aux actualités","back.committee":"← Retour au comité","sponsors.eyebrow":"Merci","sponsors.title":"Nos sponsors","sponsors.sub":"Chaque logo est cliquable et vous emmène sur le site officiel du sponsor."},
     de: {
-      "support.eyebrow":"Fill the Basketball","support.title":"Sucht euch ein Spiel aus","support.sub":"Sponsert den Spielball für ein Heimspiel. Euer Name wird vor dem Spiel ausgerufen — und das Geld geht an die Teams: Krafttraining, Shooting-Clinics für die Jugend und mentales Coaching.","support.loading":"Spiele werden geladen …","support.picked":"Ausgewählt","support.pickedClear":"ändern","support.club":"Den Verein unterstützen","support.pay.h":"Wie ihr sponsert","support.pay.sub":"Überweist den Betrag auf das Vereinskonto und sagt uns kurz Bescheid, für welches Spiel — sonst wissen wir nicht, wem wir danken.","support.iban.label":"IBAN","support.iban.holder":"Kontoinhaber","support.iban.ref":"Verwendungszweck","support.iban.refEmpty":"Spielball + euer Name","support.iban.copy":"Kopieren","support.iban.copied":"Kopiert ✓","support.iban.note":"Der Betrag ist euch überlassen — der Verein fragt 250 € für einen Spielball.","support.form.h":"Sagt uns Bescheid","support.form.sub":"Hier wird nichts gespeichert. Der Knopf öffnet nur eure Mail-App, alles ist schon geschrieben.","support.f.name":"Name *","support.f.company":"Firma","support.f.email":"E-Mail","support.f.phone":"Telefon","support.f.message":"Nachricht","support.f.submit":"E-Mail vorbereiten →","support.f.note":"Der Knopf verschickt nichts. Er öffnet einen Entwurf, den ihr selbst abschickt.","support.f.nameRequired":"Wir brauchen euren Namen, um zu wissen, wer schreibt.",
+      "support.eyebrow":"Fill the Basketball","support.title":"Sucht euch ein Spiel aus","support.sub":"Sponsert den Spielball für ein Heimspiel. Euer Name wird vor dem Spiel ausgerufen, und das Geld geht an die Teams: Krafttraining, Shooting-Clinics für die Jugend und mentales Coaching.","support.loading":"Spiele werden geladen …","support.club":"Den Verein unterstützen","support.pay.h":"Wie ihr sponsert","support.pay.sub":"Überweist den Betrag auf das Vereinskonto und schickt uns kurz eine E-Mail, für welches Spiel, sonst wissen wir nicht, wem wir danken.","support.iban.label":"IBAN","support.iban.holder":"Kontoinhaber","support.iban.ref":"Verwendungszweck","support.iban.refEmpty":"Spielball + euer Name","support.iban.copy":"Kopieren","support.iban.copied":"Kopiert ✓","support.form.h":"Sagt uns Bescheid","support.f.name":"Name *","support.f.company":"Firma","support.f.email":"E-Mail","support.f.phone":"Telefon","support.f.message":"Nachricht","support.f.submit":"E-Mail vorbereiten →","support.f.note":"Der Knopf verschickt nichts. Er öffnet einen Entwurf, den ihr selbst abschickt.","support.f.nameRequired":"Wir brauchen euren Namen, um zu wissen, wer schreibt.",
       "support.step1.h":"Formular ausfüllen","support.step1.p":"Name, Firma und das Spiel, das euch interessiert.","support.step2.h":"Mail prüfen und senden","support.step2.p":"Wir öffnen eure Mail-App, alles ist schon geschrieben. Ihr lest nochmal drüber und schickt sie ab.","support.step3.h":"Wir melden uns","support.step3.p":"Der Vorstand klärt mit euch das Spiel, die Zahlung und alles Weitere.","nav.home":"Home","nav.teams":"Teams","nav.training":"Training","nav.history":"Geschichte","nav.news":"News","nav.committee":"Komitee","nav.sponsors":"Sponsoren","nav.club":"Verein","nav.join":"Mitmachen","nav.support":"Unterstützen","nav.gyms":"Hallen","nav.merch":"Fanshop","nav.inscriptions":"Anmeldung","nav.contact":"Kontakt","nav.menu":"☰ Menü","team.senior-a-men":"Senior A Herren","team.senior-a-women":"Senior A Damen","team.senior-b-men":"Senior B Herren","team.senior-c-men":"Senior C Herren","team.senior-b-women":"Senior B Damen","team.referees":"Schiedsrichter","footer.copy":"© 2026 Black Star Mersch","footer.createdby":"erstellt von","footer.imprint":"Impressum","footer.privacy":"Datenschutz","back.home":"← Zurück zur Startseite","back.teams":"← Zurück zu Teams","back.gyms":"← Zurück zu Hallen","back.news":"← Zurück zu News","back.committee":"← Zurück zum Komitee","sponsors.eyebrow":"Danke","sponsors.title":"Unsere Sponsoren","sponsors.sub":"Jedes Logo ist anklickbar und führt euch zur offiziellen Website des Sponsors."},
     en: {
-      "support.eyebrow":"Fill the Basketball","support.title":"Pick a game","support.sub":"Sponsor the ball for a home game. Your name is announced before tip-off — and the money goes to the teams: strength training, shooting clinics for the youth and mental coaching.","support.loading":"Loading games …","support.picked":"Picked","support.pickedClear":"change","support.club":"Support the Club","support.pay.h":"How to sponsor","support.pay.sub":"Transfer the amount to the club's account and drop us a line saying which game — otherwise we do not know who to thank.","support.iban.label":"IBAN","support.iban.holder":"Account holder","support.iban.ref":"Reference","support.iban.refEmpty":"Match ball + your name","support.iban.copy":"Copy","support.iban.copied":"Copied ✓","support.iban.note":"The amount is up to you — the club asks 250 € for a match ball.","support.form.h":"Let us know","support.form.sub":"Nothing is stored here. The button simply opens your mail app with everything already written.","support.f.name":"Name *","support.f.company":"Company","support.f.email":"E-mail","support.f.phone":"Phone","support.f.message":"Message","support.f.submit":"Prepare the e-mail →","support.f.note":"The button sends nothing. It opens a draft that you send yourself.","support.f.nameRequired":"We need your name, to know who is writing.",
+      "support.eyebrow":"Fill the Basketball","support.title":"Pick a game","support.sub":"Sponsor the ball for a home game. Your name is announced before tip-off, and the money goes to the teams: strength training, shooting clinics for the youth and mental coaching.","support.loading":"Loading games …","support.club":"Support the Club","support.pay.h":"How to sponsor","support.pay.sub":"Transfer the amount to the club's account and send us a short e-mail saying which game, otherwise we do not know who to thank.","support.iban.label":"IBAN","support.iban.holder":"Account holder","support.iban.ref":"Reference","support.iban.refEmpty":"Match ball + your name","support.iban.copy":"Copy","support.iban.copied":"Copied ✓","support.form.h":"Let us know","support.f.name":"Name *","support.f.company":"Company","support.f.email":"E-mail","support.f.phone":"Phone","support.f.message":"Message","support.f.submit":"Prepare the e-mail →","support.f.note":"The button sends nothing. It opens a draft that you send yourself.","support.f.nameRequired":"We need your name, to know who is writing.",
       "support.step1.h":"Fill in the form","support.step1.p":"Name, company and the game you have in mind.","support.step2.h":"Read it over and send","support.step2.p":"We open your mail app with everything already written. You read it over and send it yourself.","support.step3.h":"We get back to you","support.step3.p":"The committee settles the game, the payment and everything else with you.","nav.home":"Home","nav.teams":"Teams","nav.training":"Training","nav.history":"History","nav.news":"News","nav.committee":"Committee","nav.sponsors":"Sponsors","nav.club":"The club","nav.join":"Get involved","nav.support":"Support us","nav.gyms":"Gyms","nav.merch":"Merchandise","nav.inscriptions":"Sign up","nav.contact":"Contact","nav.menu":"☰ Menu","team.senior-a-men":"Senior A Men","team.senior-a-women":"Senior A Women","team.senior-b-men":"Senior B Men","team.senior-c-men":"Senior C Men","team.senior-b-women":"Senior B Women","team.referees":"Referees","footer.copy":"© 2026 Black Star Mersch","footer.createdby":"created by","footer.imprint":"Legal notice","footer.privacy":"Privacy","back.home":"← Back to Home","back.teams":"← Back to Teams","back.gyms":"← Back to Gyms","back.news":"← Back to News","back.committee":"← Back to Committee","sponsors.eyebrow":"Thank you","sponsors.title":"Our sponsors","sponsors.sub":"Every logo is clickable and takes you to the sponsor's official website."},
   };
   function applyNavLang(lang){
@@ -221,8 +225,6 @@
     var form = document.getElementById('sponsorForm');
     var error = document.getElementById('sponsorError');
     var gameField = document.getElementById('gameField');
-    var bar = document.getElementById('pickedBar');
-    var barLabel = document.getElementById('pickedLabel');
     var ibanRef = document.getElementById('ibanRef');
     if (!S || !ball || !form) return;
 
@@ -242,22 +244,14 @@
         b.setAttribute('aria-pressed', String(b === button));
       });
       gameField.value = game || '';
-      if (shown) {
-        barLabel.textContent = shown;
-        bar.hidden = false;
-        /* D'Matdeelung ass dat, wat de Grénge Pfeil um Kontoauszuch rettet:
-           ouni si weess de Caissier net, fir wéi eng Partie bezuelt gouf. */
-        ibanRef.textContent = game ? 'Spillball ' + game : 'Don ' + shown;
-      } else {
-        bar.hidden = true;
-        ibanRef.textContent = document.getElementById('refDefault').textContent;
-      }
+      /* D'Matdeelung ass dat, wat de Caissier um Kontoauszuch rettet: ouni si
+         weess en net, fir wéi eng Partie bezuelt gouf. D'Kugel bleift gedréckt,
+         dat duergeet als Récki — e Balken dozou war eng Zeil ze vill. */
+      ibanRef.textContent = shown
+        ? (game ? 'Spillball ' + game : 'Don ' + shown)
+        : document.getElementById('refDefault').textContent;
       current = { game: game, shown: shown, button: button };
     }
-
-    document.getElementById('pickedClear').addEventListener('click', function () {
-      pick('', '', null);
-    });
 
     /* Der Sprachwechsel schreibt alle data-i18n-Elemente neu. Die Auswahl
        steht nicht darin, also setzen wir sie danach noch einmal. */
@@ -294,8 +288,14 @@
       return b;
     }
 
+    /* Nëmme wat d'Skript selwer gesat huet: d'Naht ass SVG am HTML a muss
+       stoe bleiwen — innerHTML = '' huet se matgeheit. */
+    function clearTiles() {
+      ball.querySelectorAll('.ball-pick, .ball-loading').forEach(function (el) { el.remove(); });
+    }
+
     S.loadGames().then(function (games) {
-      ball.innerHTML = '';
+      clearTiles();
       /* Aacht Plazen am Ball, wéi um Plakat: siwe Partien an "de Veräin". */
       games.slice(0, 8).forEach(function (g) {
         ball.appendChild(tile(S.shortDate(g.date), g.opponent));
@@ -304,7 +304,7 @@
     }).catch(function () {
       /* Keng Partien ze kréien ass kee Grond, d'Säit eidel ze loossen: de
          Veräin kann een ëmmer ënnerstëtzen. */
-      ball.innerHTML = '';
+      clearTiles();
       ball.appendChild(tile(t('support.club', 'Support the Club'), '', 'is-club'));
     });
 
