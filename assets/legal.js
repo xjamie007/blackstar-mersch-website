@@ -146,7 +146,10 @@
     frame.width = '100%';
     frame.height = '360';
     frame.style.border = '0';
-    frame.loading = 'lazy';
+    /* Net "lazy": d'Kaart soll direkt ufänken ze lueden. Bis Google se gemol
+       huet, gesäit een de Kaarte-Fong vum Container (CSS), net eng schwaarz Këscht. */
+    frame.className = 'map-frame';
+    frame.addEventListener('load', function () { frame.classList.add('is-loaded'); });
     frame.referrerPolicy = 'no-referrer-when-downgrade';
     var h = box.querySelector('h4');
     frame.title = h ? h.textContent : 'Google Maps';

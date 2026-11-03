@@ -586,7 +586,21 @@ nav ul{align-items:center;}
 .gympage-card{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:28px 30px;margin-bottom:20px;}
 .gympage-card h3{color:var(--gold);font-size:15px;text-transform:uppercase;letter-spacing:.05em;margin-bottom:12px;}
 .gympage-addr{color:var(--text-dim);font-size:15px;margin-bottom:18px;}
-.gympage-map{border-radius:14px;overflow:hidden;border:1px solid var(--line);line-height:0;}
+.gympage-map{border-radius:14px;overflow:hidden;border:1px solid var(--line);line-height:0;
+  position:relative;min-height:360px;
+  /* Kaarte-Fong, bis Google d'Kaart gemol huet: hellgro mat Stroossen an enger Nol an der Mëtt */
+  background-color:#e8e6e1;
+  background-image:
+    linear-gradient(115deg, transparent 0 44%, rgba(255,255,255,.95) 44% 46.5%, transparent 46.5%),
+    linear-gradient(20deg, transparent 0 62%, rgba(255,214,120,.9) 62% 64.5%, transparent 64.5%),
+    repeating-linear-gradient(0deg, transparent 0 52px, rgba(255,255,255,.75) 52px 56px),
+    repeating-linear-gradient(90deg, transparent 0 78px, rgba(255,255,255,.75) 78px 82px);
+}
+.gympage-map::after{content:'';position:absolute;left:50%;top:50%;width:26px;height:26px;margin:-30px 0 0 -13px;
+  background:#ea4335;border-radius:50% 50% 50% 0;transform:rotate(-45deg);box-shadow:0 2px 6px rgba(0,0,0,.3);z-index:0;}
+.gympage-map .map-consent{position:relative;z-index:1;}
+.gympage-map .map-frame{position:relative;z-index:1;display:block;opacity:0;transition:opacity .5s ease;}
+.gympage-map .map-frame.is-loaded{opacity:1;}
 
 /* Klick-fir-ze-lueden Kaart: Google Maps setzt Cookien a schéckt d'IP vum Besucher
    un e Server an den USA. Dofir gëtt den iframe eréischt no engem Klick gelueden. */
