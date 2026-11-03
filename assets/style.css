@@ -76,6 +76,14 @@
     backdrop-filter:blur(6px);
     border-bottom:1px solid var(--line);
   }
+  /* Startsäit: Leescht leit iwwer dem Hero-Bild, uewen duerchsichteg, ab dem Scrollen schwaarz */
+  header.header-overlay{position:fixed;left:0;right:0;top:0;transition:background .3s, border-color .3s, backdrop-filter .3s;}
+  header.header-overlay.at-top:not(:has(nav.open)){background:transparent;border-bottom-color:transparent;backdrop-filter:none;}
+  header.header-overlay.at-top:not(:has(nav.open)) nav > ul > li > a,
+  header.header-overlay.at-top:not(:has(nav.open)) .navdrop-trigger{color:var(--text);text-shadow:0 1px 6px rgba(0,0,0,.6);}
+  header.header-overlay.at-top:not(:has(nav.open)) nav > ul > li > a:hover,
+  header.header-overlay.at-top:not(:has(nav.open)) .navdrop-wrap:hover .navdrop-trigger{color:var(--gold);}
+  .hero.hero-under-header{min-height:max(665px, 100vh);padding-top:207px;}
   .navwrap{max-width:1180px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;padding:10px 24px;}
   .brand{display:flex;align-items:center;gap:10px;cursor:pointer;}
   .brand-logo{height:46px;width:auto;display:block;}
@@ -153,7 +161,7 @@
   /* Sponsoren-Leescht ënnen am Hero-Bild: d'Bild leeft an d'Schwaarzt aus, d'Logoe lafen iwwer dem Schwaarzen */
   .hero .hero-ticker{position:absolute;left:0;right:0;bottom:0;z-index:2;background:none;border:0;}
   /* Ticker ouni Këscht, lénks a riets e weichen Iwwergang an d'Schwaarzt */
-  .ticker-wrap.ticker-fade{background:none;border:0;
+  .ticker-wrap.ticker-fade{background:none;border:0;padding-top:4px;
     -webkit-mask-image:linear-gradient(90deg,transparent 0,#000 9%,#000 91%,transparent 100%);
             mask-image:linear-gradient(90deg,transparent 0,#000 9%,#000 91%,transparent 100%);}
 

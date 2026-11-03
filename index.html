@@ -20,7 +20,7 @@
 <link rel="icon" href="assets/favicon.ico" sizes="any">
 <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
 <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
-<link rel="stylesheet" href="assets/style.css?v=1793711457">
+<link rel="stylesheet" href="assets/style.css?v=1793711746">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -40,7 +40,7 @@
 </script>
 </head>
 <body>
-<header>
+<header class="header-overlay at-top">
   <div class="navwrap">
     <a href="index.html#home" class="brand">
       <img class="brand-logo" src="assets/logo.png" alt="Black Star Mersch">
@@ -106,8 +106,16 @@
     </nav>
     <script>document.querySelectorAll('nav a').forEach(function(a){a.addEventListener('click',function(){document.querySelector('nav').classList.remove('open');});});</script>
   </div>
+  <script>
+    /* Startsäit: Leescht uewen duerchsichteg iwwer dem Bild, ab dem Eroflscrollen schwaarz */
+    (function(){
+      var h=document.querySelector('header.header-overlay');
+      function upd(){ h.classList.toggle('at-top', window.scrollY < 10); }
+      upd(); window.addEventListener('scroll', upd, {passive:true});
+    })();
+  </script>
 </header>
-<section id="home" class="hero">
+<section id="home" class="hero hero-under-header">
   <div class="hero-slides" id="heroSlides"></div>
   <div class="hero-inner">
     <div class="eyebrow" data-i18n="hero.eyebrow">Basketball-Club</div>
@@ -337,7 +345,6 @@
 </section>
 
 <div class="ticker-wrap ticker-fade">
-  <div class="ticker-label" data-i18n="merch.ticker.label">Eis Artikelen am Fanshop</div>
   <div class="ticker" id="merchTicker"></div>
 </div>
 
@@ -403,7 +410,6 @@
       "hero.eyebrow":"Club de basketball","hero.sub":"Une passion, un club, une famille. À Mersch depuis 1934.",
       "hero.btn1":"Inscription 2026/2027","hero.btn2":"Boutique",
       "ticker.label":"Merci à nos sponsors",
-      "merch.ticker.label":"Nos articles à la boutique",
       "news.eyebrow":"Actualités","news.title":"Actualités",
       "news.card3.eyebrow":"Succès","news.card3.p":"Notre équipe dames a remporté le titre – un nouveau moment fort de l'histoire du club.",
       "news.allbtn":"Voir toutes les actualités →",
@@ -448,7 +454,6 @@
       "hero.eyebrow":"Basketball-Club","hero.sub":"Eine Leidenschaft, ein Verein, eine Familie. Seit 1934 in Mersch zu Hause.",
       "hero.btn1":"Anmeldung 2026/2027","hero.btn2":"Fanshop",
       "ticker.label":"Wir danken unseren Sponsoren",
-      "merch.ticker.label":"Unsere Artikel im Fanshop",
       "news.eyebrow":"Aktuell","news.title":"News",
       "news.card3.eyebrow":"Erfolg","news.card3.p":"Unser Damenteam hat den Titel geholt – ein weiteres Highlight in der Vereinsgeschichte.",
       "news.allbtn":"Alle News ansehen →",
@@ -493,7 +498,6 @@
       "hero.eyebrow":"Basketball club","hero.sub":"One passion, one club, one family. In Mersch since 1934.",
       "hero.btn1":"Sign up 2026/2027","hero.btn2":"Fanshop",
       "ticker.label":"Thank you to our sponsors",
-      "merch.ticker.label":"Our items in the fanshop",
       "news.eyebrow":"Latest","news.title":"News",
       "news.card3.eyebrow":"Success","news.card3.p":"Our women's team took the title – another highlight in the club's history.",
       "news.allbtn":"See all news →",
