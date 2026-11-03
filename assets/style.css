@@ -161,9 +161,10 @@
   .ticker a:hover{border-color:var(--gold);color:var(--gold);}
   @keyframes scroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
   /* Sponsoren-Leescht ënnen am Hero-Bild: d'Bild leeft an d'Schwaarzt aus, d'Logoe lafen iwwer dem Schwaarzen */
-  .hero .hero-ticker{position:absolute;left:0;right:0;bottom:0;z-index:3;background:none;border:0;
-    transform:translateZ(0);will-change:transform;isolation:isolate;}
-  .hero .hero-ticker .ticker-label{position:relative;z-index:1;transform:translateZ(0);}
+  /* Keng eegen Grafik-Ebene fir déi ganz Leescht: Safari mol déi breet, lafend Leescht soss nëmmen
+     zum Deel (lénks bleift eidel). Just de klenge Saz kritt eng, fir datt e beim Bildwiessel net verschwënnt. */
+  .hero .hero-ticker{position:absolute;left:0;right:0;bottom:0;z-index:3;background:none;border:0;}
+  .hero .hero-ticker .ticker-label{position:relative;z-index:1;-webkit-transform:translateZ(0);transform:translateZ(0);}
   /* Ticker ouni Këscht, lénks a riets e weichen Iwwergang an d'Schwaarzt */
   .ticker-wrap.ticker-fade{background:none;border:0;padding-top:4px;
     -webkit-mask-image:linear-gradient(90deg,transparent 0,#000 9%,#000 91%,transparent 100%);
