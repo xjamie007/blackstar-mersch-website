@@ -7,8 +7,8 @@
      - bsm_consent         (dëse Consent selwer, technesch néideg)
      - bsm_committee_auth  (Comité-Login, nëmme lokal, technesch néideg)
      - bsm_news_custom     (Comité-News-Entworf, nëmme lokal, technesch néideg)
-   Deemno brauch nëmmen een eenzegen Zweck eng Zoustëmmung: den externen
-   Inhalt "Google Maps" op de Halen-Säiten. Deen ass standardméisseg AUS an
+   Deemno brauch nëmmen een eenzegen Zweck eng Zoustëmmung: extern Inhalter -
+   "Google Maps" op de Halen-Säiten an Instagram-Videoen an den News. Deen ass standardméisseg AUS an
    gëtt eréischt no enger aktiver Zoustëmmung gelueden (Art. 6(1)(a) DSGVO).
 
    Refuséieren ass genee esou einfach wéi akzeptéieren (CNPD-Ufuerderung):
@@ -18,7 +18,7 @@
   'use strict';
 
   var STORE_KEY = 'bsm_consent';
-  var VERSION = 1;
+  var VERSION = 2; /* v2: Instagram-Videoen an d'Kategorie "Extern Inhalter" opgeholl */
 
   /* Basis-URL fir Linken (d'Säite leien op verschiddenen Niveauen:
      /index.html, /gyms/eimab.html, /news/post.html ...). Mir leede se aus
@@ -49,7 +49,7 @@
   var T = {
     lu: {
       title: "Mir respektéieren Är Privatsphär",
-      body: "Dës Säit benotzt just den technesch néidege Späicher am Browser (z. B. fir Är Sprooch z\u2019erkennen). Mir setze keng Tracking- oder Analyse-Cookien an an iwwerdroe keng Donnéeën un Drëttfirmen. Externt Kaartematerial vu Google Maps gëtt eréischt gelueden, wann Dir ausdrécklech zoustëmmt.",
+      body: "Dës Säit benotzt just den technesch néidege Späicher am Browser (z. B. fir Är Sprooch z\u2019erkennen). Mir setze keng Tracking- oder Analyse-Cookien an an iwwerdroe keng Donnéeën un Drëttfirmen. Extern Inhalter (Kaarte vu Google Maps an Instagram-Videoen) ginn eréischt gelueden, wann Dir ausdrécklech zoustëmmt - z. B. mat \u201eAlles akzeptéieren\u201c.",
       necessary: "Nëmmen dat néidegst",
       all: "Alles akzeptéieren",
       settings: "Astellungen",
@@ -57,8 +57,8 @@
       catNeedTitle: "Technesch néideg",
       catNeedAlways: "Ëmmer aktiv",
       catNeedText: "Späichert Är Sprooch, Är Cookie-Auswiel an - fir de Comité - de lokale Login. Dës Donnéeë bleiwen an Ärem Browser a ginn ni op ee Server geschéckt.",
-      catMapsTitle: "Extern Karten (Google Maps)",
-      catMapsText: "Lued d'Kaart direkt op de Halen-Säiten. Dobäi ginn Är IP-Adress a Cookien un Google iwwerdroen (och an d'USA).",
+      catMapsTitle: "Extern Inhalter (Google Maps, Instagram)",
+      catMapsText: "Lued d'Kaarten op de Halen-Säiten an d'Instagram-Videoen an den News direkt. Dobäi ginn Är IP-Adress a Cookien un Google respektiv Meta (Instagram) iwwerdroen (och an d'USA).",
       privacy: "Dateschutz",
       imprint: "Impressum",
       settingsLink: "Cookie-Astellungen",
@@ -66,7 +66,7 @@
     },
     fr: {
       title: "Nous respectons votre vie privée",
-      body: "Ce site n'utilise que le stockage techniquement nécessaire dans votre navigateur (par ex. pour retenir votre langue). Nous ne plaçons aucun cookie de suivi ou de mesure d'audience et ne transmettons aucune donnée à des tiers. Les cartes externes de Google Maps ne sont chargées qu'avec votre accord explicite.",
+      body: "Ce site n'utilise que le stockage techniquement nécessaire dans votre navigateur (par ex. pour retenir votre langue). Nous ne plaçons aucun cookie de suivi ou de mesure d'audience et ne transmettons aucune donnée à des tiers. Les contenus externes (cartes Google Maps et vidéos Instagram) ne sont chargés qu'avec votre accord explicite, par ex. via « Tout accepter ».",
       necessary: "Nécessaires uniquement",
       all: "Tout accepter",
       settings: "Paramètres",
@@ -74,8 +74,8 @@
       catNeedTitle: "Techniquement nécessaires",
       catNeedAlways: "Toujours actifs",
       catNeedText: "Conservent votre langue, votre choix en matière de cookies et - pour le comité - la connexion locale. Ces données restent dans votre navigateur et ne sont jamais envoyées à un serveur.",
-      catMapsTitle: "Cartes externes (Google Maps)",
-      catMapsText: "Charge la carte directement sur les pages des salles. Votre adresse IP et des cookies sont alors transmis à Google (y compris aux États-Unis).",
+      catMapsTitle: "Contenus externes (Google Maps, Instagram)",
+      catMapsText: "Charge directement les cartes sur les pages des salles et les vidéos Instagram dans les actualités. Votre adresse IP et des cookies sont alors transmis à Google ou à Meta (Instagram), y compris aux États-Unis.",
       privacy: "Confidentialité",
       imprint: "Mentions légales",
       settingsLink: "Paramètres cookies",
@@ -83,7 +83,7 @@
     },
     de: {
       title: "Wir respektieren Ihre Privatsphäre",
-      body: "Diese Seite nutzt ausschliesslich technisch notwendigen Speicher im Browser (z. B. um Ihre Sprache zu merken). Wir setzen keine Tracking- oder Analyse-Cookies und übermitteln keine Daten an Dritte. Externes Kartenmaterial von Google Maps wird erst nach Ihrer ausdrücklichen Einwilligung geladen.",
+      body: "Diese Seite nutzt ausschliesslich technisch notwendigen Speicher im Browser (z. B. um Ihre Sprache zu merken). Wir setzen keine Tracking- oder Analyse-Cookies und übermitteln keine Daten an Dritte. Externe Inhalte (Karten von Google Maps und Instagram-Videos) werden erst nach Ihrer ausdrücklichen Einwilligung geladen, z. B. über „Alle akzeptieren“.",
       necessary: "Nur notwendige",
       all: "Alle akzeptieren",
       settings: "Einstellungen",
@@ -91,8 +91,8 @@
       catNeedTitle: "Technisch notwendig",
       catNeedAlways: "Immer aktiv",
       catNeedText: "Speichert Ihre Sprache, Ihre Cookie-Auswahl und - für das Komitee - den lokalen Login. Diese Daten bleiben in Ihrem Browser und werden nie an einen Server gesendet.",
-      catMapsTitle: "Externe Karten (Google Maps)",
-      catMapsText: "Lädt die Karte direkt auf den Hallen-Seiten. Dabei werden Ihre IP-Adresse und Cookies an Google übertragen (auch in die USA).",
+      catMapsTitle: "Externe Inhalte (Google Maps, Instagram)",
+      catMapsText: "Lädt die Karten auf den Hallen-Seiten und die Instagram-Videos in den News direkt. Dabei werden Ihre IP-Adresse und Cookies an Google bzw. Meta (Instagram) übertragen (auch in die USA).",
       privacy: "Datenschutz",
       imprint: "Impressum",
       settingsLink: "Cookie-Einstellungen",
@@ -100,7 +100,7 @@
     },
     en: {
       title: "We respect your privacy",
-      body: "This site only uses technically necessary browser storage (for example to remember your language). We set no tracking or analytics cookies and pass no data to third parties. External map material from Google Maps is loaded only with your explicit consent.",
+      body: "This site only uses technically necessary browser storage (for example to remember your language). We set no tracking or analytics cookies and pass no data to third parties. External content (Google Maps maps and Instagram videos) is loaded only with your explicit consent, e.g. via \u201cAccept all\u201d.",
       necessary: "Necessary only",
       all: "Accept all",
       settings: "Settings",
@@ -108,8 +108,8 @@
       catNeedTitle: "Technically necessary",
       catNeedAlways: "Always active",
       catNeedText: "Stores your language, your cookie choice and - for the committee - the local login. This data stays in your browser and is never sent to a server.",
-      catMapsTitle: "External maps (Google Maps)",
-      catMapsText: "Loads the map directly on the gym pages. Your IP address and cookies are transmitted to Google (including to the USA) in the process.",
+      catMapsTitle: "External content (Google Maps, Instagram)",
+      catMapsText: "Loads the maps on the gym pages and the Instagram videos in the news directly. Your IP address and cookies are transmitted to Google or Meta (Instagram), including to the USA.",
       privacy: "Privacy",
       imprint: "Legal notice",
       settingsLink: "Cookie settings",
@@ -130,6 +130,18 @@
   function loadMap(box) {
     if (!box || !box.parentNode) return;
     var frame = document.createElement('iframe');
+    var ig = box.getAttribute('data-ig-src');
+    if (ig) {
+      /* Instagram-Video (Reel) */
+      frame.src = ig;
+      frame.title = 'Instagram';
+      frame.loading = 'lazy';
+      frame.allow = 'autoplay; encrypted-media; picture-in-picture; fullscreen';
+      frame.setAttribute('allowfullscreen', '');
+      frame.className = 'ig-frame';
+      box.replaceWith(frame);
+      return;
+    }
     frame.src = box.getAttribute('data-map-src');
     frame.width = '100%';
     frame.height = '360';
