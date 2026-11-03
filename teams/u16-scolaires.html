@@ -135,23 +135,6 @@
   // Next games — pulled from the FLBB team calendar, refreshed daily
   // GAMES_DATA_START (auto-generated — do not hand-edit, see /scripts/update-next-games.py)
   const nextGames = [
-    {date:"2025-09-27", weekday:5, time:"16:30", homeAway:"home", opponent:"Nitia Bettembourg (13-108)", opponentCode:"NIT", venue:"", gameNumber:"3341003", competition:"M-U14 Division 4:Phase 1", squad:"U14 – Minis"},
-    {date:"2025-09-30", weekday:1, time:"17:30", homeAway:"away", opponent:"Arantia Larochette", opponentCode:"ARA", venue:"Hall Sportif Centre Filano", gameNumber:"3031004", competition:"M-Coupe Minis:1/16 finales", squad:"U14 – Minis"},
-    {date:"2025-10-04", weekday:5, time:"14:30", homeAway:"away", opponent:"Bascharage Hedgehogs", opponentCode:"BAS", venue:"Hall op Acker, Bascharage", gameNumber:"3341006", competition:"M-U14 Division 4:Phase 1", squad:"U14 – Minis"},
-    {date:"2025-10-11", weekday:5, time:"15:30", homeAway:"home", opponent:"T71 Dudelange C (29-56)", opponentCode:"T71", venue:"", gameNumber:"3341007", competition:"M-U14 Division 4:Phase 1", squad:"U14 – Minis"},
-    {date:"2025-10-19", weekday:6, time:"15:30", homeAway:"away", opponent:"Telstar Hesperange", opponentCode:"TEL", venue:"Holleschberg, Hesperange", gameNumber:"3341009", competition:"M-U14 Division 4:Phase 1", squad:"U14 – Minis"},
-    {date:"2025-11-16", weekday:6, time:"15:15", homeAway:"away", opponent:"Mambra Mamer B", opponentCode:"MAM", venue:"Centre Sportif 'Nic. Frantz', Mamer", gameNumber:"3352002", competition:"M-U14 Division 5:Phase 2", squad:"U14 – Minis"},
-    {date:"2025-11-22", weekday:5, time:"10:00", homeAway:"home", opponent:"US Heffingen (38-91)", opponentCode:"HEF", venue:"", gameNumber:"3352004", competition:"M-U14 Division 5:Phase 2", squad:"U14 – Minis"},
-    {date:"2025-11-30", weekday:6, time:"15:30", homeAway:"away", opponent:"Racing Luxembourg B", opponentCode:"RAC", venue:"salle sportive Gare, Luxembourg-Gare", gameNumber:"3352005", competition:"M-U14 Division 5:Phase 2", squad:"U14 – Minis"},
-    {date:"2025-12-13", weekday:5, time:"09:00", homeAway:"home", opponent:"Sparta Bertrange C (55-82)", opponentCode:"SPA", venue:"", gameNumber:"3352009", competition:"M-U14 Division 5:Phase 2", squad:"U14 – Minis"},
-    {date:"2026-01-17", weekday:5, time:"15:30", homeAway:"away", opponent:"BBC East Side Pirates", opponentCode:"BEP", venue:"Hall Sportif, Berbourg", gameNumber:"3353001", competition:"M-U14 Division 5:Phase finale", squad:"U14 – Minis"},
-    {date:"2026-01-24", weekday:5, time:"14:00", homeAway:"home", opponent:"Mambra Mamer B (70-73)", opponentCode:"MAM", venue:"", gameNumber:"3353007", competition:"M-U14 Division 5:Phase finale", squad:"U14 – Minis"},
-    {date:"2026-02-28", weekday:5, time:"17:15", homeAway:"away", opponent:"AS Soleuvre B", opponentCode:"SOL", venue:"KUSS Scheierhaff, Soleuvre", gameNumber:"3353019", competition:"M-U14 Division 5:Phase finale", squad:"U14 – Minis"},
-    {date:"2026-03-07", weekday:5, time:"14:00", homeAway:"home", opponent:"Racing Luxembourg B (49-76)", opponentCode:"RAC", venue:"", gameNumber:"3353027", competition:"M-U14 Division 5:Phase finale", squad:"U14 – Minis"},
-    {date:"2026-03-14", weekday:5, time:"10:30", homeAway:"home", opponent:"BBC East Side Pirates (48-72)", opponentCode:"BEP", venue:"", gameNumber:"3353002", competition:"M-U14 Division 5:Phase finale", squad:"U14 – Minis"},
-    {date:"2026-03-22", weekday:6, time:"11:00", homeAway:"away", opponent:"Mambra Mamer B", opponentCode:"MAM", venue:"Centre Sportif 'Nic. Frantz', Mamer", gameNumber:"3353008", competition:"M-U14 Division 5:Phase finale", squad:"U14 – Minis"},
-    {date:"2026-05-02", weekday:5, time:"15:00", homeAway:"home", opponent:"AS Soleuvre B (62-63)", opponentCode:"SOL", venue:"", gameNumber:"3353020", competition:"M-U14 Division 5:Phase finale", squad:"U14 – Minis"},
-    {date:"2026-05-09", weekday:5, time:"14:30", homeAway:"away", opponent:"Racing Luxembourg B", opponentCode:"RAC", venue:"Tramsschapp Luxembourg, Luxembourg-Limpertsb", gameNumber:"3353028", competition:"M-U14 Division 5:Phase finale", squad:"U14 – Minis"},
     {date:"2026-09-26", weekday:5, time:"14:30", homeAway:"away", opponent:"Nitia Bettembourg", opponentCode:"NIT", venue:"", gameNumber:"3241001", competition:"M-U16 Division 4:Phase 1", squad:"U16 – Scolaires"},
     {date:"2026-10-03", weekday:5, time:"17:00", homeAway:"home", opponent:"Basket Esch B (43-123)", opponentCode:"LAL", venue:"", gameNumber:"3241004", competition:"M-U16 Division 4:Phase 1", squad:"U16 – Scolaires"},
     {date:"2026-10-08", weekday:3, time:"17:00", homeAway:"home", opponent:"Telstar Hesperange (forfeit B)", opponentCode:"TEL", venue:"", gameNumber:"3021004", competition:"M-Coupe de l'Avenir:1/16 finales", squad:"U16 – Scolaires"},
@@ -264,7 +247,9 @@
     if (divEl){
       // Division label comes from a league game — never from a Coupe game.
       const leagueGames = nextGames.filter(g => !isCupCompetition(g.competition));
-      const squads = [...new Set(leagueGames.map(g => g.squad).filter(Boolean))].sort();
+      const y = now.getMonth() >= 7 ? now.getFullYear() : now.getFullYear() - 1;
+      const seasonStart = y + '-08-01';
+      const squads = [...new Set(leagueGames.filter(g => g.date >= seasonStart).map(g => g.squad).filter(Boolean))].sort();
       const pickRef = list => list.find(g => g.date >= todayStr) || list[list.length - 1];
       if (squads.length > 1) {
         // U14 an U16 hunn all eng eegen Divisioun

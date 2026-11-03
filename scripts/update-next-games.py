@@ -370,10 +370,18 @@ def update_team_page(path, events, bsm_name, resolved_cache, squad=None):
     return True
 
 
+def season_start(d):
+    """Basketball seasons start in August: 1 Aug of this year, or of last year before August."""
+    return date(d.year if d.month >= 8 else d.year - 1, 8, 1).strftime("%Y%m%d")
+
+
 def main():
     next_games = []
     any_changes = False
     today = date.today().strftime("%Y%m%d")
+    # A feed can still hold a previous season (e.g. MIBSM had only 2025/26 U14 games
+    # while the 2026/27 U14 games were not out yet) — never pull an old season onto the site.
+    this_season = season_start(date.today())
 
     for team in TEAMS:
         print(f"Checking {team['teamLabel']} ({team['code']}) ...")
@@ -383,7 +391,7 @@ def main():
             print(f"  ! could not fetch {team['code']}: {e}", file=sys.stderr)
             continue
 
-        events = parse_ics_events(text)
+        events = [e for e in parse_ics_events(text) if e.get("date", "") >= this_season]
         resolved_cache = {}  # gameNumber -> resolved dict, so each game is resolved (and its time looked up) only once
 
         def resolved_for(ev):
