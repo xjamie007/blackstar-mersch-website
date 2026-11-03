@@ -20,7 +20,7 @@
 <link rel="icon" href="../assets/favicon.ico" sizes="any">
 <link rel="icon" type="image/png" sizes="32x32" href="../assets/favicon-32.png">
 <link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
-<link rel="stylesheet" href="../assets/style.css?v=1792347502">
+<link rel="stylesheet" href="../assets/style.css?v=1793711135">
 </head>
 <body>
 <header>
@@ -89,43 +89,44 @@
     <script>document.querySelectorAll('nav a').forEach(function(a){a.addEventListener('click',function(){document.querySelector('nav').classList.remove('open');});});</script>
   </div>
 </header>
-<div class="newsarticle" id="articleWrap">
+<div class="newsarticle newsarticle-wide" id="articleWrap">
   <a class="back-link" href="../news.html" data-i18n="back.news">← Zeréck op d'News</a>
   <div id="staticContentState">
     <div class="eyebrow" id="artEyebrow" data-i18n="nav.training">Training</div>
     <h1 id="artHeadline">Meet Our Strength Coach: Lance Channing 💪</h1>
 
-    <div class="ig-reel">
-      <div class="map-consent ig-consent" data-ig-src="https://www.instagram.com/reel/DfPCnR-tkqX/embed/">
-        <h4 data-i18n="ig.title">Video op Instagram</h4>
-        <p data-i18n="ig.note">Wann Dir d'Video lued, gëtt eng Verbindung mat Instagram (Meta) opgebaut. Dobäi ginn Är IP-Adress a Cookien un Meta iwwerdroen.</p>
-        <button type="button" class="btn btn-gold" data-i18n="ig.load">Video lueden</button>
+    <div class="newsarticle-split">
+      <div class="newsarticle-body" id="artBody">
+        <p>Every week, personal trainer Lance Channing, who is also the Head Coach of our Women's A-Team, works with our athletes to build strength, agility and endurance.</p>
+        <p>Our goal is simple: raise healthy, competitive players who are ready for every game and for life beyond the court. Together with our mental coaching, this is how Black Star helps its players become the best version of themselves.</p>
+        <p>Strong bodies, strong minds, one family. 🖤⭐️</p>
+        <p><strong>Black Star Mersch · Since 1934</strong></p>
       </div>
-      <a class="btn btn-outline ig-link" href="https://www.instagram.com/reel/DfPCnR-tkqX/" target="_blank" rel="noopener" data-i18n="ig.open">Op Instagram kucken →</a>
-    </div>
-    <style>
-      .ig-reel{max-width:420px;margin:8px auto 32px;text-align:center;}
-      .ig-reel .map-consent{border:1px solid var(--line);border-radius:12px;min-height:420px;}
-      .ig-reel iframe{width:100%;height:740px;border:1px solid var(--line);border-radius:12px;background:#fff;display:block;}
-      .ig-reel .ig-link{display:inline-block;margin-top:16px;}
-    </style>
-    <script>
-      document.querySelectorAll('.ig-consent button').forEach(function(btn){
-        btn.addEventListener('click',function(){
-          var box=btn.closest('.ig-consent');
-          var f=document.createElement('iframe');
-          f.src=box.getAttribute('data-ig-src'); f.title='Instagram Reel – Lance Channing';
-          f.loading='lazy'; f.allow='autoplay; encrypted-media; picture-in-picture; fullscreen'; f.setAttribute('allowfullscreen','');
-          box.replaceWith(f);
+      <div class="ig-reel newsarticle-media">
+        <div class="map-consent ig-consent" data-ig-src="https://www.instagram.com/reel/DfPCnR-tkqX/embed/">
+          <h4 data-i18n="ig.title">Video op Instagram</h4>
+          <p data-i18n="ig.note">Wann Dir d'Video lued, gëtt eng Verbindung mat Instagram (Meta) opgebaut. Dobäi ginn Är IP-Adress a Cookien un Meta iwwerdroen.</p>
+          <button type="button" class="btn btn-gold" data-i18n="ig.load">Video lueden</button>
+        </div>
+        <a class="btn btn-outline ig-link" href="https://www.instagram.com/reel/DfPCnR-tkqX/" target="_blank" rel="noopener" data-i18n="ig.open">Op Instagram kucken →</a>
+      </div>
+      <style>
+        .ig-reel{max-width:420px;margin:0 auto;text-align:center;}
+        .ig-reel .map-consent{border:1px solid var(--line);border-radius:12px;min-height:420px;}
+        .ig-reel iframe{width:100%;height:740px;border:1px solid var(--line);border-radius:12px;background:#fff;display:block;}
+        .ig-reel .ig-link{display:inline-block;margin-top:16px;}
+      </style>
+      <script>
+        document.querySelectorAll('.ig-consent button').forEach(function(btn){
+          btn.addEventListener('click',function(){
+            var box=btn.closest('.ig-consent');
+            var f=document.createElement('iframe');
+            f.src=box.getAttribute('data-ig-src'); f.title='Instagram Reel – Lance Channing';
+            f.loading='lazy'; f.allow='autoplay; encrypted-media; picture-in-picture; fullscreen'; f.setAttribute('allowfullscreen','');
+            box.replaceWith(f);
+          });
         });
-      });
-    </script>
-
-    <div class="newsarticle-body" id="artBody">
-      <p>Every week, personal trainer Lance Channing, who is also the Head Coach of our Women's A-Team, works with our athletes to build strength, agility and endurance.</p>
-      <p>Our goal is simple: raise healthy, competitive players who are ready for every game and for life beyond the court. Together with our mental coaching, this is how Black Star helps its players become the best version of themselves.</p>
-      <p>Strong bodies, strong minds, one family. 🖤⭐️</p>
-      <p><strong>Black Star Mersch · Since 1934</strong></p>
+      </script>
     </div>
   </div>
 </div>
