@@ -160,6 +160,9 @@
   }
   .ticker a:hover{border-color:var(--gold);color:var(--gold);}
   @keyframes scroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+  /* Mat assets/ticker.js leeft all Element eenzel (keen ganz breede Sträif, deen Safari net ganz mol) */
+  .ticker.js-marquee{animation:none;position:relative;width:auto;display:block;overflow:hidden;}
+  .ticker.js-marquee > a{position:absolute;left:0;margin:0;will-change:transform;}
   /* Sponsoren-Leescht ënnen am Hero-Bild: d'Bild leeft an d'Schwaarzt aus, d'Logoe lafen iwwer dem Schwaarzen */
   /* Keng eegen Grafik-Ebene fir déi ganz Leescht: Safari mol déi breet, lafend Leescht soss nëmmen
      zum Deel (lénks bleift eidel). Just de klenge Saz kritt eng, fir datt e beim Bildwiessel net verschwënnt. */

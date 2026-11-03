@@ -20,7 +20,7 @@
 <link rel="icon" href="assets/favicon.ico" sizes="any">
 <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
 <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
-<link rel="stylesheet" href="assets/style.css?v=1793713694">
+<link rel="stylesheet" href="assets/style.css?v=1793713848">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -402,6 +402,7 @@
   <div class="footer-credit"><span data-i18n="footer.createdby">created by</span> <a href="https://nave.lu" target="_blank" rel="noopener">nave</a></div>
 </footer>
 
+<script src="assets/ticker.js?v=1793713848"></script>
 <script>
   // ---- Sproochen / i18n ----
   const i18n = {
@@ -574,7 +575,7 @@
     ? `<a class="has-logo" href="${s[1]}" target="_blank" rel="noopener"><img src="${s[2]}" alt="${s[0]}"></a>`
     : `<a href="${s[1]}" target="_blank" rel="noopener">${s[0]}</a>`
   ).join('');
-  ticker.innerHTML = tickerHtml + tickerHtml;
+  ticker.innerHTML = tickerHtml;
 
   // Next games (gameday cards) — next upcoming game per category, pulled from the FLBB team calendars, refreshed daily
   // GAMES_DATA_START (auto-generated — do not hand-edit the block below, see /scripts/update-next-games.py)
@@ -768,19 +769,25 @@
   ];
   const merchTicker = document.getElementById('merchTicker');
   const merchTickerHtml = merchItems.map(m => `<a class="merch-item" href="${m[2]}" target="_blank" rel="noopener"><img src="${m[3]}" alt="${m[0]}" loading="lazy"><span class="merch-name">${m[0]}</span><span class="merch-price">${m[1]}</span></a>`).join('');
-  merchTicker.innerHTML = merchTickerHtml + merchTickerHtml;
+  merchTicker.innerHTML = merchTickerHtml;
 
-  // Match the merch ticker's scroll speed (px/sec) to the sponsor ticker's,
-  // regardless of how many items/how wide each ticker's content is.
-  requestAnimationFrame(() => {
-    const baseDurationS = 32; // matches .ticker's CSS animation-duration
-    const sponsorSingleWidth = ticker.scrollWidth / 2;
-    const pxPerSecond = sponsorSingleWidth / baseDurationS;
-    const merchSingleWidth = merchTicker.scrollWidth / 2;
-    if (pxPerSecond > 0 && merchSingleWidth > 0) {
-      merchTicker.style.animationDuration = (merchSingleWidth / pxPerSecond) + 's';
-    }
-  });
+  // Both tickers move item by item (assets/ticker.js) — Safari left part of the old
+  // single wide CSS strip blank. Same speed as before: one full sponsor round in 32 s,
+  // and the merch ticker runs at the same px/s.
+  if (window.bsmMarquee) {
+    const baseDurationS = 32;
+    const sponsorMq = bsmMarquee(ticker, 80);
+    const merchMq = bsmMarquee(merchTicker, 80);
+    const syncSpeed = () => {
+      const pxPerSecond = sponsorMq ? sponsorMq.width() / baseDurationS : 0;
+      if (pxPerSecond > 0) { sponsorMq.setSpeed(pxPerSecond); if (merchMq) merchMq.setSpeed(pxPerSecond); }
+    };
+    syncSpeed();
+    window.addEventListener('load', syncSpeed);
+  } else {
+    ticker.innerHTML = tickerHtml + tickerHtml;
+    merchTicker.innerHTML = merchTickerHtml + merchTickerHtml;
+  }
 
   // Hero slideshow (full-width, alternating Senior A photos — the wide shots; the team pages use the closer ones)
   const heroPhotos = [
