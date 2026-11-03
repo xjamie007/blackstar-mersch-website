@@ -20,7 +20,7 @@
 <link rel="icon" href="assets/favicon.ico" sizes="any">
 <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
 <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
-<link rel="stylesheet" href="assets/style.css?v=1793711746">
+<link rel="stylesheet" href="assets/style.css?v=1793712518">
 </head>
 <body>
 <header>
@@ -95,7 +95,26 @@
   <h1 class="section-title" style="margin-bottom:8px;" data-i18n="comitepage.h1">D'Leit hannert dem Black Star Mersch</h1>
   <p class="insc-lede" data-i18n="comitepage.lede">De Black Star Mersch gëtt komplett vu Benevollen geleed. Zanter 1934 investéieren dës Leit hir Fräizäit fir datt 14 Ekippen all Woch kënne trainéieren a spillen — hei sinn déi Leit déi de Veräin um Lafen halen.</p>
 
-  <div class="comite-stats">
+  <figure class="comite-photo" id="comitePhoto" role="button" tabindex="0" aria-label="Foto vergréisseren">
+    <img src="assets/news/new-board-new-vision.jpg" alt="De Comité vum Black Star Mersch">
+  </figure>
+  <div class="lightbox" id="lightbox" aria-hidden="true">
+    <button type="button" class="lightbox-close" aria-label="Zoumaachen">×</button>
+    <img src="assets/news/new-board-new-vision.jpg" alt="De Comité vum Black Star Mersch">
+  </div>
+  <script>
+    (function(){
+      var ph=document.getElementById('comitePhoto'), lb=document.getElementById('lightbox');
+      function open(){ lb.classList.add('open'); lb.setAttribute('aria-hidden','false'); }
+      function close(){ lb.classList.remove('open'); lb.setAttribute('aria-hidden','true'); }
+      ph.addEventListener('click',open);
+      ph.addEventListener('keydown',function(e){ if(e.key==='Enter'||e.key===' '){ e.preventDefault(); open(); } });
+      lb.addEventListener('click',close);
+      document.addEventListener('keydown',function(e){ if(e.key==='Escape') close(); });
+    })();
+  </script>
+
+  <div class="comite-stats" style="margin-top:36px;">
     <div class="comite-stat"><b>1934</b><span data-i18n="comite.stat.founded">Gegrënnt</span></div>
     <div class="comite-stat"><b>7</b><span data-i18n="comite.stat.members">Comité-Memberen</span></div>
     <div class="comite-stat"><b>14</b><span data-i18n="comite.stat.teams">Ekippen</span></div>
@@ -111,7 +130,12 @@
     <div class="person"><div class="avatar">LC</div><h4>Lars Christiansen</h4><span data-i18n="role.member">Member</span></div>
   </div>
 
-  <a class="tribute" href="tribute.html" style="display:block;text-decoration:none;margin-top:48px;">
+  <a class="tribute" href="news/new-board-new-vision.html" style="display:block;text-decoration:none;margin-top:48px;">
+    <h3>New Board. New Vision. New Possibilities. 🖤⭐️</h3>
+    <p>A new chapter begins at Black Star Mersch. Homegrown talent. Real opportunity. One family. <span data-i18n="news.readmore">Weider liesen →</span></p>
+  </a>
+
+  <a class="tribute" href="tribute.html" style="display:block;text-decoration:none;margin-top:20px;">
     <h3 data-i18n="committee.tribute.h">Merci Romain, Merci Marcy!</h3>
     <p data-i18n="committee.tribute.p">Zanter 2004 hunn si a bal all Funktioun um Veräin matgeschafft. Liest hei hir ganz Geschicht →</p>
   </a>
@@ -129,19 +153,19 @@
 </footer>
 <script>
   const i18n = {
-    fr: {"nav.home":"Accueil","nav.teams":"Équipes","nav.training":"Entraînements","nav.history":"Histoire","nav.news":"Actualités","nav.committee":"Comité","nav.sponsors":"Sponsors","nav.club":"Le club","nav.join":"Participer","nav.support":"Nous soutenir","nav.gyms":"Salles","nav.merch":"Boutique","nav.inscriptions":"Inscriptions","nav.contact":"Contact","nav.menu":"☰ Menu","team.senior-a-men":"Senior A Hommes","team.senior-a-women":"Senior A Femmes","team.senior-b-men":"Senior B Hommes","team.senior-c-men":"Senior C Hommes","team.senior-b-women":"Senior B Femmes","team.referees":"Arbitres","footer.copy":"© 2026 Black Star Mersch","footer.createdby":"créé par","footer.imprint":"Mentions légales","footer.privacy":"Confidentialité","back.home":"← Retour à l'accueil",
+    fr: {"news.readmore":"Lire la suite →","nav.home":"Accueil","nav.teams":"Équipes","nav.training":"Entraînements","nav.history":"Histoire","nav.news":"Actualités","nav.committee":"Comité","nav.sponsors":"Sponsors","nav.club":"Le club","nav.join":"Participer","nav.support":"Nous soutenir","nav.gyms":"Salles","nav.merch":"Boutique","nav.inscriptions":"Inscriptions","nav.contact":"Contact","nav.menu":"☰ Menu","team.senior-a-men":"Senior A Hommes","team.senior-a-women":"Senior A Femmes","team.senior-b-men":"Senior B Hommes","team.senior-c-men":"Senior C Hommes","team.senior-b-women":"Senior B Femmes","team.referees":"Arbitres","footer.copy":"© 2026 Black Star Mersch","footer.createdby":"créé par","footer.imprint":"Mentions légales","footer.privacy":"Confidentialité","back.home":"← Retour à l'accueil",
     "comite.eyebrow":"Notre comité","comitepage.h1":"Les personnes derrière le Black Star Mersch","comitepage.lede":"Black Star Mersch est entièrement géré par des bénévoles. Depuis 1934, ces personnes investissent leur temps libre pour que 14 équipes puissent s'entraîner et jouer chaque semaine — voici les personnes qui font tourner le club.",
     "comite.stat.founded":"Fondé","comite.stat.members":"Membres du comité","comite.stat.teams":"Équipes",
     "role.president":"Présidente","role.vicepresident":"Vice-Président","role.treasurer":"Trésorier","role.secretary":"Secrétaire","role.member":"Membre",
     "committee.tribute.h":"Merci Romain, merci Marcy !","committee.tribute.p":"Depuis 2004, ils se sont engagés dans presque toutes les fonctions du club. Lisez leur histoire complète →",
 },
-    de: {"nav.home":"Home","nav.teams":"Teams","nav.training":"Training","nav.history":"Geschichte","nav.news":"News","nav.committee":"Komitee","nav.sponsors":"Sponsoren","nav.club":"Verein","nav.join":"Mitmachen","nav.support":"Unterstützen","nav.gyms":"Hallen","nav.merch":"Fanshop","nav.inscriptions":"Anmeldung","nav.contact":"Kontakt","nav.menu":"☰ Menü","team.senior-a-men":"Senior A Herren","team.senior-a-women":"Senior A Damen","team.senior-b-men":"Senior B Herren","team.senior-c-men":"Senior C Herren","team.senior-b-women":"Senior B Damen","team.referees":"Schiedsrichter","footer.copy":"© 2026 Black Star Mersch","footer.createdby":"erstellt von","footer.imprint":"Impressum","footer.privacy":"Datenschutz","back.home":"← Zurück zur Startseite",
+    de: {"news.readmore":"Weiterlesen →","nav.home":"Home","nav.teams":"Teams","nav.training":"Training","nav.history":"Geschichte","nav.news":"News","nav.committee":"Komitee","nav.sponsors":"Sponsoren","nav.club":"Verein","nav.join":"Mitmachen","nav.support":"Unterstützen","nav.gyms":"Hallen","nav.merch":"Fanshop","nav.inscriptions":"Anmeldung","nav.contact":"Kontakt","nav.menu":"☰ Menü","team.senior-a-men":"Senior A Herren","team.senior-a-women":"Senior A Damen","team.senior-b-men":"Senior B Herren","team.senior-c-men":"Senior C Herren","team.senior-b-women":"Senior B Damen","team.referees":"Schiedsrichter","footer.copy":"© 2026 Black Star Mersch","footer.createdby":"erstellt von","footer.imprint":"Impressum","footer.privacy":"Datenschutz","back.home":"← Zurück zur Startseite",
     "comite.eyebrow":"Unser Komitee","comitepage.h1":"Die Menschen hinter dem Black Star Mersch","comitepage.lede":"Black Star Mersch wird komplett von Ehrenamtlichen organisiert. Seit 1934 investieren diese Menschen ihre Freizeit, damit 14 Teams jede Woche trainieren und spielen können — hier sind die Leute, die den Verein am Laufen halten.",
     "comite.stat.founded":"Gegründet","comite.stat.members":"Komitee-Mitglieder","comite.stat.teams":"Teams",
     "role.president":"Präsidentin","role.vicepresident":"Vizepräsident","role.treasurer":"Kassier","role.secretary":"Sekretärin","role.member":"Mitglied",
     "committee.tribute.h":"Merci Romain, merci Marcy!","committee.tribute.p":"Seit 2004 haben sie in fast allen Funktionen im Verein mitgewirkt. Lest ihre ganze Geschichte →",
 },
-    en: {"nav.home":"Home","nav.teams":"Teams","nav.training":"Training","nav.history":"History","nav.news":"News","nav.committee":"Committee","nav.sponsors":"Sponsors","nav.club":"The club","nav.join":"Get involved","nav.support":"Support us","nav.gyms":"Gyms","nav.merch":"Merchandise","nav.inscriptions":"Sign up","nav.contact":"Contact","nav.menu":"☰ Menu","team.senior-a-men":"Senior A Men","team.senior-a-women":"Senior A Women","team.senior-b-men":"Senior B Men","team.senior-c-men":"Senior C Men","team.senior-b-women":"Senior B Women","team.referees":"Referees","footer.copy":"© 2026 Black Star Mersch","footer.createdby":"created by","footer.imprint":"Legal notice","footer.privacy":"Privacy","back.home":"← Back to Home",
+    en: {"news.readmore":"Read more →","nav.home":"Home","nav.teams":"Teams","nav.training":"Training","nav.history":"History","nav.news":"News","nav.committee":"Committee","nav.sponsors":"Sponsors","nav.club":"The club","nav.join":"Get involved","nav.support":"Support us","nav.gyms":"Gyms","nav.merch":"Merchandise","nav.inscriptions":"Sign up","nav.contact":"Contact","nav.menu":"☰ Menu","team.senior-a-men":"Senior A Men","team.senior-a-women":"Senior A Women","team.senior-b-men":"Senior B Men","team.senior-c-men":"Senior C Men","team.senior-b-women":"Senior B Women","team.referees":"Referees","footer.copy":"© 2026 Black Star Mersch","footer.createdby":"created by","footer.imprint":"Legal notice","footer.privacy":"Privacy","back.home":"← Back to Home",
     "comite.eyebrow":"Our committee","comitepage.h1":"The people behind Black Star Mersch","comitepage.lede":"Black Star Mersch is run entirely by volunteers. Since 1934, these people have invested their free time so that 14 teams can train and play every week — meet the people who keep the club running.",
     "comite.stat.founded":"Founded","comite.stat.members":"Committee members","comite.stat.teams":"Teams",
     "role.president":"President","role.vicepresident":"Vice-President","role.treasurer":"Treasurer","role.secretary":"Secretary","role.member":"Member",

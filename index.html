@@ -20,7 +20,7 @@
 <link rel="icon" href="assets/favicon.ico" sizes="any">
 <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
 <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
-<link rel="stylesheet" href="assets/style.css?v=1793711746">
+<link rel="stylesheet" href="assets/style.css?v=1793712518">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -300,7 +300,9 @@
   <div class="eyebrow" data-i18n="committee.eyebrow">Eise Comité</div>
   <h2 class="section-title" data-i18n="committee.title">Léier eise Comité kennen</h2>
   <p class="section-sub" data-i18n="committee.sub">Benevol Membere ronderëm de Ball.</p>
-  <div class="grid grid-4" id="committeeGrid"></div>
+  <a class="comite-photo" href="committee.html">
+    <img src="assets/news/new-board-new-vision.jpg" alt="De Comité vum Black Star Mersch" loading="lazy">
+  </a>
   <a class="btn btn-outline" href="committee.html" style="display:inline-block;margin-top:24px;" data-i18n="committee.more.btn">Eise ganze Comité entdecken →</a>
 
   <a class="tribute" href="tribute.html" style="display:block;text-decoration:none;margin-top:40px;">
@@ -928,7 +930,9 @@
   ];
   function buildCommittee(lang){
     const dict = i18n[lang] || {};
-    document.getElementById('committeeGrid').innerHTML = committee.map(c => {
+    const grid = document.getElementById('committeeGrid');
+    if (!grid) return;
+    grid.innerHTML = committee.map(c => {
       const initials = c[0].split(' ').map(w=>w[0]).slice(0,2).join('');
       const role = dict[c[2]] || c[1];
       return `<div class="person"><div class="avatar">${initials}</div><h4>${c[0]}</h4><span>${role}</span></div>`;

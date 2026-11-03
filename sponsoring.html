@@ -20,7 +20,7 @@
 <link rel="icon" href="assets/favicon.ico" sizes="any">
 <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
 <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
-<link rel="stylesheet" href="assets/style.css?v=1793711746">
+<link rel="stylesheet" href="assets/style.css?v=1793712518">
 </head>
 <body>
 <header>
@@ -108,8 +108,8 @@
           <circle cx="100" cy="100" r="97" stroke-width="5"></circle>
           <line x1="100" y1="3" x2="100" y2="197"></line>
           <line x1="3" y1="100" x2="197" y2="100"></line>
-          <path d="M100 4 C 44 54, 44 146, 100 196"></path>
-          <path d="M100 4 C 156 54, 156 146, 100 196"></path>
+          <path d="M100 4 C 18 50, 18 150, 100 196"></path>
+          <path d="M100 4 C 182 50, 182 150, 100 196"></path>
         </g>
       </svg>
       <p class="ball-loading" data-i18n="support.loading">Partie gi gelueden …</p>
@@ -294,6 +294,20 @@
       ball.querySelectorAll('.ball-pick, .ball-loading').forEach(function (el) { el.remove(); });
     }
 
+    /* D'Partien gläichméisseg am Krees ronderëm verdeelen (wéi eng Auer, ab
+       uewen), "Support the Club" an der Mëtt vum Ball. */
+    function spread() {
+      var games = ball.querySelectorAll('.ball-pick:not(.is-club)');
+      var club = ball.querySelector('.ball-pick.is-club');
+      var n = games.length, R = 34; /* Radius a % vum Ball */
+      games.forEach(function (b, i) {
+        var a = -Math.PI / 2 + (2 * Math.PI * i) / n;
+        b.style.setProperty('--x', (50 + R * Math.cos(a)).toFixed(2) + '%');
+        b.style.setProperty('--y', (50 + R * Math.sin(a)).toFixed(2) + '%');
+      });
+      if (club) { club.style.setProperty('--x', '50%'); club.style.setProperty('--y', '50%'); }
+    }
+
     S.loadGames().then(function (games) {
       clearTiles();
       /* Aacht Plazen am Ball, wéi um Plakat: siwe Partien an "de Veräin". */
@@ -301,6 +315,7 @@
         ball.appendChild(tile(S.shortDate(g.date), g.opponent));
       });
       ball.appendChild(tile(t('support.club', 'Support the Club'), '', 'is-club'));
+      spread();
     }).catch(function () {
       /* Keng Partien ze kréien ass kee Grond, d'Säit eidel ze loossen: de
          Veräin kann een ëmmer ënnerstëtzen. */
