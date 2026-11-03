@@ -468,6 +468,14 @@
 
   footer{position:absolute;left:0;right:0;bottom:0;border-top:1px solid var(--line);padding:34px 24px;text-align:center;color:var(--text-dim);font-size:12px;background:var(--black);}
   footer .footer-credit{margin-top:8px;}
+  /* Footer symmetresch: Linken an der Mëtt, Copyright lénks, "created by" riets (op enger Linn mat der Navigatioun) */
+  @media (min-width:761px){
+    footer{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;column-gap:24px;
+      padding-left:max(24px, calc((100% - 1132px) / 2));padding-right:max(24px, calc((100% - 1132px) / 2));}
+    footer > span[data-i18n="footer.copy"]{justify-self:start;}
+    footer div.footer-legal{margin-top:0;}
+    footer div.footer-credit{margin-top:0;justify-self:end;}
+  }
   footer .footer-credit a{color:var(--text-dim);text-decoration:none;transition:color .15s;}
   footer .footer-credit a:hover{color:var(--gold);}
   .placeholder-note{font-size:11px;color:var(--gold-dim);text-transform:none;letter-spacing:0;margin-top:6px;}

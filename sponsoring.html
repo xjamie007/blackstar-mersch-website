@@ -20,7 +20,7 @@
 <link rel="icon" href="assets/favicon.ico" sizes="any">
 <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
 <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
-<link rel="stylesheet" href="assets/style.css?v=1793714256">
+<link rel="stylesheet" href="assets/style.css?v=1793714562">
 </head>
 <body>
 <header>
@@ -220,7 +220,7 @@
 </script>
 <script src="assets/legal.js?v=1793711425" defer></script>
 
-<script src="assets/sponsor-mail.js?v=1793713207" defer></script>
+<script src="assets/sponsor-mail.js?v=1793714562" defer></script>
 <script defer>
   window.addEventListener('DOMContentLoaded', function () {
     var S = window.bsmSponsor;
@@ -260,7 +260,7 @@
          Besucher en net selwer geännert huet. */
       if (shown && (!subjectField.value || subjectField.value === autoSubject)) {
         autoSubject = game
-          ? t('support.subj.ball', 'Spillball') + ' – ' + game
+          ? t('support.subj.ball', 'Spillball') + ', ' + game
           : t('support.subj.club', 'Ënnerstëtzung fir de Black Star Mersch');
         subjectField.value = autoSubject;
       }
