@@ -496,8 +496,8 @@ nav ul{align-items:center;}
 
 /* GLOBE LANG SWITCH (now a normal nav <li>, same line as the other rubrics) */
 .langglobe{position:relative;}
-.langglobe > .globe-btn{background:none;border:1px solid var(--line);color:var(--text-dim);border-radius:50%;width:32px;height:32px;cursor:pointer;display:flex;align-items:center;justify-content:center;}
-.langglobe > .globe-btn:hover{border-color:var(--gold);color:var(--gold);}
+.langglobe > .globe-btn{background:none;border:0;color:var(--text-dim);border-radius:50%;width:32px;height:32px;cursor:pointer;display:flex;align-items:center;justify-content:center;}
+.langglobe > .globe-btn:hover{color:var(--gold);}
 .langglobe .dropmenu{
   position:absolute;top:100%;right:0;background:var(--panel);border:1px solid var(--line);border-radius:10px;
   padding:6px;min-width:130px;z-index:60;display:none;box-shadow:0 10px 30px rgba(0,0,0,.4);

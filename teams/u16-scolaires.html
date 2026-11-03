@@ -20,7 +20,7 @@
 <link rel="icon" href="../assets/favicon.ico" sizes="any">
 <link rel="icon" type="image/png" sizes="32x32" href="../assets/favicon-32.png">
 <link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
-<link rel="stylesheet" href="../assets/style.css?v=1793712518">
+<link rel="stylesheet" href="../assets/style.css?v=1793713207">
 </head>
 <body>
 <header>
@@ -135,17 +135,17 @@
   // Next games — pulled from the FLBB team calendar, refreshed daily
   // GAMES_DATA_START (auto-generated — do not hand-edit, see /scripts/update-next-games.py)
   const nextGames = [
-    {date:"2026-09-26", weekday:5, time:"14:30", homeAway:"away", opponent:"Nitia Bettembourg", opponentCode:"NIT", venue:"", gameNumber:"3241001", competition:"M-U16 Division 4:Phase 1"},
-    {date:"2026-10-03", weekday:5, time:"17:00", homeAway:"home", opponent:"Basket Esch B (43-123)", opponentCode:"LAL", venue:"", gameNumber:"3241004", competition:"M-U16 Division 4:Phase 1"},
-    {date:"2026-10-08", weekday:3, time:"17:00", homeAway:"home", opponent:"Telstar Hesperange (forfeit B)", opponentCode:"TEL", venue:"", gameNumber:"3021004", competition:"M-Coupe de l'Avenir:1/16 finales"},
-    {date:"2026-10-11", weekday:6, time:"12:00", homeAway:"away", opponent:"Telstar Hesperange", opponentCode:"TEL", venue:"", gameNumber:"3241009", competition:"M-U16 Division 4:Phase 1"},
-    {date:"2026-10-17", weekday:5, time:"15:30", homeAway:"away", opponent:"Kordall Steelers", opponentCode:"KDS", venue:"", gameNumber:"3241010", competition:"M-U16 Division 4:Phase 1"},
-    {date:"2026-10-24", weekday:5, time:"15:00", homeAway:"home", opponent:"Bascharage Hedgehogs (62-59)", opponentCode:"BAS", venue:"", gameNumber:"3241014", competition:"M-U16 Division 4:Phase 1"},
-    {date:"2026-11-15", weekday:6, time:"13:45", homeAway:"away", opponent:"Arantia Larochette", opponentCode:"ARA", venue:"", gameNumber:"3242001", competition:"M-U16 Division 4:Phase 2"},
-    {date:"2026-11-26", weekday:3, time:"18:00", homeAway:"home", opponent:"Racing Luxembourg", opponentCode:"RAC", venue:"", gameNumber:"3022002", competition:"M-Coupe de l'Avenir:1/8 finales"},
-    {date:"2026-11-28", weekday:5, time:"11:30", homeAway:"home", opponent:"Sparta Bertrange B", opponentCode:"SPA", venue:"", gameNumber:"3242005", competition:"M-U16 Division 4:Phase 2"},
-    {date:"2026-12-06", weekday:6, time:"13:00", homeAway:"away", opponent:"Telstar Hesperange", opponentCode:"TEL", venue:"", gameNumber:"3242007", competition:"M-U16 Division 4:Phase 2"},
-    {date:"2026-12-12", weekday:5, time:"15:00", homeAway:"home", opponent:"T71 Dudelange C", opponentCode:"T71", venue:"", gameNumber:"3242010", competition:"M-U16 Division 4:Phase 2"},
+    {date:"2026-09-26", weekday:5, time:"14:30", homeAway:"away", opponent:"Nitia Bettembourg", opponentCode:"NIT", venue:"", gameNumber:"3241001", competition:"M-U16 Division 4:Phase 1", squad:"U16 – Scolaires"},
+    {date:"2026-10-03", weekday:5, time:"17:00", homeAway:"home", opponent:"Basket Esch B (43-123)", opponentCode:"LAL", venue:"", gameNumber:"3241004", competition:"M-U16 Division 4:Phase 1", squad:"U16 – Scolaires"},
+    {date:"2026-10-08", weekday:3, time:"17:00", homeAway:"home", opponent:"Telstar Hesperange (forfeit B)", opponentCode:"TEL", venue:"", gameNumber:"3021004", competition:"M-Coupe de l'Avenir:1/16 finales", squad:"U16 – Scolaires"},
+    {date:"2026-10-11", weekday:6, time:"12:00", homeAway:"away", opponent:"Telstar Hesperange", opponentCode:"TEL", venue:"", gameNumber:"3241009", competition:"M-U16 Division 4:Phase 1", squad:"U16 – Scolaires"},
+    {date:"2026-10-17", weekday:5, time:"15:30", homeAway:"away", opponent:"Kordall Steelers", opponentCode:"KDS", venue:"", gameNumber:"3241010", competition:"M-U16 Division 4:Phase 1", squad:"U16 – Scolaires"},
+    {date:"2026-10-24", weekday:5, time:"15:00", homeAway:"home", opponent:"Bascharage Hedgehogs (62-59)", opponentCode:"BAS", venue:"", gameNumber:"3241014", competition:"M-U16 Division 4:Phase 1", squad:"U16 – Scolaires"},
+    {date:"2026-11-15", weekday:6, time:"13:45", homeAway:"away", opponent:"Arantia Larochette", opponentCode:"ARA", venue:"", gameNumber:"3242001", competition:"M-U16 Division 4:Phase 2", squad:"U16 – Scolaires"},
+    {date:"2026-11-26", weekday:3, time:"18:00", homeAway:"home", opponent:"Racing Luxembourg", opponentCode:"RAC", venue:"", gameNumber:"3022002", competition:"M-Coupe de l'Avenir:1/8 finales", squad:"U16 – Scolaires"},
+    {date:"2026-11-28", weekday:5, time:"11:30", homeAway:"home", opponent:"Sparta Bertrange B", opponentCode:"SPA", venue:"", gameNumber:"3242005", competition:"M-U16 Division 4:Phase 2", squad:"U16 – Scolaires"},
+    {date:"2026-12-06", weekday:6, time:"13:00", homeAway:"away", opponent:"Telstar Hesperange", opponentCode:"TEL", venue:"", gameNumber:"3242007", competition:"M-U16 Division 4:Phase 2", squad:"U16 – Scolaires"},
+    {date:"2026-12-12", weekday:5, time:"15:00", homeAway:"home", opponent:"T71 Dudelange C", opponentCode:"T71", venue:"", gameNumber:"3242010", competition:"M-U16 Division 4:Phase 2", squad:"U16 – Scolaires"},
   ];
   // GAMES_DATA_END
   nextGames.sort((a, b) => a.date.localeCompare(b.date));
@@ -247,10 +247,27 @@
     if (divEl){
       // Division label comes from a league game — never from a Coupe game.
       const leagueGames = nextGames.filter(g => !isCupCompetition(g.competition));
-      const refGame = leagueGames.find(g => g.date >= todayStr) || leagueGames[leagueGames.length - 1] || nextGames[0];
-      divEl.textContent = refGame ? (divisionLabel(refGame.competition, lang) || '–') : '–';
+      const squads = [...new Set(leagueGames.map(g => g.squad).filter(Boolean))].sort();
+      const pickRef = list => list.find(g => g.date >= todayStr) || list[list.length - 1];
+      if (squads.length > 1) {
+        // U14 an U16 hunn all eng eegen Divisioun
+        divEl.textContent = squads.map(sq => {
+          const ref = pickRef(leagueGames.filter(g => g.squad === sq));
+          return sq.split(' ')[0] + ': ' + (ref ? (divisionLabel(ref.competition, lang) || '–') : '–');
+        }).join(' · ');
+      } else {
+        const refGame = pickRef(leagueGames) || nextGames[0];
+        divEl.textContent = refGame ? (divisionLabel(refGame.competition, lang) || '–') : '–';
+      }
     }
 
+    // U14 an U16 trainéieren zesummen, spillen awer getrennt: all Kaart seet, wéi eng Ekipp spillt.
+    function squadLabel(g){
+      if (g.squad) return g.squad;
+      if (/U14/i.test(g.competition || '')) return 'U14 – Minis';
+      if (/U16/i.test(g.competition || '')) return 'U16 – Scolaires';
+      return '';
+    }
     function cardHtml(g){
       const badge = g.homeAway === 'home' ? homeLabel : awayLabel;
       const [y,m,d] = g.date.split('-');
@@ -269,6 +286,7 @@
       const cupStr = isCup ? `<div class="gameday-cup">${cupLabel(g.competition)}</div>` : '';
       return `<a class="gameday-card${isCup ? ' cup' : ''}" href="${matchUrl}" target="_blank" rel="noopener">
         <div class="gameday-card-inner">
+          ${squadLabel(g) ? `<div class="gameday-comp">${squadLabel(g)}</div>` : ''}
           <div class="gameday-matchup">
             <div class="gameday-team"><img src="${leftTeam.logo}" alt="${leftTeam.name}" onerror="this.src='../assets/logo.png'"><span>${leftTeam.name}</span></div>
             <div class="gameday-vs">VS</div>

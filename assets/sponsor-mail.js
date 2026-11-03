@@ -62,7 +62,10 @@
       ])
       .join('\n');
 
-    var subject = 'Spillball-Sponsoring — ' + (company || name) + (game ? ' — ' + game : '');
+    /* De Betreff aus dem Formulaire (mat der Partie virausgefëllt); eidel ->
+       de Standard-Betreff. */
+    var subject = clean(input.subject) ||
+      ('Spillball-Sponsoring — ' + (company || name) + (game ? ' — ' + game : ''));
 
     /* encodeURIComponent an net encodeURI: en "&" an engem Firmennumm géif
        soss de Text ofschneiden an als neie Parameter weiderlafen. */

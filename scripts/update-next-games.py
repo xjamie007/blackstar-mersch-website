@@ -46,10 +46,13 @@ TEAMS = [
     {"code": "SDBSMB", "teamPage": "teams/senior-b-women.html", "teamLabelKey": "team.senior-b-women", "teamLabel": "Senior B Dammen", "bsmName": "Black Star Mersch B"},
     {"code": "SHBSMC", "teamPage": "teams/senior-c-men.html",   "teamLabelKey": "team.senior-c-men",   "teamLabel": "Senior C Hären",  "bsmName": "Black Star Mersch C"},
     {"code": "CABSM",  "teamPage": "teams/u18-cadets.html",     "teamLabelKey": None, "teamLabel": "U18 – Cadets",    "bsmName": "Black Star Mersch"},
-    # U14 + U16 are one squad since 2026/2027 and play in the U16 league (SCBSM).
-    # teams/u14-minis.html only redirects there now. (FIBSM is the U14 girls' feed and
-    # MIBSM the old U14 boys' one — neither has a page on the site.)
-    {"code": "SCBSM",  "teamPage": "teams/u16-scolaires.html",  "teamLabelKey": None, "teamLabel": "U14 + U16 – Minis & Scolaires", "bsmName": "Black Star Mersch"},
+    # U14 + U16 train together on one page (teams/u16-scolaires.html; teams/u14-minis.html
+    # only redirects there), but they play their games separately: U16 (Scolaires) in the
+    # SCBSM feed, U14 (Minis) in the MIBSM feed. Both feeds write into the same page; every
+    # game carries its "squad" so the card says whether it is a U14 or a U16 game.
+    # (FIBSM is the U14 girls' feed — no page on the site.)
+    {"code": "SCBSM",  "teamPage": "teams/u16-scolaires.html",  "teamLabelKey": None, "teamLabel": "U16 – Scolaires", "squad": "U16 – Scolaires", "bsmName": "Black Star Mersch"},
+    {"code": "MIBSM",  "teamPage": "teams/u16-scolaires.html",  "teamLabelKey": None, "teamLabel": "U14 – Minis",     "squad": "U14 – Minis",     "bsmName": "Black Star Mersch"},
 ]
 
 # FLBB club-name -> club-code lookup (for opponent crest images), scraped from
@@ -77,6 +80,7 @@ ENTRY_RE = re.compile(
     r'homeAway:"(?P<homeAway>[^"]*)", opponent:"(?P<opponent>(?:[^"\\]|\\.)*)", '
     r'opponentCode:(?P<opponentCode>null|"[^"]*"), venue:"(?P<venue>(?:[^"\\]|\\.)*)", '
     r'gameNumber:"(?P<gameNumber>\d+)", competition:"(?P<competition>(?:[^"\\]|\\.)*)"'
+    r'(?P<squad>, squad:"[^"]*")?'
     r'(?P<score>, score:\{home:\d+, away:\d+\})?\},'
 )
 
@@ -286,19 +290,21 @@ def update_index_html(next_games):
 TEAM_BLOCK_HEADER = "// GAMES_DATA_START (auto-generated — do not hand-edit, see /scripts/update-next-games.py)"
 
 
-def team_entry_line(resolved, venue_js, game_number, score=""):
-    """venue_js is already-escaped JS string *content* (no surrounding quotes)."""
+def team_entry_line(resolved, venue_js, game_number, score="", squad=None):
+    """venue_js is already-escaped JS string *content* (no surrounding quotes).
+    squad is set on pages shared by two age groups (U14 + U16), e.g. "U14 – Minis"."""
+    squad_js = ", squad:%s" % js_str(squad) if squad else ""
     return (
         '    {date:%s, weekday:%d, time:%s, homeAway:%s, opponent:%s, opponentCode:%s, '
-        'venue:"%s", gameNumber:%s, competition:%s%s},'
+        'venue:"%s", gameNumber:%s, competition:%s%s%s},'
     ) % (
         js_str(resolved["date"]), resolved["weekday"], js_str(resolved["time"]),
         js_str(resolved["homeAway"]), js_str(resolved["opponent"]), js_str(resolved["opponentCode"]),
-        venue_js, js_str(game_number), js_str(resolved["competition"]), score,
+        venue_js, js_str(game_number), js_str(resolved["competition"]), squad_js, score,
     )
 
 
-def update_team_page(path, events, bsm_name, resolved_cache):
+def update_team_page(path, events, bsm_name, resolved_cache, squad=None):
     """Rebuild this team's nextGames table from the live feed.
 
     * every game in the feed is (re)written — league games AND Coupe games, so a game
@@ -347,7 +353,7 @@ def update_team_page(path, events, bsm_name, resolved_cache):
             venue_js = js_escape(venue_from_location(ev.get("location", "")))
         else:
             venue_js = ""
-        entries[gn] = (resolved["date"], team_entry_line(resolved, venue_js, gn, existing_score.get(gn, "")))
+        entries[gn] = (resolved["date"], team_entry_line(resolved, venue_js, gn, existing_score.get(gn, ""), squad))
 
     lines = [line for _, line in sorted(entries.values(), key=lambda t: t[0])]
     new_block = (
@@ -419,7 +425,7 @@ def main():
             print("  -> no upcoming game found, homepage card will be omitted")
 
         # 2) sync this team's own full-season schedule table (league + Coupe)
-        if update_team_page(team["teamPage"], events, team["bsmName"], resolved_cache):
+        if update_team_page(team["teamPage"], events, team["bsmName"], resolved_cache, team.get("squad")):
             print(f"  -> updated {team['teamPage']}")
             any_changes = True
 
