@@ -298,6 +298,7 @@
   .sponsor-card.text-only h4{color:var(--text);font-size:15px;text-align:center;}
   @media (max-width:640px){
     .sponsorspage .grid, #findcatGrid{grid-template-columns:1fr 1fr;gap:12px;}
+    .sponsorspage .grid.perk-grid{grid-template-columns:1fr;}
     .sponsor-card{min-height:80px;padding:10px;}
     .sponsor-card img{max-height:44px;}
     #findcatGrid .card{padding:12px;}
