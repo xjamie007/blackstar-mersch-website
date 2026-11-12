@@ -20,7 +20,8 @@
 <link rel="icon" href="assets/favicon.ico" sizes="any">
 <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
 <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
-<link rel="stylesheet" href="assets/style.css?v=1794482550">
+<link rel="stylesheet" href="assets/style.css?v=1794482873">
+<script src="assets/ballsponsors.js?v=1794482873"></script>
 </head>
 <body>
 <header>
@@ -295,11 +296,9 @@
       });
     });
 
-    /* Partien, fir déi de Spillball schonn gestëft ass (Datum -> Sponsor).
-       Hei derbäisetzen, soubal d'Iwwerweisung ukomm ass. */
-    var ballSponsors = {
-      '2026-11-13': { name: 'Chez Ben', logo: 'assets/ballsponsors/chez-ben.png' },
-    };
+    /* Partien, fir déi de Spillball schonn gestëft ass: kommen aus
+       assets/ballsponsors.js, déiselwecht Lëscht wéi fir d'Matchkaarten. */
+    var ballSponsors = window.BSM_BALL_SPONSORS || {};
 
     /* ---- D'Kacheln ---- */
     function tile(label, sub, extraClass) {
@@ -349,15 +348,16 @@
         var sp = ballSponsors[g.date];
         if (!sp) { ball.appendChild(tile(S.shortDate(g.date), g.opponent)); return; }
         /* Dëse Ball ass schonn gestëft: Logo vum Sponsor, Datum a Géigner
-           bleiwe stoen, awer en ass net méi ze wielen. */
-        var b = tile(S.shortDate(g.date), g.opponent, 'is-taken');
-        var img = document.createElement('img');
-        img.src = sp.logo; img.alt = '';
-        b.insertBefore(img, b.firstChild);
-        b.disabled = true;
-        b.setAttribute('aria-label', S.shortDate(g.date) + ' ' + g.opponent + ', ' + t('support.taken', 'Ball gestëft vun') + ' ' + sp.name);
-        b.title = t('support.taken', 'Ball gestëft vun') + ' ' + sp.name;
-        ball.appendChild(b);
+           bleiwe stoen. Net méi ze wielen, mee e Link op de Sponsor. */
+        var a = document.createElement('a');
+        a.className = 'ball-pick is-taken';
+        a.href = sp.url; a.target = '_blank'; a.rel = 'noopener';
+        a.innerHTML = '<img src="assets/ballsponsors/' + sp.logo + '" alt=""><b></b><span></span>';
+        a.querySelector('b').textContent = S.shortDate(g.date);
+        a.querySelector('span').textContent = g.opponent;
+        a.setAttribute('aria-label', S.shortDate(g.date) + ' ' + g.opponent + ', ' + t('support.taken', 'Ball gestëft vun') + ' ' + sp.name);
+        a.title = t('support.taken', 'Ball gestëft vun') + ' ' + sp.name;
+        ball.appendChild(a);
       });
       ball.appendChild(tile(t('support.club', 'Support the Club'), '', 'is-club'));
       spread();

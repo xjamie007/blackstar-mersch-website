@@ -20,7 +20,8 @@
 <link rel="icon" href="assets/favicon.ico" sizes="any">
 <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
 <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
-<link rel="stylesheet" href="assets/style.css?v=1794482550">
+<link rel="stylesheet" href="assets/style.css?v=1794482873">
+<script src="assets/ballsponsors.js?v=1794482873"></script>
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -446,7 +447,7 @@
       "modal.maps":"Itinéraire avec Google Maps →",
       "days.cat":"Catégorie","days.mon":"Lundi","days.tue":"Mardi","days.wed":"Mercredi","days.thu":"Jeudi","days.fri":"Vendredi",
       "plan.cat0":"U10 Mixtes – Prépoussins","plan.cat1":"U12 Mixtes – Poussins","plan.cat3":"U14 Minis + U16 Hommes – Scolaires","plan.cat11":"U7 Mixtes – Babybasket","plan.cat4":"U18 Hommes – Cadets","plan.cat5":"Seniors A","plan.cat6":"Seniors B / C","plan.cat7":"Dames A","plan.cat8":"Dames B","plan.before2009":"<2009","plan.cat10":"Renforcement musculaire – Lance",
-      "day.sat":"Samedi","day.sun":"Dimanche","games.eyebrow":"Toutes les catégories","games.title":"Journée de match","game.home":"Domicile","game.away":"Extérieur","game.timetbd":"Heure à venir",
+      "day.sat":"Samedi","day.sun":"Dimanche","games.eyebrow":"Toutes les catégories","games.title":"Journée de match","game.ballsponsor":"Ballon offert par","game.home":"Domicile","game.away":"Extérieur","game.timetbd":"Heure à venir",
       "contact.cta.p":"Une question sur le club, les entraînements ou l'inscription ? Écrivez-nous, nous répondons au plus vite.","contact.send":"Écrire un e-mail",
       "agenda.eyebrow":"Agenda","agenda.title":"Prochains événements","agenda.sub":"À noter dans vos agendas.","agenda.today":"Aujourd'hui","agenda.soon":"Bientôt",
       "agenda.ev1":"Journée de la Commémoration nationale","agenda.ev2":"Nouveaux citoyens","agenda.ev3":"Marché de Noël",
@@ -490,7 +491,7 @@
       "modal.maps":"Route mit Google Maps →",
       "days.cat":"Kategorie","days.mon":"Montag","days.tue":"Dienstag","days.wed":"Mittwoch","days.thu":"Donnerstag","days.fri":"Freitag",
       "plan.cat0":"U10 Gemischt – Prépoussins","plan.cat1":"U12 Gemischt – Poussins","plan.cat3":"U14 Minis + U16 Männer – Scolaires","plan.cat11":"U7 Gemischt – Babybasket","plan.cat4":"U18 Männer – Cadets","plan.cat5":"Seniors A","plan.cat6":"Seniors B / C","plan.cat7":"Damen A","plan.cat8":"Damen B","plan.before2009":"<2009","plan.cat10":"Krafttraining – Lance",
-      "day.sat":"Samstag","day.sun":"Sonntag","games.eyebrow":"Alle Kategorien","games.title":"Spieltag","game.home":"Heim","game.away":"Auswärts","game.timetbd":"Uhrzeit folgt",
+      "day.sat":"Samstag","day.sun":"Sonntag","games.eyebrow":"Alle Kategorien","games.title":"Spieltag","game.ballsponsor":"Ball gesponsert von","game.home":"Heim","game.away":"Auswärts","game.timetbd":"Uhrzeit folgt",
       "contact.cta.p":"Fragen zum Verein, zum Training oder zur Anmeldung? Schreibt uns, wir antworten so schnell wie möglich.","contact.send":"E-Mail schreiben",
       "agenda.eyebrow":"Termine","agenda.title":"Nächste Veranstaltungen","agenda.sub":"Merkt euch diese Termine vor.","agenda.today":"Heute","agenda.soon":"Demnächst",
       "agenda.ev1":"Nationaler Gedenktag","agenda.ev2":"Neue Mitbürger","agenda.ev3":"Weihnachtsmarkt",
@@ -534,7 +535,7 @@
       "modal.maps":"Directions via Google Maps →",
       "days.cat":"Category","days.mon":"Monday","days.tue":"Tuesday","days.wed":"Wednesday","days.thu":"Thursday","days.fri":"Friday",
       "plan.cat0":"U10 Mixed – Prépoussins","plan.cat1":"U12 Mixed – Poussins","plan.cat3":"U14 Minis + U16 Men – Scolaires","plan.cat11":"U7 Mixed – Babybasket","plan.cat4":"U18 Men – Cadets","plan.cat5":"Seniors A","plan.cat6":"Seniors B / C","plan.cat7":"Women A","plan.cat8":"Women B","plan.before2009":"<2009","plan.cat10":"Strength Training – Lance",
-      "day.sat":"Saturday","day.sun":"Sunday","games.eyebrow":"All Categories","games.title":"Gameday","game.home":"Home","game.away":"Away","game.timetbd":"Time TBA",
+      "day.sat":"Saturday","day.sun":"Sunday","games.eyebrow":"All Categories","games.title":"Gameday","game.ballsponsor":"Ball sponsored by","game.home":"Home","game.away":"Away","game.timetbd":"Time TBA",
       "contact.cta.p":"A question about the club, training or signing up? Write to us, we reply as soon as we can.","contact.send":"Write an e-mail",
       "agenda.eyebrow":"Agenda","agenda.title":"Upcoming events","agenda.sub":"Save the dates.","agenda.today":"Today","agenda.soon":"Coming up",
       "agenda.ev1":"National Remembrance Day","agenda.ev2":"New citizens","agenda.ev3":"Christmas market",
@@ -729,6 +730,7 @@
           <div class="gameday-time">${timeStr}</div>
           ${cupStr}
           <span class="gameday-badge ${g.homeAway}">${badge}</span>
+          ${g.teamPage === 'teams/senior-a-men.html' && g.homeAway === 'home' ? bsmBallSponsorHtml(g.date, 'assets/', dict['game.ballsponsor'] || 'Ball gestëft vun') : ''}
         </div>
       </a>`;
     }).join('');

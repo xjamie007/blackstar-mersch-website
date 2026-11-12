@@ -343,6 +343,11 @@
   .gameday-badge{display:inline-block;margin-top:14px;font-size:10px;padding:4px 12px;border-radius:20px;letter-spacing:.08em;text-transform:uppercase;font-weight:600;}
   .gameday-badge.home{background:rgba(227,178,60,.18);color:var(--gold);}
   .gameday-badge.away{background:rgba(255,255,255,.07);color:var(--text-dim);}
+  /* Spillball gestëft: Logo + Numm ënnen op der Matchkaart, féiert op de Sponsor */
+  .gameday-ballsponsor{display:flex;align-items:center;justify-content:center;gap:8px;margin-top:12px;font-size:11px;color:var(--text-dim);cursor:pointer;}
+  .gameday-ballsponsor img{width:24px;height:auto;flex:0 0 auto;}
+  .gameday-ballsponsor b{color:var(--text);font-weight:600;}
+  .gameday-ballsponsor:hover b,.gameday-ballsponsor:focus-visible b{color:var(--gold);}
   .gameday-empty{color:var(--text-dim);font-size:14px;text-align:center;}
 
   /* GAMEDAY CAROUSEL (arrows + autoplay, shows as many cards per row as fit, rotates by one) */
@@ -979,8 +984,7 @@ footer .footer-legal .sep{opacity:.4;text-decoration:none;cursor:default;}
 .ball-pick span{font-size:clamp(8px,1.9vw,11px);font-weight:700;text-align:center;}
 .ball-pick.is-club b{font-size:clamp(10px,2.4vw,14px);}
 /* Ball schonn gestëft: Sponsor-Logo uewen, Datum a Géigner drënner, net méi ze wielen */
-.ball-pick.is-taken{cursor:default;gap:1px;}
-.ball-pick.is-taken:hover{transform:none;box-shadow:0 2px 6px rgba(0,0,0,.25);}
+.ball-pick.is-taken{gap:1px;text-decoration:none;}
 .ball-pick.is-taken img{width:38%;height:auto;margin-bottom:1px;}
 .ball-pick.is-taken b{font-size:clamp(11px,2.7vw,15px);}
 
