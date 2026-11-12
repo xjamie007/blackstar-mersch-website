@@ -978,6 +978,11 @@ footer .footer-legal .sep{opacity:.4;text-decoration:none;cursor:default;}
 .ball-pick b{font-size:clamp(13px,3.4vw,19px);font-weight:800;}
 .ball-pick span{font-size:clamp(8px,1.9vw,11px);font-weight:700;text-align:center;}
 .ball-pick.is-club b{font-size:clamp(10px,2.4vw,14px);}
+/* Ball schonn gestëft: Sponsor-Logo uewen, Datum a Géigner drënner, net méi ze wielen */
+.ball-pick.is-taken{cursor:default;gap:1px;}
+.ball-pick.is-taken:hover{transform:none;box-shadow:0 2px 6px rgba(0,0,0,.25);}
+.ball-pick.is-taken img{width:38%;height:auto;margin-bottom:1px;}
+.ball-pick.is-taken b{font-size:clamp(11px,2.7vw,15px);}
 
 
 /* --- IBAN --- */
