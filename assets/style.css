@@ -344,10 +344,11 @@
   .gameday-badge.home{background:rgba(227,178,60,.18);color:var(--gold);}
   .gameday-badge.away{background:rgba(255,255,255,.07);color:var(--text-dim);}
   /* Spillball gestëft: Logo + Numm ënnen op der Matchkaart, féiert op de Sponsor */
-  .gameday-ballsponsor{display:flex;align-items:center;justify-content:center;gap:8px;margin-top:12px;font-size:11px;color:var(--text-dim);cursor:pointer;}
+  .gameday-ballsponsor{display:flex;align-items:center;justify-content:center;gap:8px;margin-top:12px;font-size:11px;color:var(--text-dim);}
+  .gameday-ballsponsor[data-href]{cursor:pointer;}
   .gameday-ballsponsor img{width:24px;height:auto;flex:0 0 auto;}
   .gameday-ballsponsor b{color:var(--text);font-weight:600;}
-  .gameday-ballsponsor:hover b,.gameday-ballsponsor:focus-visible b{color:var(--gold);}
+  .gameday-ballsponsor[data-href]:hover b,.gameday-ballsponsor[data-href]:focus-visible b{color:var(--gold);}
   .gameday-empty{color:var(--text-dim);font-size:14px;text-align:center;}
 
   /* GAMEDAY CAROUSEL (arrows + autoplay, shows as many cards per row as fit, rotates by one) */
@@ -987,6 +988,25 @@ footer .footer-legal .sep{opacity:.4;text-decoration:none;cursor:default;}
 .ball-pick.is-taken{gap:1px;text-decoration:none;}
 .ball-pick.is-taken img{width:38%;height:auto;margin-bottom:1px;}
 .ball-pick.is-taken b{font-size:clamp(11px,2.7vw,15px);}
+/* Sponsor ouni Logo: seng Initialen an enger Kugel an de Veräinsfaarwen */
+.ball-initials{display:flex;align-items:center;justify-content:center;aspect-ratio:1;width:36%;border-radius:50%;background:#0f0053;color:#feb804;font-style:normal;font-weight:800;font-size:clamp(8px,1.8vw,12px);letter-spacing:.02em;margin-bottom:1px;}
+
+/* Spillbäll gestëft vun: Kugelen nieftenee wéi Instagram-Highlights, Numm drënner */
+.ball-highlights{display:flex;gap:20px;overflow-x:auto;padding:8px 6px 12px;scrollbar-width:thin;}
+.ball-hl{flex:0 0 auto;width:104px;display:flex;flex-direction:column;align-items:center;gap:9px;color:var(--text-dim);text-decoration:none;}
+.ball-hl-circle{
+  width:94px;height:94px;border-radius:50%;box-sizing:border-box;padding:6px;
+  background:#fff8e7;border:3px solid #0f0053;box-shadow:0 0 0 3px #feb804;color:#0f0053;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1px;
+  line-height:1.1;text-align:center;transition:transform .15s;
+}
+.ball-hl-circle img{width:30%;height:auto;margin-bottom:1px;}
+.ball-hl-circle .ball-initials{width:30%;font-size:10px;}
+.ball-hl-circle b{font-size:15px;font-weight:800;}
+.ball-hl-opp{font-size:9px;font-weight:700;}
+.ball-hl-name{font-size:12px;line-height:1.25;text-align:center;}
+a.ball-hl:hover .ball-hl-circle,a.ball-hl:focus-visible .ball-hl-circle{transform:scale(1.06);}
+a.ball-hl:hover .ball-hl-name,a.ball-hl:focus-visible .ball-hl-name{color:var(--gold);}
 
 
 /* --- IBAN --- */
