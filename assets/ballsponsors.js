@@ -4,17 +4,19 @@
    Nei Sponsoren hei derbäisetzen. `opponent` steet derbäi, well eng gespillte
    Partie aus den FLBB-Donnéeë verschwënnt, d'Rei se awer weider weist.
    `logo` (just d'Emblem, ouni Schrëft, an assets/ballsponsors/) an `url` sinn
-   fräiwëlleg: ouni Logo gëtt et d'Initialen, ouni url keen Link. */
+   fräiwëlleg: ouni Logo steet de Numm an der Kugel, ouni url keen Link. */
 window.BSM_BALL_SPONSORS = {
   '2026-11-13': { name: 'Chez Ben', opponent: 'North Fox', logo: 'chez-ben.png', url: 'http://chezben.lu/accueil.html' },
   '2027-01-09': { name: 'Patrick Wies', opponent: 'Nitia Bettembourg' },
 };
 
-/* Logo vum Sponsor, oder seng Initialen an enger Kugel, wann et keent gëtt. */
+/* Logo vum Sponsor, oder säi ganzen Numm, wann et keent gëtt. */
 window.bsmSponsorMark = function (sp, assetsBase) {
   if (sp.logo) return '<img src="' + assetsBase + 'ballsponsors/' + sp.logo + '" alt="">';
-  var initials = sp.name.split(/\s+/).map(function (w) { return w.charAt(0); }).join('').slice(0, 2).toUpperCase();
-  return '<i class="ball-initials" aria-hidden="true">' + initials + '</i>';
+  var el = document.createElement('i');
+  el.className = 'ball-sponsorname';
+  el.textContent = sp.name;
+  return el.outerHTML;
 };
 
 /* D'Zeil "Ball gestëft vun …" fir eng Matchkaart. D'Kaart selwer ass e Link op

@@ -988,8 +988,8 @@ footer .footer-legal .sep{opacity:.4;text-decoration:none;cursor:default;}
 .ball-pick.is-taken{gap:1px;text-decoration:none;}
 .ball-pick.is-taken img{width:38%;height:auto;margin-bottom:1px;}
 .ball-pick.is-taken b{font-size:clamp(11px,2.7vw,15px);}
-/* Sponsor ouni Logo: seng Initialen an enger Kugel an de Veräinsfaarwen */
-.ball-initials{display:flex;align-items:center;justify-content:center;aspect-ratio:1;width:36%;border-radius:50%;background:#0f0053;color:#feb804;font-style:normal;font-weight:800;font-size:clamp(8px,1.8vw,12px);letter-spacing:.02em;margin-bottom:1px;}
+/* Sponsor ouni Logo: säin Numm an de Veräinsfaarwen, wou soss d'Logo steet */
+.ball-sponsorname{display:block;max-width:88%;padding:2px 5px;border-radius:6px;background:#0f0053;color:#feb804;font-style:normal;font-weight:800;font-size:clamp(7px,1.6vw,10px);line-height:1.1;text-align:center;margin-bottom:2px;}
 
 /* Spillbäll gestëft vun: Kugelen nieftenee wéi Instagram-Highlights, Numm drënner */
 .ball-highlights{display:flex;gap:20px;overflow-x:auto;padding:8px 6px 12px;scrollbar-width:thin;}
@@ -1001,7 +1001,7 @@ footer .footer-legal .sep{opacity:.4;text-decoration:none;cursor:default;}
   line-height:1.1;text-align:center;transition:transform .15s;
 }
 .ball-hl-circle img{width:30%;height:auto;margin-bottom:1px;}
-.ball-hl-circle .ball-initials{width:30%;font-size:10px;}
+.ball-hl-circle .ball-sponsorname{font-size:9px;}
 .ball-hl-circle b{font-size:15px;font-weight:800;}
 .ball-hl-opp{font-size:9px;font-weight:700;}
 .ball-hl-name{font-size:12px;line-height:1.25;text-align:center;}
