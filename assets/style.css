@@ -1009,6 +1009,10 @@ a.ball-hl:hover .ball-hl-circle,a.ball-hl:focus-visible .ball-hl-circle{transfor
 a.ball-hl:hover .ball-hl-name,a.ball-hl:focus-visible .ball-hl-name{color:var(--gold);}
 
 
+/* Klick op eng Partie scrollt op d'Formulaire: d'Iwwerschrëft soll ënner der
+   fixer Menüläischt (≈67px) nach ze gesinn sinn, net dodrënner verstoppt. */
+#form{scroll-margin-top:90px;}
+
 /* --- IBAN --- */
 .iban-card{
   background:var(--panel);border:1px solid var(--line);border-radius:14px;
